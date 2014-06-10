@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Pumpkin" xml:space="preserve">
+    <value>Pumpkin</value>
+  </data>
+  <data name="Zeit" xml:space="preserve">
+    <value>Zeit</value>
+  </data>
+  <data name="Uhrzeit" xml:space="preserve">
+    <value>Uhrzeit:</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position:</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Index:</value>
+  </data>
+  <data name="Wert" xml:space="preserve">
+    <value>Wert</value>
+  </data>
+  <data name="Physikalisch" xml:space="preserve">
+    <value>Physikalisch:</value>
+  </data>
+  <data name="Sample" xml:space="preserve">
+    <value>Unskaliert:</value>
+  </data>
+  <data name="Zeit1" xml:space="preserve">
+    <value>Zeit</value>
+  </data>
+  <data name="Uhrzeit1" xml:space="preserve">
+    <value>Uhrzeit:</value>
+  </data>
+  <data name="Wert1" xml:space="preserve">
+    <value>Wert</value>
+  </data>
+  <data name="Zeit2" xml:space="preserve">
+    <value>Zeit</value>
+  </data>
+  <data name="Uhrzeit2" xml:space="preserve">
+    <value>Uhrzeit:</value>
+  </data>
+  <data name="LetztesEvent" xml:space="preserve">
+    <value>Letztes Event</value>
+  </data>
+  <data name="Neu" xml:space="preserve">
+    <value>Neu</value>
+  </data>
+  <data name="Öffnen" xml:space="preserve">
+    <value>Öffnen</value>
+  </data>
+  <data name="Speichern" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="Speichernunter" xml:space="preserve">
+    <value>Speichern unter</value>
+  </data>
+  <data name="Screenshotexportieren" xml:space="preserve">
+    <value>Bildschirmfoto exportieren</value>
+  </data>
+  <data name="Drucken" xml:space="preserve">
+    <value>Drucken</value>
+  </data>
+  <data name="Schließen" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="NewGroupLabel" xml:space="preserve">
+    <value>Gruppe erstellen</value>
+  </data>
+  <data name="Ansicht" xml:space="preserve">
+    <value>Ansicht</value>
+  </data>
+  <data name="ZeitSkalieren" xml:space="preserve">
+    <value>Zeit skalieren</value>
+  </data>
+  <data name="SignaleSkalieren" xml:space="preserve">
+    <value>Amplitude skalieren</value>
+  </data>
+  <data name="EinzelwerteDarstellung" xml:space="preserve">
+    <value>Einzelwert-Darstellung</value>
+  </data>
+  <data name="Visualisierung" xml:space="preserve">
+    <value>Visualisierung</value>
+  </data>
+  <data name="Signale" xml:space="preserve">
+    <value>Signal-Darstellung</value>
+  </data>
+  <data name="Plugins" xml:space="preserve">
+    <value>Plug-ins</value>
+  </data>
+  <data name="Hilfe" xml:space="preserve">
+    <value>Hilfe</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Homepage" xml:space="preserve">
+    <value>Homepage</value>
+  </data>
+  <data name="Unisens" xml:space="preserve">
+    <value>Unisens</value>
+  </data>
+  <data name="Service" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="Kontakt" xml:space="preserve">
+    <value>Kontakt</value>
+  </data>
+  <data name="CursorData" xml:space="preserve">
+    <value>Cursor-Daten</value>
+  </data>
+  <data name="Bereich" xml:space="preserve">
+    <value>Bereich</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start:</value>
+  </data>
+  <data name="Ende" xml:space="preserve">
+    <value>Ende:</value>
+  </data>
+  <data name="Dauer" xml:space="preserve">
+    <value>Dauer:</value>
+  </data>
+  <data name="Expertenmodus" xml:space="preserve">
+    <value>Expertenmodus</value>
+  </data>
+  <data name="Datei" xml:space="preserve">
+    <value>Datei</value>
+  </data>
+  <data name="Beenden" xml:space="preserve">
+    <value>Beenden</value>
+  </data>
+  <data name="S10Sekunden" xml:space="preserve">
+    <value>10 Sekunden</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>Minute</value>
+  </data>
+  <data name="Stunde" xml:space="preserve">
+    <value>Stunde</value>
+  </data>
+  <data name="Tag" xml:space="preserve">
+    <value>Tag</value>
+  </data>
+  <data name="Woche" xml:space="preserve">
+    <value>Woche</value>
+  </data>
+  <data name="Alles" xml:space="preserve">
+    <value>Alles</value>
+  </data>
+  <data name="Auswahl" xml:space="preserve">
+    <value>Auswahl</value>
+  </data>
+  <data name="Individuell" xml:space="preserve">
+    <value>Individuell</value>
+  </data>
+  <data name="NachDateiengruppiert" xml:space="preserve">
+    <value>Nach Dateien gruppiert</value>
+  </data>
+  <data name="NachEinheitengruppiert" xml:space="preserve">
+    <value>Nach Einheiten gruppiert</value>
+  </data>
+  <data name="SampleAndHold" xml:space="preserve">
+    <value>Sample_And_Hold</value>
+  </data>
+  <data name="SchaltenVisualizationSampleAnd" xml:space="preserve">
+    <value>Schalten Visualization_Sample_And_Hold an und ab</value>
+  </data>
+  <data name="SampleandHold1" xml:space="preserve">
+    <value>Sample and Hold</value>
+  </data>
+  <data name="Point" xml:space="preserve">
+    <value>Point</value>
+  </data>
+  <data name="SchaltenVisualizationPointanun" xml:space="preserve">
+    <value>Schalten Visualization_Point an und ab</value>
+  </data>
+  <data name="Point1" xml:space="preserve">
+    <value>Point</value>
+  </data>
+  <data name="Linear" xml:space="preserve">
+    <value>Linear</value>
+  </data>
+  <data name="SchaltenVisualizationLinearanu" xml:space="preserve">
+    <value>Schalten Visualization_Linear an und ab</value>
+  </data>
+  <data name="Linear1" xml:space="preserve">
+    <value>Linear</value>
+  </data>
+  <data name="Interpolation" xml:space="preserve">
+    <value>Interpolation</value>
+  </data>
+  <data name="SincInterpolationderangezeigte" xml:space="preserve">
+    <value>Sinc-Interpolation der angezeigten Signale</value>
+  </data>
+  <data name="Interpolation1" xml:space="preserve">
+    <value>Interpolation</value>
+  </data>
+  <data name="Kompression" xml:space="preserve">
+    <value>Kompression</value>
+  </data>
+  <data name="KomprimiertdieangezeigtenDate" xml:space="preserve">
+    <value>Komprimiert die angezeigten Daten mit einer min/max-Kompression</value>
+  </data>
+  <data name="Kompression1" xml:space="preserve">
+    <value>Kompression</value>
+  </data>
+  <data name="PhysikalischenWertrunden" xml:space="preserve">
+    <value>Physikalischen Wert runden</value>
+  </data>
+  <data name="RundetdenphysikalischenWertind" xml:space="preserve">
+    <value>Rundet den physikalischen Wert in der Cursor-Daten-Anzeige auf vier Nachkommastellen</value>
+  </data>
+  <data name="PhysikalischenWertrunden1" xml:space="preserve">
+    <value>Physikalischen Wert runden</value>
+  </data>
+  <data name="Fadenkreuz" xml:space="preserve">
+    <value>Fadenkreuz</value>
+  </data>
+  <data name="SchaltenFadenkreuzanundab" xml:space="preserve">
+    <value>Schalten Fadenkreuz an- und ab</value>
+  </data>
+  <data name="Fadenkreuz1" xml:space="preserve">
+    <value>Fadenkreuz</value>
+  </data>
+  <data name="Alleschließen" xml:space="preserve">
+    <value>Alle schließen</value>
+  </data>
+  <data name="Alleschließen1" xml:space="preserve">
+    <value>Alle schließen</value>
+  </data>
+  <data name="SchließtallegeöffnetenSignale" xml:space="preserve">
+    <value>Schließt alle geöffneten Signale</value>
+  </data>
+  <data name="Hilfe1" xml:space="preserve">
+    <value>Hilfe</value>
+  </data>
+  <data name="Homepage1" xml:space="preserve">
+    <value>Homepage</value>
+  </data>
+  <data name="ÜberUnisensViewer" xml:space="preserve">
+    <value>Über UnisensViewer</value>
+  </data>
+  <data name="NachUpdatessuchen" xml:space="preserve">
+    <value>Nach Updates suchen</value>
+  </data>
+  <data name="Updateskonfigurieren" xml:space="preserve">
+    <value>Updates konfigurieren</value>
+  </data>
+  <data name="FeedbackundBugReport" xml:space="preserve">
+    <value>Feedback und Bug-Report</value>
+  </data>
+  <data name="Analyze" xml:space="preserve">
+    <value>movisens</value>
+  </data>
+  <data name="AnalyzeFile" xml:space="preserve">
+    <value>Datei analysieren</value>
+  </data>
+  <data name="SignaleSkalierenButton" xml:space="preserve">
+    <value>Skalieren</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="SystemLanguage" xml:space="preserve">
+    <value>Systemsprache</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Sprache:</value>
+  </data>
+  <data name="Round" xml:space="preserve">
+    <value>Rundungsgenauigkeit:</value>
+  </data>
+  <data name="FileNotFoundMsg" xml:space="preserve">
+    <value>Die Datei "%filename%" wurde nicht gefunden.</value>
+  </data>
+  <data name="FileNotFoundTitle" xml:space="preserve">
+    <value>Datei nicht gefunden</value>
+  </data>
+  <data name="CropDescription" xml:space="preserve">
+    <value>Schneidet das Signal auf den ausgewählten Bereich zu.</value>
+  </data>
+  <data name="CropLabel" xml:space="preserve">
+    <value>Bereich zuschneiden</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
+  <data name="EditSignals" xml:space="preserve">
+    <value>Signale bearbeiten</value>
+  </data>
+  <data name="TrimDescription" xml:space="preserve">
+    <value>Löscht am Anfang oder Ende eines Signales das ausgewählte Zeitintervall.</value>
+  </data>
+  <data name="TrimLabel" xml:space="preserve">
+    <value>Anfang/Ende abschneiden</value>
+  </data>
+  <data name="Annotations" xml:space="preserve">
+    <value>Annotationen</value>
+  </data>
+  <data name="MarkerDescription" xml:space="preserve">
+    <value>Setzt ein Marker. Mit der Taste 'd' wird der Marker im ausgewählten Intervall gelöscht.</value>
+  </data>
+  <data name="MarkerLabel" xml:space="preserve">
+    <value>Marker</value>
+  </data>
+  <data name="Frequenz" xml:space="preserve">
+    <value>Frequenz:</value>
+  </data>
+  <data name="Tage" xml:space="preserve">
+    <value>Tage</value>
+  </data>
+  <data name="ArtifactsDescription" xml:space="preserve">
+    <value>Markiert ausgewählten Bereich als Artefakt</value>
+  </data>
+  <data name="ArtifactsLabel" xml:space="preserve">
+    <value>Artefakt markieren</value>
+  </data>
+  <data name="NewGroupDescription" xml:space="preserve">
+    <value>Erstellt eine neue Gruppe mit ausgewählten Entries</value>
+  </data>
+  <data name="MarkerListDescription" xml:space="preserve">
+    <value>Erstellt ein neues EventEntry mit einer Marker-Liste</value>
+  </data>
+  <data name="MarkerListLabel" xml:space="preserve">
+    <value>Marker-Liste erstellen</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Kommentar</value>
+  </data>
+  <data name="EntryIdWarning" xml:space="preserve">
+    <value>Geben Sie einen Dateinamen ein. Beispiel: Dateiname_01</value>
+  </data>
+  <data name="MarkerListWarning" xml:space="preserve">
+    <value>Die Marker müssen in der ersten Spalte eine ganze Zahl enthalten und dürfen maximal drei Spalten umfassen. Die Spalten werden durch ein ';' abgetrennt. Beispiel: 10;M;Marker</value>
+  </data>
+  <data name="Sampling" xml:space="preserve">
+    <value>Abtastrate [Hz]</value>
+  </data>
+  <data name="SamplingWarning" xml:space="preserve">
+    <value>Die Abtastrate muss eine Zahl sein (z.B 26,6).</value>
+  </data>
+  <data name="InputErrors" xml:space="preserve">
+    <value>Eingabefehler</value>
+  </data>
+  <data name="CommentToolTip" xml:space="preserve">
+    <value>Freitext-Kommentar für dieses Entry</value>
+  </data>
+  <data name="EntryIdToolTip" xml:space="preserve">
+    <value>Entry_Id (Dateiname) der neuen Marker-Liste</value>
+  </data>
+  <data name="MarkerListToolTip" xml:space="preserve">
+    <value>Mit Semikolon (;) getrennte Marker-List</value>
+  </data>
+  <data name="SamplingToolTip" xml:space="preserve">
+    <value>Abtastrate in Hz</value>
+  </data>
+  <data name="ZeitFormat" xml:space="preserve">
+    <value>Zeitformat</value>
+  </data>
+  <data name="AbsoluteUhrzeit" xml:space="preserve">
+    <value>Absolute Uhrzeit</value>
+  </data>
+  <data name="DauerBeginMessung" xml:space="preserve">
+    <value>Dauer der Messung</value>
+  </data>
+  <data name="AbsoluteDauerZeit" xml:space="preserve">
+    <value>Beides</value>
+  </data>
+</root>

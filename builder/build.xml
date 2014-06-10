@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<project name="UnisensViewer" basedir="." default="build">
+	<property file="build.properties" /> 
+	<property file="login.properties" /> 
+	<property name="workingdir" value=".." />
+	<property name="revision.max" value="TODO" /><!-- If no SVN is available change this to the current revision number -->
+	<property environment="env"/>
+
+	<!-- path to the svnant libraries. They are located in builder/lib -->
+	<path id="svnant.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+
+	<!-- load the svn task -->
+  <typedef resource="org/tigris/subversion/svnant/svnantlib.xml" classpathref="svnant.classpath" />
+  <taskdef name="xsddoc" classname="net.sf.xframe.xsddoc.Task" classpathref="svnant.classpath"/>
+  <taskdef resource="org/apache/ant/dotnet/antlib.xml" classpathref="svnant.classpath"/>
+
+  <target name="build" depends="clean, makeDirs, revision, updateFiles, buildVS, buildInstaller, CreateUpdater" />
+  <target name="buildCI" depends="clean, makeDirs, revisionCI, updateFiles, buildVS, buildInstaller, CreateUpdater" />
+
+  <!-- clean dirs -->
+  <target name="clean" >
+    <delete dir="dist" />
+	<delete dir="${workingdir}/source/UnisensViewer/bin" />
+  </target>           
+
+  <!-- make dirs -->
+  <target name="makeDirs" >
+    <mkdir dir="dist" />
+  </target>
+  
+	<!-- create filename and update version and build number in about box -->
+	<target name="revision">
+		<!-- Es wird immer die maximale Revisionsnummer der library genommen! -->
+		<svn username="${svn.repository.user}" password="${svn.repository.passwd}" javahl="false">
+			<wcVersion path="${workingdir}" prefix="" />
+		</svn>
+		
+		<echo>Current revision is ${revision.max}</echo>
+		<tstamp><format property="timestamp" pattern="dd.MM.yyyy HH:MM z"/></tstamp>
+		
+		<property name="release.date" value="${timestamp}" />
+		<property name="release.filename" value="unisenstoolbox_rev${revision.max}" />
+		<property name="release.version" value="${release.version.major}.${release.version.minor}.${revision.max}" />
+	</target>
+	
+		<!-- create filename and update version and build number in about box -->
+	<target name="revisionCI">
+		
+		<echo>Current revision is ${revision.max}</echo>
+		<tstamp><format property="timestamp" pattern="dd.MM.yyyy HH:MM z"/></tstamp>
+		
+		<property name="release.date" value="${timestamp}" />
+		<property name="release.filename" value="unisenstoolbox_rev${revision.max}" />
+		<property name="release.version" value="${release.version.major}.${release.version.minor}.${revision.max}" />
+	</target>
+  
+  <!--copy additional distfiles and documentation to dist dir -->
+  <target name="copyDistFiles" >
+    <copy todir="dist/${release.name}" >
+      <fileset dir="${workingdir}/distfiles" />
+    </copy>
+    <copy file="${workingdir}/doc/Unisens-Dokumentation.pdf" todir="dist/${release.name}/doc" />
+  </target>
+
+  <!-- update files -->
+  <target name="updateFiles">
+    <replace file="${workingdir}/source/UnisensViewer/DialogAbout.xaml" token="ANT_REVISION" value="${revision.max}"/>
+    <replace file="${workingdir}/source/UnisensViewer/DialogAbout.xaml" token="ANT_DATE" value="${release.date}"/>
+	<replace file="${workingdir}/source/UnisensViewer/Properties/AssemblyInfo.cs" token="1.0.0" value="${release.version}"/>
+  </target>
+
+  <target name="buildVS">
+	<exec executable="${VS.command}" failonerror="true">
+	  <arg value="${workingdir}/source/UnisensViewer.sln" />
+	  <arg value="/rebuild" />
+	  <arg value="Release|x86" />
+	</exec>
+	<!--<delete>
+		<fileset dir="${workingdir}/source/UnisensViewer/bin/x86/Release" includes="**/*.pdb"/>
+	</delete>--> <!-- PDBs necessary for source code lines in case of error -->
+	
+	
+	<copy file="req/msvcr100_x86.dll" tofile="${workingdir}/source/UnisensViewer/bin/x86/Release/msvcr100.dll" />
+	<exec executable="${VS.command}" failonerror="true">
+	  <arg value="${workingdir}/source/UnisensViewer.sln" />
+	  <arg value="/rebuild" />
+	  <arg value="Release|x64" />
+	</exec>
+	<!--<delete>
+		<fileset dir="${workingdir}/source/UnisensViewer/bin/x86/Release" includes="**/*.pdb"/>
+	</delete>--> <!-- PDBs necessary for source code lines in case of error -->
+	<copy file="req/msvcr100_x64.dll" tofile="${workingdir}/source/UnisensViewer/bin/x64/Release/msvcr100.dll" />
+  </target>
+	
+  <target name="buildInstaller">
+	<replace file="Installer.aip" token="checkout" value="${workingdir}"/>
+	<exec executable="${installer.command}" failonerror="yes">
+		<arg value="/edit"/>
+		<arg value="Installer.aip"/>
+		<arg value="/SetVersion"/>
+		<arg value="${release.version}"/>
+	</exec>
+
+	<exec executable="${installer.command}" failonerror="yes">
+		<arg value="/rebuild"/>
+		<arg value="Installer.aip"/>
+	</exec>
+  </target>
+
+  <!-- update files -->
+  <target name="CreateUpdater">
+	<replace file="Updater.aip" token="ANT_VERSION" value="${release.version}"/>
+	<replace file="Updater.aip" token="ANT_HTTP" value="${http.unisens.url}"/>
+	<replace file="Updater.aip" token="ANT_NAME" value="${release.name}"/>
+	<exec executable="${installer.command}" failonerror="yes">
+		<arg value="/rebuild"/>
+		<arg value="Updater.aip"/>
+	</exec>
+  </target>
+
+</project>

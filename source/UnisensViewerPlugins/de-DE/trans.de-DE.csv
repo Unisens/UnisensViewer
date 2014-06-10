@@ -1,0 +1,27 @@
+﻿UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_selection:System.Windows.Controls.DockPanel.Dock,None,True,False,,Top
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_selection:System.Windows.FrameworkElement.Margin,None,False,True,,"10,10,290,10"
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_selection:System.Windows.Controls.Control.FontSize,None,True,True,,12
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_selection:System.Windows.Controls.HeaderedContentControl.Header,Label,True,True,, Bereich
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_start:System.Windows.Controls.TextBlock.$Content,Text,True,True,,
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_start:System.Windows.FrameworkElement.MinWidth,None,False,True,,55
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_start:System.Windows.Controls.TextBlock.Text,Text,True,True,,  Start:
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_start:System.Windows.FrameworkElement.Margin,None,False,True,,"0,0,20,0"
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_time_start:System.Windows.Controls.TextBlock.$Content,Text,True,True,,
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_end:System.Windows.Controls.TextBlock.$Content,Text,True,True,,
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_end:System.Windows.FrameworkElement.MinWidth,None,False,True,,55
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_end:System.Windows.Controls.TextBlock.Text,Text,True,True,,  Ende:
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_end:System.Windows.FrameworkElement.Margin,None,False,True,,"0,0,20,0"
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_time_end:System.Windows.Controls.TextBlock.$Content,Text,True,True,,
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_length:System.Windows.Controls.TextBlock.$Content,Text,True,True,,
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_length:System.Windows.FrameworkElement.MinWidth,None,False,True,,55
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_length:System.Windows.Controls.TextBlock.Text,Text,True,True,,  Dauer:
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_length:System.Windows.FrameworkElement.Margin,None,False,True,,"0,0,20,0"
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_time_length:System.Windows.Controls.TextBlock.$Content,Text,True,True,,
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_button_close:System.Windows.Controls.Button.$Content,Button,True,True,,
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_button_close:System.Windows.Controls.Control.FontFamily,Font,True,True,,Tahoma
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_button_close:System.Windows.Controls.Control.FontSize,None,True,True,,12
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_button_close:System.Windows.FrameworkElement.Margin,None,False,True,,"10,0,10,0"
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_button_close:System.Windows.FrameworkElement.VerticalAlignment,None,False,True,,Stretch
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_button_close:System.Windows.Controls.ContentControl.Content,Button,True,True,,Schließen
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_button_close:System.Windows.FrameworkElement.Height,None,False,True,,22
+UnisensViewerPack1.g.de-DE.resources:dialogmeasurement.baml,plugin_button_close:System.Windows.FrameworkElement.Width,None,False,True,,75

@@ -1,0 +1,229 @@
+\title{UnisensViewer\\[0.5em]\Large Anwender-Dokumentation}
+\author{Malte Kirst, Marcus Warga}
+\maketitle
+\tableofcontents
+
+	\section{Anwendungsgebiet}
+
+Das Produkt dient zur vereinfachten Handhabung von Multisensor-Messdaten im Unisens-Format \cite{Kirst2008,Unisens2008} direkt nach
+einer Datenaufzeichnung, sowie deren Visualisierung ("`Viewer"', "`Erster Angriff"'). Der
+Arbeitsablauf soll durch softwareunterstützes Bearbeiten und Erstellen von Metadaten über
+den Messdatensatz erleichtert werden. Die Metadaten werden hierbei im Unisens Format
+gespeichert. Ebenso soll eine einfache Bearbeitung der Messdaten, wie z.\,B. das Löschen von
+unbrauchbaren Signalteilen, ermöglicht werden. Weiterhin sollen in der Benutzeroberfläche
+für die wissenschaftliche Arbeit brauchbare Informationen über ausgewählte Messdaten,
+sowie Annotationen angezeigt werden. Die Visualisierung von mehreren Messdatenströmen
+soll parallel und synchron sein, um Zusammenhänge besser erfassen zu können.
+
+ 
+
+
+	\section{Installation}
+
+UnisensViewer ist eine Anwendung für Windows XP, Windows Vista und Windows 7. Sofern nicht vorhanden, ist das Microsoft .NET-Framework 4.0 oder höher zu installieren. Auf manchen System ist es zusätzlich erforderlich, das \textsl{Microsoft Visual C++ 2010 Redistributable Package} zu installieren. Beide Pakete sind auf der Microsoft Homepage verfügbar \cite{Microsoft2010}.
+
+Der Inhalt der ausgelieferten ZIP-Datei wird in ein beliebiges Verzeichnis entpackt. Die Datei \texttt{UnisensViewer.exe} ist sofort ausführbar und startet die Anwendung.
+
+
+
+
+	\section{Aufbau}
+
+Der UnisensViewer (s. Abb. \ref{fig:viewer}) gliedert sich in drei Bereiche: Die Menüleiste (oben), die Seitenleiste am linken Rand und den Anzeigebereich auf der rechten Seite.
+
+\begin{figure}[ht]
+  \includegraphics[width=\textwidth]{ressourcen/UnisensViewer.JPG}  	
+	\caption{UnisensViewer: Am linken Rand ist die Seitenleiste, rechts der Anzeigebereich}
+	\label{fig:viewer}
+\end{figure}
+
+
+
+		\subsection{Menüleiste}
+
+Die Menüleiste am oberen Rand der Anwendung besteht aus folgenden Menüpunkten:
+
+\begin{description}
+	\item[Datei] Menüpunkte zum Öffnen und Speichern von Datensätzen bzw. zum Erstellen eines neuen leeren Datensatzes.
+	\item[Bearbeiten] Zur Zeit noch ohne Funktionalität.
+	\item[Ansicht] Funktion zum automatischen Zoomen aller Y-Achsen.
+	\item[?] Informationen über UnisensViewer.
+\end{description}
+
+
+
+		\subsection{Seitenleiste}
+	
+Die Seitenleiste enthält alle (Kontext-)Informationen aus der \texttt{unisens.xml}. Die Breite der Seitenleiste lässt sich durch Ziehen mit der Maus verändern. 
+
+Innerhalb der Seitenleiste sind mehrere Fenster angeordnet. Im oberen Bereich befinden sich die Cursor-Informationen, hier werden Zeit- und Amplitudeninformationen der aktuellen Cursorposition angezeigt. Wird mit der Maus ein Signalbereich markiert, erscheinen weitere Informationen zum markierten Bereich.
+
+Der XML-Baum (\textsl{XML Tree}) stellt die Metainformationen aus der \texttt{unisens.xml} in einer Baumstruktur dar. Man kann diesen Baum browsen, in dem man einzelne Elemente anklickt, aufklappt oder zuklappt. Zu einem markierten Element werden alle Attribute angezeigt.
+
+Die Code-Ansicht (\textsl{XML Code}) zeigt den Bereich der \texttt{unisens.xml} an, der im XML-Baum markiert ist.
+
+Die Validierungsansicht (\textsl{XML Validation}) zeigt die Informationen des integrierten XML-Validators. Sollte die \texttt{unisens.xml} nicht dem XSD (XML Schema Document) entsprechen, werden hier die Fehlermeldungen angezeigt.
+
+In der Inhalts-Ansicht (\textsl{Unisens Content}) werden ausgewählte Inhalte des Datensatzes angezeigt. Dies kann zum Beispiel der Inhalt der \texttt{context.xml} (ebenfalls als XML-Baum mit Code und Validierung) oder ein CustomEntry.
+
+
+
+		\subsection{Anzeigebereich}
+
+Der Anzeigebereich zeigt Signale, Messwerte und Annotationen an. Mit Hilfe von Mausgesten kann gezoomt und gescrollt werden. Angezeigte Daten können per Drag \& Drop umsortiert und gestapelt werden.
+
+
+
+
+	\section{Betrieb}
+
+Die Datei \texttt{UnisensViewer.exe} ist sofort ausführbar und startet die Anwendung. In diesem Abschnitt wird die Bedienung des Viewers beschrieben. Hauptmerkmale sind hier die Unterstützung von Mausgesten, Drag \& Drop und das Kontextmenü.
+
+
+
+		\subsection{Öffnen von Datensätzen}
+
+Datensätze können über den Datei-öffnen-Dialog (\textsl{Datei} \textrightarrow\ \textsl{Öffnen...} oder \textsf{Strg} + \textsf{o}) oder über Drag \& Drop der Datei in den XML-Baum geöffnet werden. Anschließend erscheint im XML-Baum der Datensatz
+
+
+
+		\subsection{Anzeigen von Signalen, Messwerten und Annotationen}
+
+Um Signale, Messwerte und Annotationen anzuzeigen, wird das entsprechende Entry (SignalEntry, ValuesEntry oder EventEntry) aus dem XML-Baum in den Anzeigebereich gezogen. Jedes Entry kann nur einmal im Anzeigebereich angezeigt werden. Jedes angezeigte Element erhält ein Namensschild in der Form \textsl{EntryId (ChannelName)}. Die angezeigten Elemente können mit Drag \& Drop umsortiert, gestapelt oder auseinandergezogen werden. Die für Drag \& Drop sensitive Fläche ist das Namensschild des entsprechenden Elements.
+
+
+
+		\subsection{Benutzung des XML-Editors}
+
+Der in die Seitenleiste integrierte XML-Editor ist zum Betrachten, Bearbeiten oder neu Anlegen der  \texttt{unisens.xml} bzw. der  \texttt{context.xml} zuständig. Schlagworte: XSD-Datei, Validierung, Attribute, Elemente
+	
+	
+	
+		\subsection{Anzeigen von CustomEntries}
+	
+Kontext-Informationen können im XML-Baum ausgewählt (\textsl{custom}) werden, sie werden dann im unteren Bereich (\textsl{Unisens Content}) in der Seitenleiste angezeigt. Bisher werden folgende Dateiformate unterstützt:
+
+\begin{table}[ht]
+	\caption{Unterstütze Kontext-Informationen}
+	\begin{tabularx}{\textwidth}{lX}
+		\hline
+		Dateiendung & Beschreibung \\
+		\hline
+		\hline
+		JPG & Bildvorschau \\
+		PNG & Bildvorschau \\
+		\hline
+	\end{tabularx}
+	\label{tab:contentclass}
+\end{table}
+	\[
+\]
+
+
+
+		\subsection{Horizontales und vertikales Zoomen / Skalieren}
+Zoomen und Skalieren der angezeigten Signale erfolgt über Mausgesten. Das horizontale Zoomen (Zeitachse) bezieht sich auf alle angezeigten Signale. Das vertikale Zoomen bzw. Skalieren bezieht sich auf alle ausgewählten Signale des aktuellen Stapels. Signale können über ihren Bezeichner ausgewählt werden.
+
+\begin{description}
+	\item[Horizontales Zoomen] Mittlere Maustaste + vertikale Mausgeste, Alt + mittlere Maustaste + vertikale Mausgeste oder
+Alt + linke Maustaste + vertikale Mausgeste
+	\item[Vertikales Zoomen]	Shift + mittlere Maustaste + horizontale Mausgeste
+\end{description}
+
+
+
+		\subsection{Verschieben und Scrollen}
+Verschieben und Scrollen erfolgt über Mausgesten oder über den horizontalen Scrollbalken am unteren Rand der Anzeige. Das horizontale scrollen (Zeitachse) bezieht sich auf alle angezeigten Signale. Das vertikale scrollen bezieht sich auf alle ausgewählten Signale des aktuellen Stapels. Signale können über ihren Bezeichner ausgewählt werden.
+
+\begin{description}
+	\item[Horizontales scrollen]	Mittlere Maustaste + horizontale Mausgeste, Alt + mittlere Maustaste + horizontale Mausgeste, Alt + linke Maustaste + horizontale Mausgeste oder mit Scrollbalken
+	\item[Vertikales scrollen]	Strg + mittlere Maustaste + vertikale Mausgeste
+\end{description}
+
+Durch gleichzeitiges Drücken von Strg + Shift können die Gesten für vertikales Scrollen und vertikales Zoomen kombiniert werden.
+
+
+		\subsection{Automatisches Skalieren}
+Die Signale können automatisch skaliert werden. Dazu wählt man im Kontextmenü unter automatisches skalieren (für den aktuellen Stapel oder für die ausgewählten Signale des aktuellen Stapels) oder im Hauptmenü - um alle angezeigten Signale zu skalieren - unter Ansicht, automatisch skalieren die gewünschte Skalierungsfunktion aus. Folgende Skalierungsoptionen stehen zur Verfügung:
+
+\begin{description}
+	\item[Signale individuell]	Die Signale werden so skaliert, dass jedes Signal für sich den Platz auf der Anzeige voll ausnutzt.
+	\item[Nach Dateien gruppiert]	Die Signale werden vor der Skalierung gruppiert, alle Dateien aus einem Entry bilden dabei eine Gruppe. Diese Signale werden mit dem gleichen Faktor und um den gleichen Nullpunkt skaliert, so dass der Platz auf der Anzeige voll ausgenutzt wird.
+	\item[Nach Einheiten gruppiert]	Die Signale werden vor der Skalierung gruppiert, alle Dateien mit gleicher physikalischer Einheit bilden dabei eine Gruppe. Diese Signale werden mit dem gleichen Faktor und um den gleichen Nullpunkt skaliert, so dass der Platz auf der Anzeige voll ausgenutzt wird.
+\end{description}
+
+
+
+	\subsection{Erstellen von neuen Datensätzen}
+
+Um einen neuen Unisens-Datensatz anzulegen, geht man im Menü auf \textsl{Datei} \textrightarrow\ \textsl{Neu}. Anschließend markiert man im XML-Baum das Element \texttt{Unisens} und füllt im Editor die notwendigen Attribute aus. Den so erstellten Unisens-Datensatz speichert man am gewünschten Ort.
+
+Um dem Datensatz Entries hinzuzufügen, können diese per Drag \& Drop in den XML-Baum gezogen werden. Dabei ist darauf zu achten, dass sich die Daten im selben Ordner befinden, in dem auch die \texttt{unisens.xml}-Datei gespeichert wurde (ansonsten kann man den Datensatz später nicht öffnen). Dabei werden \texttt{bin}-Dateien automatisch als SignalEntry und \texttt{csv}-Dateien automatisch als EventEntry angelegt.
+
+
+
+	\section{Plug-Ins}
+	
+	\subsection{Installation}
+	
+UnisensViewer lässt sich durch Plug-Ins erweitern. Die Installation von Plug-Ins erfolgt durch kopieren der Plug-In-Datei in den Ordner Plugins. Beim nächsten Start des UnisensViewer erscheint das Plug-In im entsprechenden Menü. 
+
+
+
+	\subsection{Aufruf}
+	
+Ein Plug-In kann -- je nach Art -- auf ein oder mehrere Entrys angewendet werden. 
+
+
+	\section{Lizenz}
+
+UnisensViewer ist eine Entwicklung des FZI Forschungszentrum Informatik. UnisensViewer wird kostenfrei und "`as-is"', ohne jegliche ausdrückliche oder stillschweigende Garantie, zur Verfügung gestellt. In keinem Fall werden die Autoren für Schäden, die aus der Nutzung dieser Software entstehen können, haftbar gemacht. 
+
+Wenn Sie Unisens für wissenschaftliche Arbeiten nutzen, bitten wir Sie, in Veröffentlichungen auf das Unisens-Datenformat und die Unisens-Webseite \texttt{http://www.unisens.org} \cite{Unisens2008} hinzuweisen.
+
+Die Unisens-Library und das Unisens-Interface stehen unter der GNU Lesser General Public License (LGPL). Der Lizenztext wird mit dem Code ausgeliefert und ist auf \cite{lgpl2008} einsehbar. Die Unisens-Library und das Unisens-Interface erhalten Sie auf der Unisens-Projektseite \texttt{http://www.unisens.org}.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Literaturverzeichnis
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\bibliographystyle{mit_din}
+\bibliography{Unisens}
+
+%XML
+%XSD
+%CSV Format
+%Floating Point Spec
+%FAT16: http://de.wikipedia.org/wiki/File_Allocation_Table#FAT16
+%WFDB Format: http://www.physionet.org/physiotools/wpg/wpg.htm
+%\nocite{moody2008}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Kontakt
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\section*{Kontakt}
+
+\paragraph{FZI Forschungszentrum Informatik} ~\\
+Embedded Systems and Sensors Engineering (ESS)\\
+Haid-und-Neu-Str. 10--14\\
+76131 Karlsruhe\\[1ex]
+Dipl.-Ing. Malte Kirst\\
+kirst@fzi.de
+
+\paragraph{Universität Karlsruhe} ~\\
+Institut für Technik der Informationsverarbeitung (ITIV)\\
+Engesserstr. 5\\
+76131 Karlsruhe\\[1ex]
+Dipl.-Ing. Jörg Ottenbacher\\
+ottenbacher@itiv.uni-karlsruhe.de
+
+\paragraph{http://www.unisens.org}

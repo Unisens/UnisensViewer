@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="UnisensViewer.XmlEditMixedTextControl"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:src="clr-namespace:UnisensViewer"
+ xmlns:sysxml="clr-namespace:System.Xml.Linq;assembly=System.Xml.Linq"
+>
+
+	<UserControl.Resources>
+		<DataTemplate DataType="{x:Type sysxml:XNode}">
+			<TextBox Text="{Binding Value}" ToolTip="Mixed text content of this element" TextWrapping="Wrap"/>
+		</DataTemplate>
+	</UserControl.Resources>
+
+	<StackPanel>
+		<!--
+		<TextBox x:Name="textbox_elementtextcontent" TextWrapping="Wrap" ToolTip="Text content of this element"/>
+		-->
+
+		<!--
+		<ItemsControl x:Name="itemscontrol_elementtextcontent">
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<TextBox Text="{Binding Value}" ToolTip="Mixed text content of this element"/>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
+		-->
+		
+		<ContentPresenter x:Name="contentpresenter"/>
+
+	</StackPanel>
+</UserControl>

@@ -1,0 +1,19 @@
+﻿<Window x:Class="UnisensViewer.DialogMarkerList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:lex="http://schemas.root-project.org/xaml/presentation"
+        lex:LocalizeDictionary.DesignCulture="de"
+        Title="DialogMarkerList" Height="446" Width="408">
+    <Grid Width="388" Height="407">
+        <Label Content="EntryId: " Height="28" HorizontalAlignment="Left" Margin="20,21,0,0" Name="label_EntryId" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="145,21,0,0" Name="tb_EntryId" LostFocus="EntryID_Changed" ToolTip="{lex:LocText UnisensViewer:Translations:EntryIdToolTip}" VerticalAlignment="Top" Width="175" />
+        <Label Content="Marker:" Height="28" HorizontalAlignment="Left" Margin="20,55,0,0" Name="label_Textfeld" VerticalAlignment="Top" />
+        <TextBox Height="174" AcceptsReturn="true" VerticalScrollBarVisibility="Auto" LostFocus="Marker_Changed"  TextWrapping="WrapWithOverflow" ToolTip="{lex:LocText UnisensViewer:Translations:MarkerListToolTip}" HorizontalAlignment="Left" Margin="145,63,0,0" Name="tb_textfeld" VerticalAlignment="Top" Width="175" />
+        <Label Content="{lex:LocText UnisensViewer:Translations:Sampling}" Height="28" HorizontalAlignment="Left" Margin="20,257,0,0" Name="label_SampleRate" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="145,257,0,0" Name="tb_SampleRate" LostFocus="Abstasrate_Changed" ToolTip="{lex:LocText UnisensViewer:Translations:SamplingToolTip}" VerticalAlignment="Top" Width="175" />
+        <Label Content="{lex:LocText UnisensViewer:Translations:Comment}" Height="28" HorizontalAlignment="Left" Margin="20,291,0,0" Name="label_Comment" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="145,296,0,0" Name="tb_Comment" ToolTip="{lex:LocText UnisensViewer:Translations:CommentToolTip}" VerticalAlignment="Top" Width="175" />
+        <Button Content="OK" Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="90,372,0,0" Name="button_OK" VerticalAlignment="Top" Width="75" Click="button_OK_Click" />
+        <Button Content="{lex:LocText UnisensViewer:Translations:Cancel}" Height="23" HorizontalAlignment="Right" IsEnabled="True" Margin="0,372,83,0" Name="button_Cancel" VerticalAlignment="Top" Width="75" Click="button_Cancel_Click" />
+    </Grid>
+</Window>

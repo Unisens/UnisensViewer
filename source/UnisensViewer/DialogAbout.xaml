@@ -1,0 +1,169 @@
+﻿<Window x:Class="UnisensViewer.DialogAbout"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ Title="Über UnisensViewer"
+ ResizeMode="CanResizeWithGrip"
+ ShowInTaskbar="False"
+ WindowStartupLocation="CenterOwner"
+ Background="#f6f6f6"
+ Height="400"
+ Width="400"
+>
+<!--Background="#FF333333" 115da2 115ca1-->
+
+
+	<DockPanel LastChildFill="True">
+		<Image DockPanel.Dock="Top" Source="UnisensViewer_about.png"/>
+		<Button DockPanel.Dock="Bottom" IsDefault="True" IsCancel="True" Content="OK" HorizontalAlignment="Center" Margin="5,5,5,5" Width="100"/>
+		<Grid DockPanel.Dock="Top">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="10*"/>
+				<ColumnDefinition Width="482*"/>
+			</Grid.ColumnDefinitions>
+            <FlowDocumentScrollViewer Grid.Column="1" Foreground="Black">
+				<FlowDocument PagePadding="0,0,10,0" IsHyphenationEnabled="True" IsOptimalParagraphEnabled="True" FontFamily="{DynamicResource {x:Static SystemFonts.MessageFontFamilyKey}}" FontSize="{DynamicResource {x:Static SystemFonts.MessageFontSizeKey}}">
+					<Section>
+
+                        <!-- COPYRIGHT -->
+                        <Paragraph x:Uid="Paragraph_1">
+                            Copyright 2009-2014 FZI Forschungszentrum Informatik.
+                            <LineBreak/>
+                            Copyright 2009-2014 movisens GmbH
+                            <LineBreak/>
+                            Alle Rechte vorbehalten.
+                        </Paragraph>
+                        
+                        <!-- VERSION INFO -->
+                        <Table CellSpacing="0" Foreground="Black">
+							<Table.Columns>
+								<TableColumn Width="100"/><!--behindert.. "auto" funktioniert in .net 4 immer noch nicht! -->
+                        		<TableColumn/>
+							</Table.Columns>
+							<TableRowGroup>
+								<TableRow>
+									<TableCell>
+										<Paragraph>Version:</Paragraph>
+									</TableCell>
+									<TableCell>
+										<Paragraph>
+											<Run Text="{Binding Version, StringFormat={}{0}}"/>
+										</Paragraph>
+									</TableCell>
+								</TableRow>
+								<TableRow>
+									<TableCell>
+										<Paragraph>Plattform:</Paragraph>
+									</TableCell>
+									<TableCell>
+										<Paragraph>
+											<Run Text="{Binding ProcessorArchitecture}"/>
+										</Paragraph>
+									</TableCell>
+								</TableRow>
+                                <TableRow>
+                                    <TableCell>
+                                        <Paragraph>SVN-Revision:</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>ANT_REVISION</Paragraph>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>
+                                        <Paragraph>Datum:</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>ANT_DATE</Paragraph>
+                                    </TableCell>
+                                </TableRow>
+                            </TableRowGroup>
+						</Table>
+                        
+                        <!-- CONTACT -->
+                        <Table CellSpacing="0" Foreground="Black">
+                            <Table.Columns>
+                                <TableColumn Width="100"/>
+                                <TableColumn/>
+                            </Table.Columns>
+                            <TableRowGroup>
+                                <TableRow>
+                                    <TableCell>
+                                        <Paragraph>Kontakt:</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph x:Uid="Paragraph_2">
+                                            FZI Forschungszentrum Informatik
+                                            <Hyperlink NavigateUri="http://www.fzi.de" Click="MyHyperlink_Click">
+                                                <Hyperlink.Style>
+                                                    <Style TargetType="{x:Type Hyperlink}">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Foreground" Value="Gray" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                        <Setter Property="Foreground" Value="Black" />
+                                                    </Style>
+                                                </Hyperlink.Style>
+                                                <LineBreak/>
+                                                http://www.fzi.de
+                                            </Hyperlink>
+                                        </Paragraph>
+                                        <Paragraph x:Uid="Paragraph_3">
+                                            movisens GmbH
+                                            <Hyperlink NavigateUri="http://www.movisens.com" Click="MyHyperlink_Click">
+                                                <Hyperlink.Style>
+                                                    <Style TargetType="{x:Type Hyperlink}">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Foreground" Value="Gray" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                        <Setter Property="Foreground" Value="Black" />
+                                                    </Style>
+                                                </Hyperlink.Style>
+                                                <LineBreak/>
+                                                http://www.movisens.com
+                                            </Hyperlink>
+                                        </Paragraph>
+                                    </TableCell>
+                                </TableRow>
+                            </TableRowGroup>
+                        </Table>
+
+                        <!-- AUTHORS -->
+                        <Table CellSpacing="0" Foreground="Black">
+                            <Table.Columns>
+                                <TableColumn Width="100"/>
+                                <TableColumn/>
+                            </Table.Columns>
+                            <TableRowGroup>
+                                <TableRow>
+                                    <TableCell>
+                                        <Paragraph>Autoren:</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>
+                                            Marcus Warga
+                                            <LineBreak/>
+                                            Jürgen Stumpp
+                                            <LineBreak/>
+                                            Markus Nagel
+                                            <LineBreak/>
+                                            Malte Kirst
+                                            <LineBreak/>
+											Jörg Ottenbacher
+                                            <LineBreak/>
+                                            Minh Giau Pham
+                                            <LineBreak/>
+                                            Denis Krieg
+                                        </Paragraph>
+                                    </TableCell>
+                                </TableRow>
+                            </TableRowGroup>
+                        </Table>
+					</Section>
+				</FlowDocument>
+			</FlowDocumentScrollViewer>
+		</Grid>
+	</DockPanel>
+</Window>

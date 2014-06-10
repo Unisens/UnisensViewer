@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DICTIONARY type="multilanguage" ignore="de">
+  <ENTRY id="ActionText.Description.AI_AiRemoveFilesDeferred">
+    <STRING lang="de" value="Führe Löschoperationen aus."/>
+    <STRING lang="en" value="Start removal."/>
+  </ENTRY>
+  <ENTRY id="ActionText.Template.AI_AiRemoveFilesDeferred">
+    <STRING lang="de" value="Lösche Datei: [1]"/>
+    <STRING lang="en" value="Delete file: [1]"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.LicenseAgreementDlg#AgreementText_2">
+    <STRING lang="de" value="UnisensViewerLicense.rtf"/>
+    <STRING lang="en" value="UnisensViewerLicense.rtf"/>
+  </ENTRY>
+  <ENTRY id="Property.ARPCOMMENTS">
+    <STRING lang="de" value="Dieses Programm installiert den [|ProductName]."/>
+    <STRING lang="en" value="This application installs the [|ProductName]"/>
+  </ENTRY>
+  <ENTRY id="Property.Manufacturer">
+    <STRING lang="de" value="FZI"/>
+    <STRING lang="en" value="FZI"/>
+  </ENTRY>
+  <ENTRY id="Property.ProductName">
+    <STRING lang="de" value="UnisensViewer"/>
+    <STRING lang="en" value="UnisensViewer"/>
+  </ENTRY>
+</DICTIONARY>

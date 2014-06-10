@@ -1,0 +1,468 @@
+﻿<ribbon:RibbonWindow x:Class="UnisensViewer.WindowMain" x:Name="_root" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:src="clr-namespace:UnisensViewer"
+     xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+     xmlns:lex="http://schemas.root-project.org/xaml/presentation"
+     lex:LocalizeDictionary.DesignCulture="de" Width="640" Height="480" Background="#ff333333"
+     WindowState="Maximized" Icon="unisens_NET.ico" src:StackerControl.HoverStack="WindowMain_HoverStack"
+     Loaded="RibbonWindow_Loaded" Closing="RibbonWindow_Closing" 
+                      FocusManager.FocusedElement="{Binding RelativeSource={x:Static RelativeSource.Self}, Mode=OneTime}"
+>
+    <!-- #ff333333 525252 656565 808080 -->
+    <ribbon:RibbonWindow.CommandBindings>
+        <CommandBinding Command="{x:Static src:WindowMain.ExecPluginRoutedCommand}" Executed="ExecPlugin_Executed" />
+    </ribbon:RibbonWindow.CommandBindings>
+    <ribbon:RibbonWindow.Resources>
+        <src:UnisensViewerTitleFormatter x:Key="unisensviewertitleformatter" />
+        <src:SelectionStatusVisibilityConverter x:Key="selectionstatusvisibilityconverter" />
+        <src:SelectionDurationConverter x:Key="selectiondurationconverter" />
+        <src:SelectionFrequencyConverter x:Key="selectionfrequencyconverter" />
+        <src:SelectionBpmConverter x:Key="selectionbpmconverter" />
+        <src:StatusTimeConverter x:Key="statustimeconverter" />
+        <src:ExpertmodeToVisibility x:Key="expertmodeToVisibility" />
+        <Style x:Key="ExpertModeVisibility" TargetType="{x:Type TextBlock}">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{src:SettingBinding ExpertMode}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{src:SettingBinding ExpertMode}" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <DataTemplate DataType="{x:Type src:SampleInfoStream}">
+            <StackPanel>
+                <GroupBox Header="{lex:LocText UnisensViewer:Translations:Zeit}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Width="80" Margin="0,0,5,0">
+                            <TextBlock Text="{lex:LocText UnisensViewer:Translations:Uhrzeit}" />
+                            <TextBlock Text="" />
+                            <TextBlock x:Uid="DataTemplate_Time_Position" Text="{lex:LocText UnisensViewer:Translations:Position}" />
+                            <TextBlock x:Uid="DataTemplate_Time_Index" Text="{lex:LocText UnisensViewer:Translations:Index}" />
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{Binding TimeStampStart}" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding DateStampStart}" />
+                            <TextBlock Text="{Binding Time, Converter={StaticResource statustimeconverter}, StringFormat='{}{0} h'}" />
+                            <TextBlock Text="{Binding SampleOffs}" />
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="{lex:LocText UnisensViewer:Translations:Wert}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Width="80">
+                            <TextBlock Text="{lex:LocText UnisensViewer:Translations:Physikalisch}" />
+                            <TextBlock x:Uid="DataTemplate_Value_Sample" Text="{lex:LocText UnisensViewer:Translations:Sample}" Style="{StaticResource ExpertModeVisibility}" />
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Margin="5,0,5,0" Text="{Binding PhysicalMaxString}" HorizontalAlignment="Left" />
+                            <TextBlock Margin="5,0,5,0" Text="{Binding SampleMax}" HorizontalAlignment="Left" Style="{StaticResource ExpertModeVisibility}"  />
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Unit}" HorizontalAlignment="Left" />
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type src:SampleInfoEventValue}">
+            <StackPanel>
+                <GroupBox Header="{lex:LocText UnisensViewer:Translations:Zeit1}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Width="80" Margin="0,0,5,0">
+                            <TextBlock Text="{lex:LocText UnisensViewer:Translations:Uhrzeit1}" />
+                            <TextBlock Text="" />
+                            <TextBlock x:Uid="DataTemplate_Time_Position" Text="{lex:LocText UnisensViewer:Translations:Position}" />
+                            <TextBlock x:Uid="DataTemplate_Time_Index" Text="{lex:LocText UnisensViewer:Translations:Index}" />
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{Binding TimeStampStart}" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding DateStampStart}" />
+                            <TextBlock Text="{Binding Time, Converter={StaticResource statustimeconverter}, StringFormat='{}{0} h'}" />
+                            <TextBlock Text="{Binding SampleOffs}" />
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="{lex:LocText UnisensViewer:Translations:Wert1}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Width="80">
+                            <TextBlock x:Uid="DataTemplate_Value_Physical" Text="{lex:LocText UnisensViewer:Translations:Physikalisch}" />
+                            <TextBlock x:Uid="DataTemplate_Value_Sample" Text="{lex:LocText UnisensViewer:Translations:Sample}" Style="{StaticResource ExpertModeVisibility}" />
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Margin="5,0,5,0" Text="{Binding PhysicalMaxString}" HorizontalAlignment="Left" />
+                            <TextBlock Margin="5,0,5,0" Text="{Binding SampleMax}" HorizontalAlignment="Left" Style="{StaticResource ExpertModeVisibility}" />
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Unit}" />
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type src:SampleInfoEventString}">
+            <StackPanel>
+                <GroupBox Header="{lex:LocText UnisensViewer:Translations:Zeit2}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Width="80" Margin="0,0,5,0">
+                            <TextBlock Text="{lex:LocText UnisensViewer:Translations:Uhrzeit2}" />
+                            <TextBlock Text="" />
+                            <TextBlock x:Uid="DataTemplate_Time_Position" Text="{lex:LocText UnisensViewer:Translations:Position}" />
+                            <TextBlock x:Uid="DataTemplate_Time_Index" Text="{lex:LocText UnisensViewer:Translations:Index}" />
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{Binding TimeStampStart}" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding DateStampStart}" />
+                            <TextBlock Text="{Binding Time, Converter={StaticResource statustimeconverter}, StringFormat='{}{0} h'}" />
+                            <TextBlock Text="{Binding SampleOffs}" />
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="{lex:LocText UnisensViewer:Translations:LetztesEvent}">
+                    <TextBlock Text="{Binding Description}" />
+                </GroupBox>
+            </StackPanel>
+        </DataTemplate>
+    </ribbon:RibbonWindow.Resources>
+    <ribbon:RibbonWindow.Title>
+        <!-- erst nach den Resourcen definieren, wir brauchen den UnisensViewerTitleFormatter -->
+        <Binding ElementName="_root" Path="CurrentFileName" Converter="{StaticResource unisensviewertitleformatter}" Mode="OneWay"/>
+    </ribbon:RibbonWindow.Title>
+    <src:DragDropDataTemplate>
+        <DockPanel>
+            <!-- ================================== MENU ================================== -->
+            <ribbon:Ribbon x:Name="Ribbon" DockPanel.Dock="Top">
+                <ribbon:Ribbon.ApplicationMenu>
+                    <ribbon:RibbonApplicationMenu SmallImageSource="Images\SmallIcon_unisens.png" Label="{lex:LocText UnisensViewer:Translations:Datei}">
+                        <ribbon:RibbonApplicationMenuItem Header="{lex:LocText UnisensViewer:Translations:Neu}"
+                             Command="ApplicationCommands.New" x:Uid="Menu_New" Click="MenuItem_Click_CloseAllSignals"
+                             x:Name="MenuItem1" ImageSource="Images\LargeIcon_menu_new.png" />
+                        <ribbon:RibbonApplicationMenuItem Header="{lex:LocText UnisensViewer:Translations:Öffnen}"
+                             Command="ApplicationCommands.Open" x:Uid="Menu_Open" x:Name="MenuItem2" ImageSource="Images\LargeIcon_menu_open.png" />
+                        <ribbon:RibbonApplicationMenuItem Header="{lex:LocText UnisensViewer:Translations:Speichern}"
+                             Command="ApplicationCommands.Save" x:Uid="Menu_Save" x:Name="MenuItem3" ImageSource="Images\LargeIcon_menu_save.png" />
+                        <ribbon:RibbonApplicationMenuItem Header="{lex:LocText UnisensViewer:Translations:Speichernunter}"
+                             Command="ApplicationCommands.SaveAs" x:Uid="Menu_SaveAs" x:Name="MenuItem4" ImageSource="Images\LargeIcon_menu_saveas.png"/>
+                        <ribbon:RibbonApplicationMenuItem Header="{lex:LocText UnisensViewer:Translations:Screenshotexportieren}"
+                             Click="MenuItem_Export_Click" x:Name="MenuItem_Export" ImageSource="Images\LargeIcon_menu_screenshot.png" />
+                        <ribbon:RibbonApplicationMenuItem Header="{lex:LocText UnisensViewer:Translations:Drucken}"
+                             Click="MenuItem_Print_Click" x:Name="MenuItem_Print" ImageSource="Images\LargeIcon_menu_print.png" />
+                        <ribbon:RibbonSeparator />
+                        <ribbon:RibbonApplicationMenuItem Header="{lex:LocText UnisensViewer:Translations:Schließen}"
+                             Command="{x:Static src:Commands.CloseFile}" x:Uid="Menu_Close" Click="MenuItem_Click_CloseAllSignals"
+                             x:Name="MenuItem5" ImageSource="Images\LargeIcon_menu_close.png" />
+                        <ribbon:RibbonApplicationMenu.FooterPaneContent>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                                <ribbon:RibbonButton x:Name="MenuItemSettings" x:Uid="Menu_Settings" SmallImageSource="Images\SmallIcon_preferences.png" 
+                                    Label="{lex:LocText UnisensViewer:Translations:Settings}" 
+                                    BorderBrush="#E69A9AB9" HorizontalContentAlignment="Right"  Click="MenuItem_Settings_Click" />
+                                <ribbon:RibbonButton x:Name="MenuItemExit" x:Uid="Menu_Exit" SmallImageSource="Images\SmallIcon_exit.png"
+                                    Label="{lex:LocText UnisensViewer:Translations:Beenden}" 
+                                    Command="Close" BorderBrush="#E69A9AB9" HorizontalContentAlignment="Right" Margin="7,1,1,1"/>
+                            </StackPanel>
+                        </ribbon:RibbonApplicationMenu.FooterPaneContent>
+                        <ribbon:RibbonApplicationMenu.AuxiliaryPaneContent>
+                            <ribbon:RibbonGallery CanUserFilter="False" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                <ribbon:RibbonGalleryCategory Name="RGCrecentapps" Header="{lex:LocText UnisensViewer:Translations:zuletztgeöffneteDatensätze}"
+                                     x:Uid="RibbonGalleryCategory" Background="Transparent" VerticalAlignment="Top" FontStyle="Italic">
+                                    <ribbon:RibbonGalleryCategory.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Vertical" IsItemsHost="True" />
+                                        </ItemsPanelTemplate>
+                                    </ribbon:RibbonGalleryCategory.ItemsPanel>
+                                </ribbon:RibbonGalleryCategory>
+                            </ribbon:RibbonGallery>
+                        </ribbon:RibbonApplicationMenu.AuxiliaryPaneContent>
+                    </ribbon:RibbonApplicationMenu>
+                </ribbon:Ribbon.ApplicationMenu>
+                <!-- Quick Access Bar vorläufig entfernt da es noch keine sinnvollen Anwendungen gibt! ref: https://esswiki.fzi.de/mantis/view.php?id=418
+                <ribbon:Ribbon.QuickAccessToolBar>
+                    <ribbon:RibbonQuickAccessToolBar>
+                        <ribbon:RibbonButton x:Name="ButtonQ2"
+                             SmallImageSource="Images\SmallIcon_menu_open.png"
+                             Label="Datensatz öffnen" Command="ApplicationCommands.Open"
+                             CommandTarget="{Binding ElementName=unisensxmlcontrol}"/>
+                        <ribbon:RibbonButton x:Name="ButtonQ1"
+                             SmallImageSource="Images\SmallIcon_menu_close.png"
+                             Label="Alle Signale schließen" Command="ApplicationCommands.Close"
+                             CommandTarget="{Binding ElementName=unisensxmlcontrol}" 
+                             Click="MenuItem_Click_CloseAllSignals"/>
+                        <TextBlock Text="{Binding ElementName=xmlcontrol, Path=XmlFilePath, Converter={StaticResource unisensviewertitleformatter}}"/>
+                    </ribbon:RibbonQuickAccessToolBar>
+                </ribbon:Ribbon.QuickAccessToolBar>
+                -->
+                <!-- ================================== VIEW ================================== -->
+                <ribbon:RibbonTab x:Name="ViewTab" x:Uid="RibbonTab_View" Header="{lex:LocText UnisensViewer:Translations:Ansicht}"
+                                  GroupSizeReductionOrder="GroupVisualization, GroupTimeScale, GroupScale, GroupSingleValueVisualization">
+                    <ribbon:RibbonGroup x:Name="GroupTimeScale" x:Uid="RibbonTab_View_TimeScale" Header="{lex:LocText UnisensViewer:Translations:ZeitSkalieren}" LargeImageSource="Images\LargeIcon_signals_scalehorizontal.png">
+                        <ribbon:RibbonButton x:Name="ButtonTimeScaleAll" x:Uid="RibbonTab_View_TimeScale_All"
+                             Label="{lex:LocText UnisensViewer:Translations:Alles}" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}"  LargeImageSource="Images\LargeIcon_signals_scalehorizontal.png"
+                             CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="all" />
+                        <ribbon:RibbonButton x:Name="ButtonTimeScaleSecound" x:Uid="RibbonTab_View_TimeScale_Secound"
+                             Label="{lex:LocText UnisensViewer:Translations:S10Sekunden}" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}"
+                             CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="10" />
+                        <ribbon:RibbonButton x:Name="ButtonTimeScaleMinute" x:Uid="RibbonTab_View_TimeScale_Minute"
+                             Label="{lex:LocText UnisensViewer:Translations:Minute}" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}"
+                             CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="59" />
+                        <ribbon:RibbonButton x:Name="ButtonTimeScaleHour" x:Uid="RibbonTab_View_TimeScale_Hour"
+                             Label="{lex:LocText UnisensViewer:Translations:Stunde}" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}"
+                             CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="3599" />
+                        <ribbon:RibbonButton x:Name="ButtonTimeScaleDay" x:Uid="RibbonTab_View_TimeScale_Day"
+                             Label="{lex:LocText UnisensViewer:Translations:Tag}" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}"
+                             CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="86399" />
+                        <ribbon:RibbonButton x:Name="ButtonTimeScaleWeek" x:Uid="RibbonTab_View_TimeScale_Week"
+                             Label="{lex:LocText UnisensViewer:Translations:Woche}" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}"
+                             CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="604800"/>
+                        <ribbon:RibbonButton x:Name="ButtonTimeScaleSelection" x:Uid="RibbonTab_View_TimeScale_Selection"
+                             Label="{lex:LocText UnisensViewer:Translations:Auswahl}" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}"
+                             CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="selection" />
+                    </ribbon:RibbonGroup>
+
+                    <ribbon:RibbonGroup x:Name="GroupTimeFormat" x:Uid="RibbonTab_View_TimeFormat" Header="{lex:LocText UnisensViewer:Translations:ZeitFormat}" LargeImageSource="Images\LargeIcon_signals_scalehorizontal.png">
+                        <ribbon:RibbonRadioButton x:Name="CheckBox_FormatAbsoluteTime"
+                             Label="{lex:LocText UnisensViewer:Translations:AbsoluteUhrzeit}"
+                             Checked="Click_AbsolutTime_Check" />
+                        <ribbon:RibbonRadioButton x:Name="CheckBox_FormatDauerTime" IsChecked="True"
+                             Label="{lex:LocText UnisensViewer:Translations:DauerBeginMessung}" 
+                             Checked="Click_DurationMessung_Check" />
+                    </ribbon:RibbonGroup>
+                    
+                    <ribbon:RibbonGroup x:Name="GroupScale" x:Uid="RibbonTab_View_AutoZoom" Header="{lex:LocText UnisensViewer:Translations:SignaleSkalieren}" LargeImageSource="Images\LargeIcon_signals_scalevertical.png">
+                        <ribbon:RibbonSplitButton Label="{lex:LocText UnisensViewer:Translations:NachEinheitengruppiert}" LargeImageSource="Images\LargeIcon_signals_scalevertical.png" Command="{x:Static src:SignalViewerControl.CmdAutoZoomAllGroupedByUnits}"
+                             CommandTarget="{Binding ElementName=signalviewercontrol}">
+                            <ribbon:RibbonMenuItem x:Name="ButtonScale1" x:Uid="RibbonTab_View_AutoZoom_Invididual"
+                                Header="{lex:LocText UnisensViewer:Translations:Individuell}" Command="{x:Static src:SignalViewerControl.CmdAutoZoomAllIndividual}" 
+                                CommandTarget="{Binding ElementName=signalviewercontrol}" />
+                            <ribbon:RibbonMenuItem x:Name="ButtonScale2" x:Uid="RibbonTab_View_AutoZoom_Groupedbyfiles"
+                                Header="{lex:LocText UnisensViewer:Translations:NachDateiengruppiert}" Command="{x:Static src:SignalViewerControl.CmdAutoZoomAllGroupedByFiles}"
+                                CommandTarget="{Binding ElementName=signalviewercontrol}" />
+                            <ribbon:RibbonMenuItem x:Name="ButtonScale3" x:Uid="RibbonTab_View_AutoZoom_Groupedbyunits"
+                                Header="{lex:LocText UnisensViewer:Translations:NachEinheitengruppiert}" Command="{x:Static src:SignalViewerControl.CmdAutoZoomAllGroupedByUnits}"
+                                CommandTarget="{Binding ElementName=signalviewercontrol}" />
+                        </ribbon:RibbonSplitButton>
+                    </ribbon:RibbonGroup>
+
+                    <ribbon:RibbonGroup x:Name="GroupSingleValueVisualization" x:Uid="RibbonTab_View_SingleValueVisualization" LargeImageSource="Images\LargeIcon_values.png"
+                         Header="{lex:LocText UnisensViewer:Translations:EinzelwerteDarstellung}" Visibility="{src:SettingBinding ExpertMode, {StaticResource expertmodeToVisibility}}">
+                        <ribbon:RibbonRadioButton x:Name="ButtonTest5" x:Uid="RibbonTab_View_Visualization_Sample_And_Hold"
+                             LargeImageSource="Images\LargeIcon_signals_sampleandhold.png" SmallImageSource="Images\LargeIcon_signals_sampleandhold.png"
+                             ToolTipTitle="{lex:LocText UnisensViewer:Translations:SampleAndHold}" ToolTipDescription="{lex:LocText UnisensViewer:Translations:SchaltenVisualizationSampleAnd}"
+                             Label="{lex:LocText UnisensViewer:Translations:SampleandHold1}" Checked="Click_SampleAndHold_Check"
+                             IsChecked="{src:SettingBinding Button_SampleAndHold}" />
+                        <ribbon:RibbonRadioButton x:Name="ButtonTest6" x:Uid="RibbonTab_View_Visualization_Point"
+                             LargeImageSource="Images\LargeIcon_signals_points.png" SmallImageSource="Images\LargeIcon_signals_points.png"
+                             ToolTipTitle="{lex:LocText UnisensViewer:Translations:Point}" ToolTipDescription="{lex:LocText UnisensViewer:Translations:SchaltenVisualizationPointanun}"
+                             Label="{lex:LocText UnisensViewer:Translations:Point1}" Checked="Click_Point_Check"
+                             IsChecked="{src:SettingBinding Button_Point}" />
+                        <ribbon:RibbonRadioButton x:Name="ButtonTest7" x:Uid="RibbonTab_View_Visualization_Linear"
+                             LargeImageSource="Images\LargeIcon_signals_linear.png" SmallImageSource="Images\LargeIcon_signals_linear.png"
+                             ToolTipTitle="{lex:LocText UnisensViewer:Translations:Linear}" ToolTipDescription="{lex:LocText UnisensViewer:Translations:SchaltenVisualizationLinearanu}"
+                             Label="{lex:LocText UnisensViewer:Translations:Linear1}" Checked="Click_Linear_Check"
+                             IsChecked="{src:SettingBinding Button_Linear}" />
+                    </ribbon:RibbonGroup>
+                    <ribbon:RibbonGroup x:Name="GroupSignalVisualization" x:Uid="RibbonTab_View_Visualization" LargeImageSource="Images\LargeIcon_signals.png"
+                         Header="{lex:LocText UnisensViewer:Translations:Signale}">
+                        <!-- Interpolation deaktiviert bis diese richtig funktioniert. ref Issue 512, 513 -->
+                        <ribbon:RibbonCheckBox x:Name="ButtonTest1" x:Uid="RibbonTab_View_Visualization_Interpolation" IsEnabled="False" Visibility="Collapsed"
+                             ToolTipTitle="{lex:LocText UnisensViewer:Translations:Interpolation}" ToolTipDescription="{lex:LocText UnisensViewer:Translations:SincInterpolationderangezeigte}"
+                             Label="{lex:LocText UnisensViewer:Translations:Interpolation1}" Checked="Click_UseSincInterpolation_Check"
+                             Unchecked="Click_UseSincInterpolation_Unckeck" IsChecked="{src:SettingBinding Button_Interpolation}" />
+                        <ribbon:RibbonCheckBox x:Name="ButtonTest2" x:Uid="RibbonTab_View_Visualization_Compression"
+                             ToolTipTitle="{lex:LocText UnisensViewer:Translations:Kompression}" ToolTipDescription="{lex:LocText UnisensViewer:Translations:KomprimiertdieangezeigtenDate}"
+                             Label="{lex:LocText UnisensViewer:Translations:Kompression1}" Checked="Click_UsePeaker_Check"
+                             Unchecked="Click_UsePeaker_Uncheck" IsChecked="{src:SettingBinding Button_Compression}" />
+                    </ribbon:RibbonGroup>
+
+                    <ribbon:RibbonGroup x:Name="GroupVisualization" x:Uid="RibbonTab_View_Signals" Header="{lex:LocText UnisensViewer:Translations:Visualisierung}" LargeImageSource="Images\LargeIcon_visualization.png">
+                        <ribbon:RibbonCheckBox x:Name="ButtonTest3" ToolTipTitle="{lex:LocText UnisensViewer:Translations:PhysikalischenWertrunden}"
+                             x:Uid="RibbonTab_View_Visualization_PhysicalValueRounding" ToolTipDescription="{lex:LocText UnisensViewer:Translations:RundetdenphysikalischenWertind}"
+                             Label="{lex:LocText UnisensViewer:Translations:PhysikalischenWertrunden1}" Checked="Click_PhysicalValueRounding_Check"
+                             Unchecked="Click_PhysicalValueRouding_Uncheck" IsChecked="{src:SettingBinding Button_PhysicalValueRounding}" />
+                        <ribbon:RibbonCheckBox x:Name="ButtonTest4" x:Uid="RibbonTab_View_Visualization_Crosshair"
+                             ToolTipTitle="{lex:LocText UnisensViewer:Translations:Fadenkreuz}" ToolTipDescription="{lex:LocText UnisensViewer:Translations:SchaltenFadenkreuzanundab}"
+                             Label="{lex:LocText UnisensViewer:Translations:Fadenkreuz1}" Checked="Click_Fadenkreuz_Check"
+                             Unchecked="Click_Fadenkreuz_Uncheck" IsChecked="{src:SettingBinding Button_Crosshair}" />
+                        <ribbon:RibbonButton x:Name="ButtonSignalsClose" x:Uid="RibbonTab_View_Signals_CloseAllSignals"
+                             LargeImageSource="Images\LargeIcon_signals_close.png" Label="{lex:LocText UnisensViewer:Translations:Alleschließen}"
+                             ToolTipTitle="{lex:LocText UnisensViewer:Translations:Alleschließen1}" ToolTipDescription="{lex:LocText UnisensViewer:Translations:SchließtallegeöffnetenSignale}"
+                             Click="MenuItem_Click_CloseAllSignals" />
+                    </ribbon:RibbonGroup>
+
+                    <ribbon:RibbonGroup x:Name="GroupAnalyze" x:Uid="RibbonTab_View_Analyze" Header="{lex:LocText UnisensViewer:Translations:Analyze}" Visibility="{Binding AnalyzerVisibility, ElementName=_root}">
+                        <ribbon:RibbonButton x:Name="ButtonAnalyzeData" x:Uid="RibbonTab_View_Analyze_Data"
+                             LargeImageSource="Images\Icon_movisens.ico" Label="{lex:LocText UnisensViewer:Translations:AnalyzeFile}"
+                             Click="MenuItem_Click_AnalyzeData" />
+                    </ribbon:RibbonGroup>
+
+                    <ribbon:RibbonGroup x:Name="GroupPlayback" x:Uid="RibbonTab_View_Playback" Header="Playback">
+                        <ribbon:RibbonButton x:Name="ButtonPlayback" x:Uid="RibbonTab_View_Playback_Button"
+                             LargeImageSource="Images\LargeIcon_playback_play.png" Label="Play"
+                             Click="MenuItem_Click_Playback" />
+                    </ribbon:RibbonGroup>
+                </ribbon:RibbonTab>
+
+                <!-- ================================== Edit ================================== -->
+                <ribbon:RibbonTab x:Name="EditTab" x:Uid="RibbonTab_Edit" Header="{lex:LocText UnisensViewer:Translations:Edit}">
+                    <!-- ==== Test: Integrierung der Pluginfunktionen ==== -->
+                    <ribbon:RibbonGroup x:Name="EditSignals" x:Uid="RibbonTab_View_EditSignals" Header="{lex:LocText UnisensViewer:Translations:EditSignals}" >
+                        <ribbon:RibbonButton x:Name="ButtonCropSelection" x:Uid="RibbonTab_View_CropSelection"
+                             LargeImageSource="Images\LargeIcon_misc_crop.png" SmallImageSource="Images\SmallIcon_misc_crop.png" Command="{x:Static src:Commands.CropSelection}"
+                             Label="{lex:LocText UnisensViewer:Translations:CropLabel}"
+                             ToolTipTitle="{lex:LocText UnisensViewer:Translations:CropLabel}"
+                             ToolTipDescription="{lex:LocText UnisensViewer:Translations:TrimDescription}"/>
+                        <ribbon:RibbonButton x:Name="ButtonTrim" x:Uid="RibbonTab_View_Trim"
+                             LargeImageSource="Images\LargeIcon_misc_delete.png" SmallImageSource="Images\SmallIcon_misc_delete.png" Command="{x:Static src:Commands.Trim}"
+                             Label="{lex:LocText UnisensViewer:Translations:TrimLabel}"
+                             ToolTipTitle="{lex:LocText UnisensViewer:Translations:TrimLabel}"
+                             ToolTipDescription="{lex:LocText UnisensViewer:Translations:TrimDescription}"/>
+                    </ribbon:RibbonGroup>
+
+                    <ribbon:RibbonGroup x:Name="Annotations" x:Uid="RibbonTab_View_Annotations" Header="{lex:LocText UnisensViewer:Translations:Annotations}" >
+                        <ribbon:RibbonButton x:Name="ButtonArtifacts" x:Uid="RibbonTab_View_Artifacts"
+                             LargeImageSource="Images\LargeIcon_artifact.png" SmallImageSource="Images\SmallIcon_artifact.png" Command="{x:Static src:Commands.SetArtifacts}"
+                             Label="{lex:LocText UnisensViewer:Translations:ArtifactsLabel}"
+                             ToolTipTitle="{lex:LocText UnisensViewer:Translations:ArtifactsLabel}"
+                             ToolTipDescription="{lex:LocText UnisensViewer:Translations:ArtifactsDescription}" />
+                        <ribbon:RibbonButton x:Name="ButtonMarkerList" x:Uid="RibbonTab_View_MarkerList"
+                             LargeImageSource="Images\LargeIcon_markerlist.png" SmallImageSource="Images\SmallIcon_markerlist.png" Command="{x:Static src:Commands.SetMarkerList}"
+                             Label="{lex:LocText UnisensViewer:Translations:MarkerListLabel}"
+                             ToolTipTitle="{lex:LocText UnisensViewer:Translations:MarkerListLabel}"
+                             ToolTipDescription="{lex:LocText UnisensViewer:Translations:MarkerListDescription}"
+                             Visibility="Collapsed"/>
+                    </ribbon:RibbonGroup>
+
+                    <!-- Marker macht hier kein sinn, bis auf weiteres deaktiviert
+                    <ribbon:RibbonGroup x:Name="Annotations" x:Uid="RibbonTab_View_Annotations" Header="{lex:LocText UnisensViewer:Translations:Annotations}" >
+                        <ribbon:RibbonButton x:Name="ButtonMarker" x:Uid="RibbonTab_View_Marker"
+                             LargeImageSource="Images\120px-Gnome-colors-gtk-edit.svg.png" Command="{x:Static src:Commands.SetMarker}"
+                             Label="{lex:LocText UnisensViewer:Translations:MarkerLabel}"
+                             ToolTipTitle="{lex:LocText UnisensViewer:Translations:MarkerLabel}"
+                             ToolTipDescription="{lex:LocText UnisensViewer:Translations:MarkerDescription}"/>
+                    </ribbon:RibbonGroup> -->
+                </ribbon:RibbonTab>
+
+                <!-- ================================== PLUG-INS ================================== -->
+                <ribbon:RibbonTab x:Name="PluginTab" x:Uid="RibbonTab_Plugins" Header="{lex:LocText UnisensViewer:Translations:Plugins}">
+                </ribbon:RibbonTab>
+
+                <!--================================== HELP ================================== -->
+                <ribbon:RibbonTab x:Name="HelpTab" x:Uid="RibbonTab_Help" Header="{lex:LocText UnisensViewer:Translations:Hilfe}">
+                    <ribbon:RibbonGroup x:Name="Group2" x:Uid="RibbonTab_Help_Information" LargeImageSource="Images\LargeIcon_information_help.png"
+                         Header="{lex:LocText UnisensViewer:Translations:Information}">
+                        <ribbon:RibbonButton x:Name="Button22" x:Uid="RibbonTab_Help_Information_Help" SmallImageSource="Images\SmallIcon_information_help.png"
+                             Label="{lex:LocText UnisensViewer:Translations:Hilfe1}" Click="RibbonButton_Click_Help" />
+                        <ribbon:RibbonSplitButton x:Name="GroupHomepage" x:Uid="RibbonTab_Help_Information_Homepage_Unisens"
+                             SmallImageSource="Images\SmallIcon_information_web.png" Label="{lex:LocText UnisensViewer:Translations:Homepage1}" Click="RibbonButton_Click_Homepage">
+                            <ribbon:RibbonGallery>
+                                <ribbon:RibbonMenuItem x:Name="Button23" x:Uid="RibbonTab_Help_Information_Hompage_Unisens"
+                                 ImageSource="Images\SmallIcon_information_web.png" Header="{lex:LocText UnisensViewer:Translations:Homepage}"
+                                 Click="RibbonButton_Click_Homepage" />
+                                <ribbon:RibbonMenuItem x:Name="Button231" x:Uid="RibbonTab_Help_Information_Homepage"
+                                 ImageSource="Images\SmallIcon_unisens.png" Header="{lex:LocText UnisensViewer:Translations:Unisens}"
+                                 Click="RibbonButton_Click_Unisens" />
+                            </ribbon:RibbonGallery>
+                        </ribbon:RibbonSplitButton>
+                        <ribbon:RibbonButton x:Name="Button24" x:Uid="RibbonTab_Help_Information_AboutUnisensViewer"
+                             SmallImageSource="Images\SmallIcon_information_about.png" Label="{lex:LocText UnisensViewer:Translations:ÜberUnisensViewer}"
+                             Click="MenuItem_About_Click" />
+                    </ribbon:RibbonGroup>
+                    <ribbon:RibbonGroup x:Name="GroupService" x:Uid="RibbonTab_Help_Service" LargeImageSource="Images\LargeIcon_service_updates.png"
+                         Header="{lex:LocText UnisensViewer:Translations:Service}">
+                        <ribbon:RibbonButton x:Name="ButtonServiceUpdates" x:Uid="RibbonTab_Help_Service_CheckForUpdates"
+                             LargeImageSource="Images\LargeIcon_service_updates.png" Label="{lex:LocText UnisensViewer:Translations:NachUpdatessuchen}"
+                             IsEnabled="True" Click="MenuItem_CheckForUpdates_Click" />
+                        <ribbon:RibbonButton x:Name="ButtonServicePreferences" x:Uid="RibbonTab_Help_Service_ConfigureUpdates"
+                             LargeImageSource="Images\LargeIcon_service_preferences.png" Label="{lex:LocText UnisensViewer:Translations:Updateskonfigurieren}"
+                             IsEnabled="True" Click="MenuItem_ConfigureUpdates_Click" />
+                    </ribbon:RibbonGroup>
+                    <ribbon:RibbonGroup x:Name="GroupContact" x:Uid="RibbonTab_Help_Contact" LargeImageSource="Images\LargeIcon_contact_email.png"
+                         Header="{lex:LocText UnisensViewer:Translations:Kontakt}" Visibility="Collapsed" >
+                        <ribbon:RibbonButton x:Name="ButtonContactFeedback" x:Uid="RibbonTab_Help_Contact_FeedbackAndBugReport"
+                             LargeImageSource="Images\LargeIcon_contact_email.png" Label="{lex:LocText UnisensViewer:Translations:FeedbackundBugReport}"
+                             />
+                    </ribbon:RibbonGroup>
+                </ribbon:RibbonTab>
+            </ribbon:Ribbon>
+            <Grid Name="UnisensView">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <ScrollViewer Grid.Column="0" Background="{StaticResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Name="Scrollviewer">
+                    <StackPanel>
+                        <Border BorderThickness="5,5,5,5" CornerRadius="5,5,5,5" BorderBrush="{StaticResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"
+                             Background="{StaticResource {x:Static SystemColors.ControlBrushKey}}">
+                            <Expander Header="{lex:LocText UnisensViewer:Translations:CursorData}" IsExpanded="True">
+                                <StackPanel>
+                                    <ContentPresenter x:Name="status_sampleinfo" />
+                                    <GroupBox x:Uid="Expander_Selection" Header="{lex:LocText UnisensViewer:Translations:Bereich}"
+                                         Name="Expander_Selection">
+                                        <GroupBox.Visibility>
+                                            <MultiBinding Converter="{StaticResource selectionstatusvisibilityconverter}">
+                                                <Binding Path="SelectionStart" ElementName="signalviewercontrol" />
+                                                <Binding Path="SelectionEnd" ElementName="signalviewercontrol" />
+                                            </MultiBinding>
+                                        </GroupBox.Visibility>
+                                        <StackPanel Orientation="Horizontal">
+                                            <StackPanel Width="80" Margin="0,0,5,0">
+                                                <TextBlock x:Uid="Expander_Selection_Start" Text="{lex:LocText UnisensViewer:Translations:Start}"
+                                                     Name="Expander_Start" />
+                                                <TextBlock x:Uid="Expander_Selection_End" Text="{lex:LocText UnisensViewer:Translations:Ende}"
+                                                     Name="Expander_End" />
+                                                <TextBlock x:Uid="Expander_Selection_Duration" Text="{lex:LocText UnisensViewer:Translations:Dauer}"
+                                                     Name="Expander_Duration" />
+                                                <TextBlock x:Uid="Expander_Selection_Frequency" Text="{lex:LocText UnisensViewer:Translations:Frequenz}"
+                                                     Name="Expander_Frequency" Style="{StaticResource ExpertModeVisibility}" />
+                                                <TextBlock x:Uid="Expander_Selection_Bpm" Text=""
+                                                     Name="Expander_Bpm" Style="{StaticResource ExpertModeVisibility}" />
+                                            </StackPanel>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding Path=SelectionStart, ElementName=signalviewercontrol, Converter={StaticResource statustimeconverter}, StringFormat='{}{0} h'}" />
+                                                <TextBlock Text="{Binding Path=SelectionEnd,   ElementName=signalviewercontrol, Converter={StaticResource statustimeconverter}, StringFormat='{}{0} h'}" />
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <MultiBinding Converter="{StaticResource selectiondurationconverter}" StringFormat="{}{0} h">
+                                                            <Binding Path="SelectionStart" ElementName="signalviewercontrol" />
+                                                            <Binding Path="SelectionEnd" ElementName="signalviewercontrol" />
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                                <TextBlock Style="{StaticResource ExpertModeVisibility}">
+                                                    <TextBlock.Text>
+                                                        <MultiBinding Converter="{StaticResource selectionfrequencyconverter}" StringFormat="{}{0} Hz">
+                                                            <Binding Path="SelectionStart" ElementName="signalviewercontrol" />
+                                                            <Binding Path="SelectionEnd" ElementName="signalviewercontrol" />
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                                <TextBlock Style="{StaticResource ExpertModeVisibility}">
+                                                    <TextBlock.Text>
+                                                        <MultiBinding Converter="{StaticResource selectionbpmconverter}" StringFormat="{}{0} 1/min">
+                                                            <Binding Path="SelectionStart" ElementName="signalviewercontrol" />
+                                                            <Binding Path="SelectionEnd" ElementName="signalviewercontrol" />
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </GroupBox>
+                                </StackPanel>
+                            </Expander>
+                        </Border>
+                        <!-- Kann erst funktionieren, wenn das Dateimanagement nicht mehr über das unisensxmlcontrol funktioniert, da sonst nicht mehr auf die Dokumentenänderun reagiert werden kann -->
+                        <Border BorderThickness="5,5,5,5" CornerRadius="5,5,5,5" BorderBrush="{StaticResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"
+                             Background="{StaticResource {x:Static SystemColors.ControlBrushKey}}">
+                            <Expander Header="{lex:LocText UnisensViewer:Translations:Expertenmodus}" IsExpanded="{src:SettingBinding ExpertMode}">
+                                <src:UnisensXmlControl x:Name="unisensxmlcontrol" VerticalAlignment="Top" />
+                            </Expander>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+                <GridSplitter Name ="Gridsplitter" Background="#ff333333" Grid.Column="1" HorizontalAlignment="Stretch"                          
+                     VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext" ResizeDirection="Columns" />
+                <src:SignalViewerControl x:Name="signalviewercontrol" Grid.Column="2" />
+            </Grid>
+        </DockPanel>
+    </src:DragDropDataTemplate>
+</ribbon:RibbonWindow>

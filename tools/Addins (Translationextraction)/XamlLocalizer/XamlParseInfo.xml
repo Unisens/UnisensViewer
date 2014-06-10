@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XamlParseInfo>
+  <Elements>
+    <Element Name="*">
+      <Attributes>
+        <Attribute Name="Content"/>
+        <Attribute Name="ToolTip"/>
+        <Attribute Name="Text"/>
+        <Attribute Name="Header"/>
+        <Attribute Name="Title"/>
+		<Attribute Name="Label"/>
+		<Attribute Name="ToolTipDescription"/>
+		<Attribute Name="ToolTipTitle"/>
+      </Attributes>
+    </Element>
+    <Element Name="TextBox" ReplaceContentWithAttribute="Text">
+      <Attributes>
+        <Attribute Name="Text"/>
+      </Attributes>
+    </Element>
+    <Element Name="GroupBox">
+      <Attributes>
+        <Attribute Name="Header"/>
+      </Attributes>
+    </Element>
+    <Element Name="CollapsablePanel">
+      <Attributes>
+        <Attribute Name="Header"/>
+      </Attributes>
+    </Element>
+    <Element Name="TextBlock" ReplaceContentWithAttribute="Text">
+      <Attributes>
+        <Attribute Name="Text"/>
+      </Attributes>
+    </Element>
+    <Element Name="KeyBinding">
+      <Attributes>
+        <Attribute Name="KeyBinding.Key"/>
+        <Attribute Name="KeyBinding.Gesture"/>
+      </Attributes>
+    </Element>
+  </Elements>
+  
+  <WellKnownStrings>
+    <WellKnownString Text="OK" FullKey="YourAssemblyName:Resources:Ok"/>
+    <WellKnownString Text="Cancel" FullKey="YourAssemblyName:Resources:Cancel"/>
+    <WellKnownString Text="Yes" FullKey="YourAssemblyName:Resources:Yes"/>
+    <WellKnownString Text="No" FullKey="YourAssemblyName:Resources:No"/>
+  </WellKnownStrings>
+
+  <ReplaceSettings>
+    <LocExtPrefix>lex</LocExtPrefix>
+    <LocExtNamespace>http://schemas.root-project.org/xaml/presentation</LocExtNamespace>
+    <LocTextElem>LocText</LocTextElem>
+    <ResIdAttribute>ResourceIdentifierKey</ResIdAttribute>
+    <AddAssemblyResourcesNamespace>false</AddAssemblyResourcesNamespace>
+  </ReplaceSettings>
+</XamlParseInfo>

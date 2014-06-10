@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="UnisensViewer.XmlEditControl"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:src="clr-namespace:UnisensViewer"
+>
+
+
+	<StackPanel Grid.IsSharedSizeScope="True">
+
+		<GroupBox Header="XML Element">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" SharedSizeGroup="Shared_AttrName"/>
+					<ColumnDefinition/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+
+				<!--
+				<TextBox Text="{Binding Name, Converter={StaticResource xnameeditconverter}, ConverterParameter={Binding Name.Namespace}}" VerticalAlignment="Center" Margin="0,0,5,5"/>
+				-->
+				<ComboBox x:Name="textblock_currentelement" IsEditable="true" LostFocus="Textblock_currentelement_LostFocus" VerticalAlignment="Center" Margin="0,0,5,5"/>
+
+				<Button Grid.Column="2" Click="Button_deleteelement_OnClick" Width="25" Margin="5,0,0,5" MaxHeight="22" ToolTip="Delete this element">-</Button>
+				
+				<src:XmlEditMixedTextControl Grid.Column="1" Margin="0,0,0,5"/>
+				
+				<TextBlock Grid.Row="1" Text="..." VerticalAlignment="Center" Margin="0,0,5,0"/>
+				<ComboBox Grid.Row="1" Grid.Column="1" x:Name="combobox_childelement" IsEditable="true" IsReadOnly="false" ToolTip="Name of new child element"/>
+				<Button Grid.Row="1" Grid.Column="2" Click="Button_addelement_OnClick" Width="25"  Margin="5,0,0,0" ToolTip="Add new child">+</Button>
+				
+			</Grid>
+		</GroupBox>
+
+
+
+		<GroupBox Header="XML Attributes">
+			<StackPanel>
+				<ItemsControl x:Name="itemscontrol_attributes">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<src:XmlEditAttributeControl/>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto" SharedSizeGroup="Shared_AttrName"/>
+						<ColumnDefinition/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+
+					<TextBlock Text="..." VerticalAlignment="Center" Margin="0,5,5,0"/>				
+					<TextBox x:Name="textbox_newattribute" Grid.Column="1" Margin="0,5,0,0" ToolTip="Name of new attribute"/>	
+					<Button Click="Button_addattribute_OnClick" Grid.Column="2" Width="25" Margin="5,5,0,0" ToolTip="Add new attribute">+</Button>
+				</Grid>
+			</StackPanel>
+		</GroupBox>
+
+
+	</StackPanel>
+	
+</UserControl>

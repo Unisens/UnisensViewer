@@ -1,0 +1,13 @@
+Anfang Sprint:
+- Features & Bugfixes definieren und priorisieren
+- Tickets Verteilen
+- 
+
+Implementierung:
+- 
+
+Test:
+- Pre-Deployment
+
+Verteilung über Web-Deploy
+- Post-Deployment

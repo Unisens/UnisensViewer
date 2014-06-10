@@ -1,0 +1,577 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Zeit" xml:space="preserve">
+    <value>Time</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="Uhrzeit" xml:space="preserve">
+    <value>Time:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Index:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="Wert" xml:space="preserve">
+    <value>Value</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="Sample" xml:space="preserve">
+    <value>Unscaled:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="LetztesEvent" xml:space="preserve">
+    <value>Last Event</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="Neu" xml:space="preserve">
+    <value>New</value>
+    <comment>ribbon:RibbonApplicationMenuItem.Header</comment>
+  </data>
+  <data name="Öffnen" xml:space="preserve">
+    <value>Open</value>
+    <comment>ribbon:RibbonApplicationMenuItem.Header</comment>
+  </data>
+  <data name="Speichern" xml:space="preserve">
+    <value>Save</value>
+    <comment>ribbon:RibbonApplicationMenuItem.Header</comment>
+  </data>
+  <data name="Speichernunter" xml:space="preserve">
+    <value>Save As</value>
+    <comment>ribbon:RibbonApplicationMenuItem.Header</comment>
+  </data>
+  <data name="Screenshotexportieren" xml:space="preserve">
+    <value>Export Screenshot</value>
+    <comment>ribbon:RibbonApplicationMenuItem.Header</comment>
+  </data>
+  <data name="Drucken" xml:space="preserve">
+    <value>Print</value>
+    <comment>ribbon:RibbonApplicationMenuItem.Header</comment>
+  </data>
+  <data name="Schließen" xml:space="preserve">
+    <value>Close</value>
+    <comment>ribbon:RibbonApplicationMenuItem.Header</comment>
+  </data>
+  <data name="zuletztgeöffneteDatensätze" xml:space="preserve">
+    <value>last opened datasets . . .</value>
+    <comment>ribbon:RibbonGalleryCategory.Header</comment>
+  </data>
+  <data name="Ansicht" xml:space="preserve">
+    <value>View</value>
+    <comment>ribbon:RibbonTab.Header</comment>
+  </data>
+  <data name="ZeitSkalieren" xml:space="preserve">
+    <value>Scale Time</value>
+    <comment>ribbon:RibbonGroup.Header</comment>
+  </data>
+  <data name="SignaleSkalieren" xml:space="preserve">
+    <value>Scale Signals</value>
+    <comment>ribbon:RibbonGroup.Header</comment>
+  </data>
+  <data name="EinzelwerteDarstellung" xml:space="preserve">
+    <value>Single value visualization</value>
+    <comment>ribbon:RibbonGroup.Header</comment>
+  </data>
+  <data name="Visualisierung" xml:space="preserve">
+    <value>Visualization</value>
+    <comment>ribbon:RibbonGroup.Header</comment>
+  </data>
+  <data name="Signale" xml:space="preserve">
+    <value>Signal visualization</value>
+    <comment>ribbon:RibbonGroup.Header</comment>
+  </data>
+  <data name="Plugins" xml:space="preserve">
+    <value>Plug-ins</value>
+    <comment>ribbon:RibbonTab.Header</comment>
+  </data>
+  <data name="Hilfe" xml:space="preserve">
+    <value>Help</value>
+    <comment>ribbon:RibbonTab.Header</comment>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+    <comment>ribbon:RibbonGroup.Header</comment>
+  </data>
+  <data name="Homepage" xml:space="preserve">
+    <value>Homepage</value>
+    <comment>ribbon:RibbonMenuItem.Header</comment>
+  </data>
+  <data name="Unisens" xml:space="preserve">
+    <value>Unisens</value>
+    <comment>ribbon:RibbonMenuItem.Header</comment>
+  </data>
+  <data name="Service" xml:space="preserve">
+    <value>Service</value>
+    <comment>ribbon:RibbonGroup.Header</comment>
+  </data>
+  <data name="Kontakt" xml:space="preserve">
+    <value>Contact</value>
+    <comment>ribbon:RibbonGroup.Header</comment>
+  </data>
+  <data name="CursorData" xml:space="preserve">
+    <value>Cursor Data</value>
+    <comment>Expander.Header</comment>
+  </data>
+  <data name="Bereich" xml:space="preserve">
+    <value>Region</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="Ende" xml:space="preserve">
+    <value>End:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="Dauer" xml:space="preserve">
+    <value>Duration:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="Expertenmodus" xml:space="preserve">
+    <value>Expert mode</value>
+    <comment>Expander.Header</comment>
+  </data>
+  <data name="Physikalisch" xml:space="preserve">
+    <value>Physical:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="Uhrzeit1" xml:space="preserve">
+    <value>Time:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="Uhrzeit2" xml:space="preserve">
+    <value>Time:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="Wert1" xml:space="preserve">
+    <value>Value</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="Zeit1" xml:space="preserve">
+    <value>Time</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="Zeit2" xml:space="preserve">
+    <value>Time</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="Datei" xml:space="preserve">
+    <value>File</value>
+    <comment>ribbon:RibbonApplicationMenu.Label</comment>
+  </data>
+  <data name="Beenden" xml:space="preserve">
+    <value>Exit</value>
+    <comment>ribbon:RibbonButton.Label</comment>
+  </data>
+  <data name="S10Sekunden" xml:space="preserve">
+    <value>10 Seconds</value>
+    <comment>ribbon:RibbonButton.Label</comment>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>Minute</value>
+    <comment>ribbon:RibbonButton.Label</comment>
+  </data>
+  <data name="Stunde" xml:space="preserve">
+    <value>Hour</value>
+    <comment>ribbon:RibbonButton.Label</comment>
+  </data>
+  <data name="Tag" xml:space="preserve">
+    <value>Day</value>
+    <comment>ribbon:RibbonButton.Label</comment>
+  </data>
+  <data name="Woche" xml:space="preserve">
+    <value>Week</value>
+    <comment>ribbon:RibbonButton.Label</comment>
+  </data>
+  <data name="Alles" xml:space="preserve">
+    <value>All</value>
+    <comment>ribbon:RibbonButton.Label</comment>
+  </data>
+  <data name="Auswahl" xml:space="preserve">
+    <value>Selection</value>
+    <comment>ribbon:RibbonButton.Label</comment>
+  </data>
+  <data name="Individuell" xml:space="preserve">
+    <value>Individual</value>
+    <comment>ribbon:RibbonButton.Label</comment>
+  </data>
+  <data name="NachDateiengruppiert" xml:space="preserve">
+    <value>Grouped by files</value>
+    <comment>ribbon:RibbonButton.Label</comment>
+  </data>
+  <data name="NachEinheitengruppiert" xml:space="preserve">
+    <value>Grouped by unit</value>
+    <comment>ribbon:RibbonButton.Label</comment>
+  </data>
+  <data name="SampleAndHold" xml:space="preserve">
+    <value>Sample and Hold</value>
+    <comment>ribbon:RibbonRadioButton.ToolTipTitle</comment>
+  </data>
+  <data name="SchaltenVisualizationSampleAnd" xml:space="preserve">
+    <value>Enables/Disables the sample and hold visualization</value>
+    <comment>ribbon:RibbonRadioButton.ToolTipDescription</comment>
+  </data>
+  <data name="SampleandHold1" xml:space="preserve">
+    <value>Sample and Hold</value>
+    <comment>ribbon:RibbonRadioButton.Label</comment>
+  </data>
+  <data name="Point" xml:space="preserve">
+    <value>Point</value>
+    <comment>ribbon:RibbonRadioButton.ToolTipTitle</comment>
+  </data>
+  <data name="SchaltenVisualizationPointanun" xml:space="preserve">
+    <value>Enables/Disables the point visualization</value>
+    <comment>ribbon:RibbonRadioButton.ToolTipDescription</comment>
+  </data>
+  <data name="Point1" xml:space="preserve">
+    <value>Point</value>
+    <comment>ribbon:RibbonRadioButton.Label</comment>
+  </data>
+  <data name="Linear" xml:space="preserve">
+    <value>Linear</value>
+    <comment>ribbon:RibbonRadioButton.ToolTipTitle</comment>
+  </data>
+  <data name="SchaltenVisualizationLinearanu" xml:space="preserve">
+    <value>Enables/Disables the linear visualization</value>
+    <comment>ribbon:RibbonRadioButton.ToolTipDescription</comment>
+  </data>
+  <data name="Linear1" xml:space="preserve">
+    <value>Linear</value>
+    <comment>ribbon:RibbonRadioButton.Label</comment>
+  </data>
+  <data name="Interpolation" xml:space="preserve">
+    <value>Interpolation</value>
+    <comment>ribbon:RibbonCheckBox.ToolTipTitle</comment>
+  </data>
+  <data name="SincInterpolationderangezeigte" xml:space="preserve">
+    <value>Sinc-Interpolation der angezeigten Signale</value>
+    <comment>ribbon:RibbonCheckBox.ToolTipDescription</comment>
+  </data>
+  <data name="Interpolation1" xml:space="preserve">
+    <value>Interpolation</value>
+    <comment>ribbon:RibbonCheckBox.Label</comment>
+  </data>
+  <data name="Kompression" xml:space="preserve">
+    <value>Compression</value>
+    <comment>ribbon:RibbonCheckBox.ToolTipTitle</comment>
+  </data>
+  <data name="KomprimiertdieangezeigtenDate" xml:space="preserve">
+    <value>Compress the visualized data with a min/max compression</value>
+    <comment>ribbon:RibbonCheckBox.ToolTipDescription</comment>
+  </data>
+  <data name="Kompression1" xml:space="preserve">
+    <value>Compression</value>
+    <comment>ribbon:RibbonCheckBox.Label</comment>
+  </data>
+  <data name="PhysikalischenWertrunden" xml:space="preserve">
+    <value>Round physical value</value>
+    <comment>ribbon:RibbonCheckBox.ToolTipTitle</comment>
+  </data>
+  <data name="RundetdenphysikalischenWertind" xml:space="preserve">
+    <value>Rounds the physical value in the Cursor-Data-View to 4 decimal places</value>
+    <comment>ribbon:RibbonCheckBox.ToolTipDescription</comment>
+  </data>
+  <data name="PhysikalischenWertrunden1" xml:space="preserve">
+    <value>Round physical value</value>
+    <comment>ribbon:RibbonCheckBox.Label</comment>
+  </data>
+  <data name="Fadenkreuz" xml:space="preserve">
+    <value>Crosshair</value>
+    <comment>ribbon:RibbonCheckBox.ToolTipTitle</comment>
+  </data>
+  <data name="SchaltenFadenkreuzanundab" xml:space="preserve">
+    <value>Enables/Disables the Crosshair</value>
+    <comment>ribbon:RibbonCheckBox.ToolTipDescription</comment>
+  </data>
+  <data name="Fadenkreuz1" xml:space="preserve">
+    <value>Crosshair</value>
+    <comment>ribbon:RibbonCheckBox.Label</comment>
+  </data>
+  <data name="Alleschließen" xml:space="preserve">
+    <value>Close all</value>
+    <comment>ribbon:RibbonButton.Label</comment>
+  </data>
+  <data name="Alleschließen1" xml:space="preserve">
+    <value>Close all</value>
+    <comment>ribbon:RibbonButton.ToolTipTitle</comment>
+  </data>
+  <data name="SchließtallegeöffnetenSignale" xml:space="preserve">
+    <value>Closes all open signals</value>
+    <comment>ribbon:RibbonButton.ToolTipDescription</comment>
+  </data>
+  <data name="Hilfe1" xml:space="preserve">
+    <value>Help</value>
+    <comment>ribbon:RibbonButton.Label</comment>
+  </data>
+  <data name="Homepage1" xml:space="preserve">
+    <value>Homepage</value>
+    <comment>ribbon:RibbonSplitButton.Label</comment>
+  </data>
+  <data name="ÜberUnisensViewer" xml:space="preserve">
+    <value>About UnisensViewer</value>
+    <comment>ribbon:RibbonButton.Label</comment>
+  </data>
+  <data name="NachUpdatessuchen" xml:space="preserve">
+    <value>Check for updates</value>
+    <comment>ribbon:RibbonButton.Label</comment>
+  </data>
+  <data name="Updateskonfigurieren" xml:space="preserve">
+    <value>Configure Updates</value>
+    <comment>ribbon:RibbonButton.Label</comment>
+  </data>
+  <data name="FeedbackundBugReport" xml:space="preserve">
+    <value>Feedback and Bug-Report</value>
+    <comment>ribbon:RibbonButton.Label</comment>
+  </data>
+  <data name="Analyze" xml:space="preserve">
+    <value>movisens</value>
+    <comment>ribbon:RibbonGroup.Header</comment>
+  </data>
+  <data name="AnalyzeFile" xml:space="preserve">
+    <value>Analyze File</value>
+    <comment>ribbon:RibbonButton.Label</comment>
+  </data>
+  <data name="SignaleSkalierenButton" xml:space="preserve">
+    <value>Scale</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SystemLanguage" xml:space="preserve">
+    <value>System language</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language:</value>
+  </data>
+  <data name="Round" xml:space="preserve">
+    <value>Rounding accuracy:</value>
+  </data>
+  <data name="FileNotFoundMsg" xml:space="preserve">
+    <value>File "%filename%" not found.</value>
+  </data>
+  <data name="FileNotFoundTitle" xml:space="preserve">
+    <value>File not found</value>
+  </data>
+  <data name="CropDescription" xml:space="preserve">
+    <value>Crops signals to the selected time interval.</value>
+  </data>
+  <data name="CropLabel" xml:space="preserve">
+    <value>Crop to Selection</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditSignals" xml:space="preserve">
+    <value>Edit signals</value>
+  </data>
+  <data name="TrimDescription" xml:space="preserve">
+    <value>Delete at the begin or end of a signal the selected time interval.</value>
+  </data>
+  <data name="TrimLabel" xml:space="preserve">
+    <value>Trim Start/End</value>
+  </data>
+  <data name="Annotations" xml:space="preserve">
+    <value>Annotations</value>
+  </data>
+  <data name="MarkerDescription" xml:space="preserve">
+    <value>Sets a marker. Use key d to delete the marker in the selected interval.</value>
+  </data>
+  <data name="MarkerLabel" xml:space="preserve">
+    <value>Marker</value>
+  </data>
+  <data name="Frequenz" xml:space="preserve">
+    <value>Frequency:</value>
+  </data>
+  <data name="Tage" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="ArtifactsDescription" xml:space="preserve">
+    <value>Marks the selected area as artifact</value>
+  </data>
+  <data name="ArtifactsLabel" xml:space="preserve">
+    <value>Mark Artifact</value>
+  </data>
+  <data name="NewGroupDescription" xml:space="preserve">
+    <value>Creates a new group with the selected entries</value>
+  </data>
+  <data name="NewGroupLabel" xml:space="preserve">
+    <value>Create Group</value>
+  </data>
+  <data name="MarkerListDescription" xml:space="preserve">
+    <value>Create a new EventEntry to save a list of markers</value>
+  </data>
+  <data name="MarkerListLabel" xml:space="preserve">
+    <value>Create marker list</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment:</value>
+  </data>
+  <data name="EntryIdWarning" xml:space="preserve">
+    <value>Enter a file name that contains only letters, numbers and the character '-', '_' and '.'. Example: Dateiname_01</value>
+  </data>
+  <data name="InputErrors" xml:space="preserve">
+    <value>Input Errors</value>
+  </data>
+  <data name="MarkerListWarning" xml:space="preserve">
+    <value>The markers must contain an integer in the first column and may contain up to three columns. The columns are separated by a semicolon ';'. Example: 10;M;Marker.</value>
+  </data>
+  <data name="Sampling" xml:space="preserve">
+    <value>Sampling rate [Hz]:</value>
+  </data>
+  <data name="SamplingWarning" xml:space="preserve">
+    <value>The sampling rate must be a number (example: 25,6).</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CommentToolTip" xml:space="preserve">
+    <value>Free text comments for this Entry</value>
+  </data>
+  <data name="EntryIdToolTip" xml:space="preserve">
+    <value>Entry-ID (filename) of the new marker list </value>
+  </data>
+  <data name="MarkerListToolTip" xml:space="preserve">
+    <value>Marker list separated by a semicolon (;)</value>
+  </data>
+  <data name="SamplingToolTip" xml:space="preserve">
+    <value>Sampling rate in Hz</value>
+  </data>
+  <data name="ZeitFormat" xml:space="preserve">
+    <value>Format of Time</value>
+    <comment>ribbon:RibbonGroup.Header</comment>
+  </data>
+  <data name="AbsoluteUhrzeit" xml:space="preserve">
+    <value>Absolute time</value>
+    <comment>ribbon:RibbonCheckBox.Label</comment>
+  </data>
+  <data name="DauerBeginMessung" xml:space="preserve">
+    <value>Duration of the measurement</value>
+    <comment>ribbon:RibbonCheckBox.Label</comment>
+  </data>
+  <data name="AbsoluteDauerZeit" xml:space="preserve">
+    <value>Both</value>
+    <comment>ribbon:RibbonCheckBox.Label</comment>
+  </data>
+</root>

@@ -1,0 +1,166 @@
+﻿<UserControl x:Class="UnisensViewer.SignalViewerControl"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:src="clr-namespace:UnisensViewer"
+ PreviewMouseLeftButtonDown="PreviewMouseDown_scrollstretch"
+ PreviewMouseDown="PreviewMouseDown_scrollstretch"
+ Loaded="UserControl_Loaded"
+>
+
+	<UserControl.CommandBindings>
+		<CommandBinding Command="{x:Static src:SignalViewerControl.CmdAutoZoomAllIndividual}" Executed="Executed_CmdAutoZoomAllIndividual"/>
+		<CommandBinding Command="{x:Static src:SignalViewerControl.CmdAutoZoomAllGroupedByFiles}" Executed="Executed_CmdAutoZoomAllGroupedByFiles"/>
+        <CommandBinding Command="{x:Static src:SignalViewerControl.CmdAutoZoomAllGroupedByUnits}" Executed="Executed_CmdAutoZoomAllGroupedByUnits"/>
+        <CommandBinding Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}" Executed="Executed_CmdChangeTimeZoom" CanExecute="CanExecute_CmdChangeTimeZoom" />
+        <!-- <CommandBinding Command="NavigationCommands.Zoom" Executed="Executed_Zoom"/> -->
+	</UserControl.CommandBindings>
+	
+	
+	<UserControl.Resources>
+		<!--
+		<src:SelectionStatusConverter x:Key="selectionstatusconverter"/>
+		<src:StatusTimeConverter x:Key="statustimeconverter"/>
+		<src:SelectionStatusVisibilityConverter x:Key="selectionstatusvisibilityconverter"/>
+		-->
+		
+		<ControlTemplate TargetType="{x:Type Thumb}" x:Key="controltemplate_selectionmarker">
+			<Rectangle Fill="DeepSkyBlue"/>
+		</ControlTemplate>
+		
+		<!--
+		<DataTemplate DataType="{x:Type src:SampleInfoStream}">
+			<StackPanel Orientation="Horizontal">
+				<GroupBox Header="Cursor time, sample#">
+					<StackPanel Orientation="Horizontal">
+						<StackPanel Margin="0,0,5,0">
+							<TextBlock Text="from"/>
+							<TextBlock Text="to"/>
+						</StackPanel>
+						<StackPanel>
+							<TextBlock Text="{Binding Time, Converter={StaticResource statustimeconverter}, StringFormat='{}{0}, '}"/>
+							<TextBlock Text="{Binding TimeEnd, Converter={StaticResource statustimeconverter}, StringFormat='{}{0}, '}"/>
+						</StackPanel>
+						<StackPanel>
+							<TextBlock Text="{Binding SampleNum}"/>
+							<TextBlock Text="{Binding SampleNumEnd}"/>
+						</StackPanel>
+						<!- -
+						<StackPanel>
+							<TextBlock>
+								<TextBlock.Text>
+									<MultiBinding StringFormat="[{0}, {1}]">
+										<Binding Path="Time" Converter="{StaticResource statustimeconverter}"/>
+										<Binding Path="TimeEnd" Converter="{StaticResource statustimeconverter}"/>
+									</MultiBinding>
+								</TextBlock.Text>
+							</TextBlock>
+							<TextBlock>
+								<TextBlock.Text>
+									<MultiBinding StringFormat="[{0}, {1}]">
+										<Binding Path="SampleNum"/>
+										<Binding Path="SampleNumEnd"/>
+									</MultiBinding>
+								</TextBlock.Text>
+							</TextBlock>
+						</StackPanel>
+						- ->
+					</StackPanel>					
+				</GroupBox>
+				<GroupBox Header="Sample value">
+					<StackPanel Orientation="Horizontal">
+						<StackPanel>
+							<TextBlock Text="max"/>
+							<TextBlock Text="min"/>
+						</StackPanel>
+						<StackPanel MinWidth="50" HorizontalAlignment="Right">
+							<TextBlock Text="{Binding SampleMax}" HorizontalAlignment="Right"/>
+							<TextBlock Text="{Binding SampleMin}" HorizontalAlignment="Right"/>
+						</StackPanel>
+					</StackPanel>
+				</GroupBox>
+				<GroupBox Header="Physical value">
+					<StackPanel Orientation="Horizontal">
+						<StackPanel>
+							<TextBlock Text="max"/>
+							<TextBlock Text="min"/>
+						</StackPanel>
+						<StackPanel MinWidth="50" Margin="5,0,5,0">
+							<TextBlock Text="{Binding PhysicalMax}" HorizontalAlignment="Right"/>
+							<TextBlock Text="{Binding PhysicalMin}" HorizontalAlignment="Right"/>
+						</StackPanel>
+						<StackPanel>
+							<TextBlock Text="{Binding Unit}"/>
+							<TextBlock Text="{Binding Unit}"/>
+						</StackPanel>
+					</StackPanel>
+				</GroupBox>
+			</StackPanel>
+		</DataTemplate>
+		-->
+		
+	</UserControl.Resources>
+
+
+
+
+
+
+	<DockPanel Grid.IsSharedSizeScope="True">
+		<Grid DockPanel.Dock="Top" Background="#ff808080">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition SharedSizeGroup="shared_yachsencontrols"/>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+		
+			<src:AxisControl Grid.Column="1" x:Name="axiscontrol_time" BaseUnit="s"/>
+
+			<Rectangle Grid.Column="2" Width="{StaticResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"/>
+		</Grid>
+
+
+
+		<!--
+		<StatusBar DockPanel.Dock="Bottom" x:Name="statusbar">
+			<GroupBox Header="Selection">
+				<GroupBox.Visibility>
+					<MultiBinding Converter="{StaticResource selectionstatusvisibilityconverter}">
+						<Binding Path="SelectionStart"/>
+						<Binding Path="SelectionEnd"/>
+					</MultiBinding>
+				</GroupBox.Visibility>
+				<StackPanel Orientation="Horizontal">
+					<StackPanel>
+						<TextBlock Text="start" Margin="0,0,5,0"/>
+						<TextBlock Text="end"/>
+					</StackPanel>
+					<StackPanel>
+						<TextBlock Text="{Binding Path=SelectionStart, Converter={StaticResource statustimeconverter}}"/>
+						<TextBlock Text="{Binding Path=SelectionEnd, Converter={StaticResource statustimeconverter}}"/>
+					</StackPanel>
+				</StackPanel>
+			</GroupBox>
+			<!- -
+			<TextBlock>
+				<TextBlock.Text>
+					<MultiBinding Converter="{StaticResource selectionstatusconverter}">
+						<Binding Path="SelectionStart"/>
+						<Binding Path="SelectionEnd"/>
+					</MultiBinding>
+				</TextBlock.Text>
+			</TextBlock>
+			- ->
+			<ContentPresenter x:Name="status_sampleinfo"/>
+		</StatusBar>
+		-->
+		
+		<ScrollBar DockPanel.Dock="Bottom" x:Name="scrollbar" Orientation="Horizontal" Scroll="Scrollbar_Scroll"/>
+
+
+		<src:StackerControl x:Name="stackercontrol"/>
+
+
+	</DockPanel>
+
+
+</UserControl>

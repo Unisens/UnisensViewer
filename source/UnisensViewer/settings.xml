@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UnisensViewer>
+
+  <Hotkeys>
+    <Binding Key="delete" Modifiers="control" Plugin="Crop" SelectedSignals="AllOpenFiles"/>
+    <Binding Key="delete" Plugin="Delete" SelectedSignals="AllOpenFiles"/>
+
+    <Binding Key="n" Modifiers="control,alt,shift" Plugin="NOP" SelectedSignals="AllOpenFiles" Parameter="test"/>
+
+    <Binding Key="d" Plugin="Marker" SelectedSignals="StackFiles" Parameter="delete"/>
+    <Binding Key="q" Plugin="Marker" SelectedSignals="StackFiles" Parameter="Q"/>
+    <Binding Key="m" Plugin="Marker" SelectedSignals="StackFiles" Parameter="M"/>
+    <Binding Key="back" Plugin="Marker" SelectedSignals="StackFiles" Parameter="truncate"/>
+    <Binding Key="d8" Modifiers="shift" Plugin="Marker" SelectedSignals="StackFiles" Parameter="("/>
+    <Binding Key="d9" Modifiers="shift" Plugin="Marker" SelectedSignals="StackFiles" Parameter=")"/>
+  </Hotkeys>
+
+  <Units>
+    <Scale>
+      <Factor>10.0</Factor>
+      <Unit>d</Unit>
+      <Factor>24</Factor>
+      <Unit>hrs</Unit>
+      <Factor>60.0</Factor>
+      <Unit>min</Unit>
+      <Factor>60.0</Factor>
+      <Unit>s</Unit>
+      <Factor>10.0</Factor>
+      <Factor>10.0</Factor>
+      <Factor>10.0</Factor>
+      <Unit>ms</Unit>
+      <Factor>10.0</Factor>
+    </Scale>
+
+    <Scale>
+      <Unit>V</Unit>
+      <Factor>10.0</Factor>
+      <Factor>10.0</Factor>
+      <Factor>10.0</Factor>
+      <Unit>mV</Unit>
+      <Factor>10.0</Factor>
+      <Factor>10.0</Factor>
+      <Factor>10.0</Factor>
+      <Unit>µV uV</Unit>
+    </Scale>
+  </Units>
+
+  <Settings>
+    <!-- Add advanced settings here -->
+  </Settings>
+</UnisensViewer>

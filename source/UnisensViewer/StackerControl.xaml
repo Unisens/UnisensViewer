@@ -1,0 +1,319 @@
+﻿<UserControl Name="Crosshair"
+ x:Class="UnisensViewer.StackerControl"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:src="clr-namespace:UnisensViewer"
+ AllowDrop="true"
+ Drop="ScrollViewer_Drop" 
+ MouseMove="Mousemove"
+
+>
+
+
+	<UserControl.Resources>
+	
+		<DataTemplate x:Key="datatemplate_plugincontextmenuitem">
+			<TextBlock Text="{Binding Name}" ToolTip="{Binding Description}"/>
+		</DataTemplate>	
+
+		<!--
+		<ContextMenu x:Key="contextmenu_plugins" Initialized="plugincontextmenu_Initialized" Opened="plugincontextmenu_Opened">
+			<ContextMenu.ItemContainerStyle>
+				<Style TargetType="{x:Type MenuItem}">
+					<EventSetter Event="Click" Handler="plugincontextmenu_MenuItem_Click"/>
+					<Setter Property="Header" Value="{Binding Name}"/>
+					<Setter Property="ToolTip" Value="{Binding Description}"/>
+				</Style>
+			</ContextMenu.ItemContainerStyle>
+		</ContextMenu>
+		-->
+
+        <ContextMenu x:Key="contextmenu_stack" Opened="PluginContextMenu_Opened">
+            <MenuItem x:Uid="Channel_AutoZoom" Header="Autom.Skalierung">
+                <MenuItem x:Uid="Channel_AutoZoom_ThisBatch" Header="Dieser Stapel">
+                    <MenuItem x:Uid="Channel_AutoZoom_ThisBatch_IndividualSignal" Header="Signale individuell" Click="MenuItem_Click_AutoZoom_Stack_Separate"/>
+                    <MenuItem x:Uid="Channel_AutoZoom_ThisBatch_GroupedByFile" Header="nach Dateien gruppiert" Click="MenuItem_Click_AutoZoom_Stack_Files"/>
+                    <MenuItem x:Uid="Channel_AutoZoom_ThisBatch_GroupedByUnits" Header="nach Einheiten gruppiert" Click="MenuItem_Click_AutoZoom_Stack_Units"/>
+				</MenuItem>
+                <MenuItem x:Uid="Channel_AutoZoom_SelectedSignals" Header="Ausgewählte Signale">
+                    <MenuItem x:Uid="Channel_AutoZoom_SelectedSignals_IndividualSignal" Header="Signale individuell" Click="MenuItem_Click_AutoZoom_Selected_Separate"/>
+                    <MenuItem x:Uid="Channel_AutoZoom_SelectedSignals_GroupedByFile" Header="nach Dateien gruppiert" Click="MenuItem_Click_AutoZoom_Selected_Files"/>
+                    <MenuItem x:Uid="Channel_AutoZoom_SelectedSignals_GroupedByUnits" Header="nach Einheiten gruppiert" Click="MenuItem_Click_AutoZoom_Selected_Units"/>
+				</MenuItem>
+			</MenuItem>
+            <MenuItem x:Uid="Channel_Invert" Header="Invertieren" Click="MenuItem_Click_Invert"/>
+			<Separator/>
+            <MenuItem x:Uid="Channel_StackClose" Header="Stapel schließen" Click="MenuItem_Click_Stack_Close"/>
+            <MenuItem x:Uid="Channel_StackCloseOthers" Header="Alle Stapel außer diesem schließen" Click="MenuItem_Click_Stack_CloseOthers"/>
+            <Separator/>
+            
+            <!-- Marker funktionen -->
+            <MenuItem x:Uid="Contextmenu_Marker_Set" Header="Marker setzen" Command="{x:Static src:Commands.SetMarker}" CommandParameter="ContextMenu"/>
+            <MenuItem x:Uid="Contextmenu_Marker_Delete" Header="Marker löschen" Command="{x:Static src:Commands.DeleteMarker}" CommandParameter="ContextMenu"/>
+            <MenuItem x:Uid="Contextmenu_Marker_Truncate" Header="Marker abschneiden" Command="{x:Static src:Commands.TruncateMarker}" CommandParameter="ContextMenu"/>
+            <Separator/>    
+            
+			<MenuItem  Header="Plug-ins" Initialized="MenuItem_plugins_Initialized" ItemTemplate="{StaticResource datatemplate_plugincontextmenuitem}">
+				<MenuItem.ItemContainerStyle>
+					<Style TargetType="{x:Type MenuItem}">
+						<EventSetter Event="Click" Handler="MenuItem_plugins_Click"/>
+					</Style>
+				</MenuItem.ItemContainerStyle>
+			</MenuItem>
+		</ContextMenu>
+	
+	
+
+
+		<LinearGradientBrush x:Key="brush_gridsplitter" StartPoint="0,0" EndPoint="0,1">
+			<GradientStop Color="#ff404040" Offset="0"/><!--#ff525252-->
+			<GradientStop Color="#ff333333" Offset="0.5"/>
+		</LinearGradientBrush>
+
+		<LinearGradientBrush x:Key="brush_yachsenecke" StartPoint="0,0" EndPoint="0,1">
+			<GradientStop Color="#ff656565" Offset="0"/>
+			<GradientStop Color="#ff333333" Offset="0.5"/>
+		</LinearGradientBrush>
+
+
+		<src:UInt32BrushConverter x:Key="uint32brushconverter"/>
+
+
+
+
+
+		<!-- ########################################################################################### -->
+
+
+
+
+
+		<ItemsPanelTemplate x:Key="itemspaneltemplate_rotatedstackpanel">
+			<StackPanel>
+				<StackPanel.LayoutTransform>
+					<TransformGroup>
+						<RotateTransform Angle="-90"/>
+					</TransformGroup>
+				</StackPanel.LayoutTransform>
+			</StackPanel>
+		</ItemsPanelTemplate>
+		
+		<DataTemplate x:Key="datatemplate_yachsencontrol">
+			<!--
+			<TextBlock TextAlignment="Center" Text="...| -1 | 0 | +1 |..."/>
+			-->
+			<src:AxisControl
+			 Offset="{Binding Offset}"
+			 Range="{Binding Range}"
+			 BaseUnit="{Binding Unit}"
+			 Foreground="{Binding Color, Converter={StaticResource uint32brushconverter}}"
+			/>
+		</DataTemplate>
+
+
+
+
+
+		<!-- ########################################################################################### -->
+
+
+
+
+
+		<ItemsPanelTemplate x:Key="itemspaneltemplate_rotatedgridpanel">
+			<Grid>
+				<Grid.LayoutTransform>
+					<TransformGroup>
+						<RotateTransform Angle="-90"/>
+					</TransformGroup>
+				</Grid.LayoutTransform>
+			</Grid>
+		</ItemsPanelTemplate>
+		
+		<DataTemplate x:Key="datatemplate_rendersliceimage">
+			<Image Source="{Binding ImageSource}" HorizontalAlignment="Left" Stretch="Fill" StretchDirection="Both" MouseEnter="Image_MouseEnter" MouseMove="Image_MouseMove" />
+		</DataTemplate>
+		
+
+
+
+
+		<!-- ########################################################################################### -->
+
+
+
+
+
+		<Style x:Key="style_killbutton" TargetType="{x:Type Button}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Path
+						 Stretch="Fill"
+						 Stroke="{TemplateBinding Foreground}"
+						 StrokeThickness="3"
+						 Data="M0,0 L1,1 M0,1 L1,0"
+						/>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="Foreground" Value="#ff000000"/>
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="true">
+					<Setter Property="Button.Foreground" Value="{Binding Color, Converter={StaticResource uint32brushconverter}}"/>
+				</Trigger>
+				<Trigger Property="IsPressed" Value="true">
+					<Setter Property="Button.Foreground" Value="#ffffffff"/>
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+
+		<ItemsPanelTemplate x:Key="itemspaneltemplate_horizontalstackpanel">
+			<StackPanel Orientation="Horizontal"/>
+		</ItemsPanelTemplate>
+
+		<Style x:Key="style_selectedsignal" TargetType="TextBlock">
+			<Setter Property="Foreground" Value="{Binding Color, Converter={StaticResource uint32brushconverter}}"/>
+			<Style.Triggers>
+				<DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}" Value="true">
+					<Setter Property="Foreground" Value="#ff000000"/>
+					<Setter Property="Background" Value="{Binding Color, Converter={StaticResource uint32brushconverter}}"/>
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+		
+		<!-- DataType="{x:Type src:RenderSlice}" -->
+		<DataTemplate x:Key="datatemplate_listbox">
+			<StackPanel src:DragDropDataTemplate.AllowDrag="true" Orientation="Horizontal" Margin="0,0,3,0">
+				<TextBlock Text="{Binding Name}" Style="{StaticResource style_selectedsignal}"/>
+				<Button Click="Button_Click_killsignal" Width="10" Height="10" Style="{StaticResource style_killbutton}"/>
+			</StackPanel>
+		</DataTemplate>
+
+		<!--
+			um das datatemplate drumherum wird noch ein listboxitem gebaut, das für
+			die blaue selecteditem-markierung verantwortlich ist.
+			=> mit diesem style die blaue markierung loswerden.
+		-->
+		<Style x:Key="style_listboxitem" TargetType="ListBoxItem">
+			<!--
+			<Setter Property="SnapsToDevicePixels" Value="true"/>
+			<Setter Property="OverridesDefaultStyle" Value="true"/>
+			-->
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ListBoxItem">
+						<ContentPresenter/>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+
+
+
+
+		<!-- ########################################################################################### -->
+
+
+
+
+
+		<DataTemplate x:Key="datatemplate_renderslicelist">
+			<Grid MouseEnter="Grid_MouseEnter">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="128"/>
+					<RowDefinition Height="5"/>
+				</Grid.RowDefinitions>
+				
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition SharedSizeGroup="shared_yachsencontrols"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+	
+				
+				
+				<!--orginal: Background="#ff656565" Opacity="0.7"-->
+				<ItemsControl
+				 Grid.Column="0" Grid.Row="0"
+                 Background="#ff505050" Opacity="0.9"
+				 ItemsSource="{Binding}"
+				 ItemsPanel="{StaticResource itemspaneltemplate_rotatedstackpanel}"
+				 ItemTemplate="{StaticResource datatemplate_yachsencontrol}"
+				/>
+				
+				<Rectangle Grid.Column="0" Grid.Row="1" Fill="{StaticResource brush_yachsenecke}"/>
+
+
+
+
+                <!--orginal: Background="#ff525252" Opacity="0.7"-->
+				<ItemsControl MinHeight="20"
+				 Grid.Column="1" Grid.Row="0" Name="itemscontrol_rendersliceimages"
+				 Background="#ff404040" Opacity="0.9" 
+				 ItemsSource="{Binding}"
+				 ItemsPanel="{StaticResource itemspaneltemplate_rotatedgridpanel}"
+				 ItemTemplate="{StaticResource datatemplate_rendersliceimage}"
+				 MouseDown="ItemsControl_MouseDown"
+				 MouseEnter="ItemsControl_renderSliceImages_MouseEnter"
+				 MouseLeave="ItemsControl_renderSliceImages_MouseLeave"
+                 
+				 ContextMenu="{StaticResource contextmenu_stack}"
+				/>
+				<!-- ContextMenu="{StaticResource contextmenu_plugins}" -->
+			
+			
+				<ListBox
+				 Grid.Column="1" Grid.Row="0" Name="listbox"
+                 Background="#00000242" BorderBrush="#00000242"
+				 SelectionChanged="ListBox_renderSliceStack_SelectionChanged"
+				 ItemsSource="{Binding}"
+				 ItemsPanel="{StaticResource itemspaneltemplate_horizontalstackpanel}"
+				 ItemContainerStyle="{StaticResource style_listboxitem}"
+				 ItemTemplate="{StaticResource datatemplate_listbox}"
+				 HorizontalAlignment="Left" VerticalAlignment="Top"
+				 ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled"
+				 SelectionMode="Extended" Loaded="listbox_Loaded" />
+
+				<GridSplitter
+				 Grid.Column="1" Grid.Row="1"
+				 Background="{StaticResource brush_gridsplitter}"
+				 HorizontalAlignment="Stretch"
+				 ResizeBehavior="PreviousAndCurrent"
+				 ResizeDirection="Rows"            
+				/>
+				
+			</Grid>
+		</DataTemplate>
+		
+	</UserControl.Resources>
+
+
+    <Grid Name="myGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Name="Col1" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Name="Row1" />
+        </Grid.RowDefinitions>
+
+        <Canvas   Name="canvas1"  >
+            <Line Name="line1" Stroke="#FFFFFF" />
+            <Line Name="line2" Stroke="#FFFFFF" />
+        </Canvas>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" Name="scrollviewer" Background="Transparent" >
+
+		    <ItemsControl
+			    Margin="0,3,0,0"
+			    x:Name="itemscontrol_renderslicestacks"
+			    ItemsSource="{Binding RenderSliceLists}"
+			    ItemTemplate="{StaticResource datatemplate_renderslicelist}"
+			    MouseDown="ItemsControl_renderSliceStacks_MouseDown"
+                Background="Transparent"
+		    />
+            
+        </ScrollViewer>
+        
+    </Grid>
+</UserControl>

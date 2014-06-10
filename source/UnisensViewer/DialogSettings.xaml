@@ -1,0 +1,39 @@
+﻿<Window x:Class="UnisensViewer.DialogSettings" x:Name="_root"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:lex="http://schemas.root-project.org/xaml/presentation"
+        xmlns:src="clr-namespace:UnisensViewer"
+        Title="{lex:LocText UnisensViewer:Translations:Settings}" 
+        ResizeMode="CanResizeWithGrip" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" 
+        Background="#f0f0f0" Height="400" Width="400" Icon="Images\SmallIcon_preferences.png">
+    <Grid>
+        <Border BorderBrush="DarkGray" BorderThickness="1"  Margin="8,8,8,35" Background="White"
+            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="2">
+
+            <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" Margin="5">
+                <CheckBox Name="CheckBox_ExpertMode" Content="{lex:LocText UnisensViewer:Translations:Expertenmodus}" IsChecked="{src:SettingBinding ExpertMode}" Margin="5"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                    <Label Name="Label_Language" Content="{lex:LocText UnisensViewer:Translations:Language}" VerticalAlignment="Center" Width="150" />
+                    <ComboBox Name="ComboBox_Language" SelectedValuePath="Tag" SelectedValue="{src:SettingBinding Language}" 
+                          SelectionChanged="ComboBox_Language_SelectionChanged" Width="120" >
+                        <ComboBoxItem Tag="system" Content="{lex:LocText UnisensViewer:Translations:SystemLanguage}"/>
+                        <ComboBoxItem Tag="en-en" Content="English (en-en)"/>
+                        <ComboBoxItem Tag="de-de" Content="Deutsch (de-de)"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                    <Label Name="Label_Round" Content="{lex:LocText UnisensViewer:Translations:Round}" VerticalAlignment="Center" Width="150" />
+                    <TextBox Name="TextBox_Round" Text="{Binding ElementName=_root, Path=Round, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="120" PreviewTextInput="TextBox_Round_PreviewTextInput" />
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+
+        <!-- untere Leiste-->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+            <Button Name="Close" Click="Close_Click" Content="{lex:LocText UnisensViewer:Translations:Schließen}" IsDefault="True" Margin="8,8,8,8" />
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,72 @@
+﻿<Application x:Class="UnisensViewer.App"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:src="clr-namespace:UnisensViewer"
+Startup="ApplicationStartup">
+    <Application.Resources>
+        <!-- Es folgen die Templates für UnisensXmlDataTemplateSelectos -->
+        <HierarchicalDataTemplate x:Key="unisensxml_default" ItemsSource="{Binding Path=Elements}">
+            <TextBlock Text="{Binding Path=Name.LocalName}" src:DragDropDataTemplate.AllowDrag="true"/>
+        </HierarchicalDataTemplate>
+
+        <HierarchicalDataTemplate x:Key="unisensxml_root" ItemsSource="{Binding Path=Elements}">
+            <HierarchicalDataTemplate.ItemContainerStyle>
+                <Style TargetType="TreeViewItem">
+                    <Setter Property="IsExpanded" Value="false" />
+                </Style>
+            </HierarchicalDataTemplate.ItemContainerStyle>
+            <TextBlock Text="{Binding Path=Name.LocalName}" src:DragDropDataTemplate.AllowDrag="true"/>
+        </HierarchicalDataTemplate>
+
+        <HierarchicalDataTemplate x:Key="unisensxml_id" ItemsSource="{Binding Path=Elements}">
+            <TextBlock Text="" src:DragDropDataTemplate.AllowDrag="true">
+				<Run Text="{Binding Path=Name.LocalName, Mode=OneWay}"/>
+				<Run Text="{Binding Attribute[id].Value, Mode=OneWay}" Foreground="Blue"/>
+            </TextBlock>
+        </HierarchicalDataTemplate>
+
+        <HierarchicalDataTemplate x:Key="unisensxml_channel" ItemsSource="{Binding Path=Elements}">
+            <TextBlock Text="" src:DragDropDataTemplate.AllowDrag="true">
+				<Run Text="{Binding Path=Name.LocalName, Mode=OneWay}"/>
+				<Run Text="{Binding Attribute[name].Value, Mode=OneWay}" Foreground="DarkOrange"/>
+            </TextBlock>
+        </HierarchicalDataTemplate>
+
+        <HierarchicalDataTemplate x:Key="unisensxml_context" ItemsSource="{Binding Path=Elements}">
+            <TextBlock Text="" src:DragDropDataTemplate.AllowDrag="true">
+				<Run Text="{Binding Path=Name.LocalName, Mode=OneWay}"/>
+				<Run Text="{Binding Attribute[schemaUrl].Value, Mode=OneWay}" Foreground="Gray"/>
+            </TextBlock>
+        </HierarchicalDataTemplate>
+
+        <HierarchicalDataTemplate x:Key="unisensxml_customEntry" ItemsSource="{Binding Path=Elements}">
+            <TextBlock Text="" src:DragDropDataTemplate.AllowDrag="true">
+				<Run Text="{Binding Path=Name.LocalName, Mode=OneWay}"/>
+				<Run Text="{Binding Attribute[id].Value, Mode=OneWay}" Foreground="Green"/>
+            </TextBlock>
+        </HierarchicalDataTemplate>
+
+        <HierarchicalDataTemplate x:Key="unisensxml_group" ItemsSource="{Binding Path=Elements}">
+            <TextBlock Text="" src:DragDropDataTemplate.AllowDrag="true">
+				<Run Text="{Binding Path=Name.LocalName, Mode=OneWay}"/>
+				<Run Text="{Binding Attribute[id].Value, Mode=OneWay}" Foreground="DarkViolet"/>
+            </TextBlock>
+        </HierarchicalDataTemplate>
+
+        <HierarchicalDataTemplate x:Key="unisensxml_groupEntry" ItemsSource="{Binding Path=Elements}">
+            <TextBlock Text="" src:DragDropDataTemplate.AllowDrag="true">
+				<Run Text="{Binding Path=Name.LocalName, Mode=OneWay}"/>
+				<Run Text="{Binding Attribute[ref].Value, Mode=OneWay}" Foreground="DeepPink"/>
+            </TextBlock>
+        </HierarchicalDataTemplate>
+
+        <HierarchicalDataTemplate x:Key="unisensxml_customAttribute" ItemsSource="{Binding Path=Elements}">
+            <TextBlock Text="" src:DragDropDataTemplate.AllowDrag="true">
+				<Run Text="{Binding Path=Name.LocalName, Mode=OneWay}"/>
+				<Run Text="{Binding Attribute[key].Value, Mode=OneWay}" Foreground="Red"/>
+				<Run Text="=" Foreground="Red"/>
+				<Run Text="{Binding Attribute[value].Value, Mode=OneWay}"/>
+            </TextBlock>
+        </HierarchicalDataTemplate>
+    </Application.Resources>
+</Application>

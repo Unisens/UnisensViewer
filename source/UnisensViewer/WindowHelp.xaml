@@ -1,0 +1,93 @@
+﻿<Window x:Class="UnisensViewer.WindowHelp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="UnisensViewer Help" Height="500" Width="850">
+	<!--<FlowDocumentScrollViewer>-->
+        <Grid>
+        <DocumentViewer Name="helpDocumentViewer" />
+        </Grid>
+        <!--
+		XXX das dokument hier könnte man auch in ne schöne extra datei/resource packen.
+		noch besser mit nem werkzeug (winword) ein nettes XPS basteln, statt den mist hier von hand zu machen.
+		-->
+        <!--
+		<FlowDocument IsHyphenationEnabled="True" IsOptimalParagraphEnabled="True">
+			<Section>
+				<Table CellSpacing="10">
+					<Table.Columns>
+						<TableColumn/>
+						<TableColumn/>
+					</Table.Columns>
+					<TableRowGroup>
+						<TableRow>
+							<TableCell>
+								<Paragraph>scroll and stretch time</Paragraph>
+							</TableCell>
+							<TableCell>
+								<Paragraph>
+									middle button
+									<LineBreak/>
+									alt + middle button
+									<LineBreak/>
+									alt + left button
+								</Paragraph>
+							</TableCell>
+						</TableRow>
+						<TableRow>
+							<TableCell>
+								<Paragraph>
+									time selection
+								</Paragraph>
+							</TableCell>
+							<TableCell>
+								<Paragraph>
+									left button
+								</Paragraph>
+							</TableCell>
+						</TableRow>
+						<TableRow>
+							<TableCell>
+								<Paragraph>
+									select signals
+								</Paragraph>
+							</TableCell>
+							<TableCell>
+								<Paragraph>
+									left button on list, optionally shift or ctrl as in explorer.
+								</Paragraph>
+							</TableCell>
+						</TableRow>
+						<TableRow>
+							<TableCell>
+								<Paragraph>
+									scale selected signals
+								</Paragraph>
+							</TableCell>
+							<TableCell>
+								<Paragraph>
+									shift + middle button
+								</Paragraph>
+							</TableCell>
+						</TableRow>
+						<TableRow>
+							<TableCell>
+								<Paragraph>
+									offset selected signals
+								</Paragraph>
+							</TableCell>
+							<TableCell>
+								<Paragraph>
+									ctrl + middle button
+								</Paragraph>
+							</TableCell>
+						</TableRow>
+					</TableRowGroup>
+				</Table>
+				<Paragraph>
+					asdf
+				</Paragraph>
+			</Section>
+		</FlowDocument>
+        -->
+<!--    </FlowDocumentScrollViewer>-->
+</Window>

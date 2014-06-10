@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="7.5" version="8.1.1" Modules="update" RootPath="." Language="de">
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;aiu-ue.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.UpdaterEditorComponent">
+    <ROW Section="ANT_NAME vANT_VERSION" Key="Name" Value="ANT_NAME vANT_VERSION"/>
+    <ROW Section="ANT_NAME vANT_VERSION" Key="URL" Value="ANT_HTTP/ANT_NAME_Setup.exe"/>
+    <ROW Section="ANT_NAME vANT_VERSION" Key="Size" Value="dist\ANT_NAME_Setup.exe"/>
+    <ROW Section="ANT_NAME vANT_VERSION" Key="ReleaseDate" Value="15512"/>
+    <ROW Section="ANT_NAME vANT_VERSION" Key="MD5" Value="dist\ANT_NAME_Setup.exe"/>
+    <ROW Section="ANT_NAME vANT_VERSION" Key="CommandLine" Value="/qr"/>
+    <ROW Section="ANT_NAME vANT_VERSION" Key="ServerFileName" Value="ANT_NAME_Setup.exe"/>
+    <ROW Section="ANT_NAME vANT_VERSION" Key="FilePath" Value="[APPDIR]ANT_NAME.exe"/>
+    <ROW Section="ANT_NAME vANT_VERSION" Key="Version" Value="ANT_VERSION"/>
+    <ROW Section="ANT_NAME vANT_VERSION" Key="Feature" Value="English translation"/>
+    <ROW Section="ANT_NAME vANT_VERSION" Key="Enhancement" Value="Improved zoom and scale functions&#13;&#10;Added shortcut to movisens DataAnalyzer"/>
+    <ROW Section="ANT_NAME vANT_VERSION" Key="BugFix" Value="Fixes in Marker plugin&#13;&#10;Fixes in Crop and Delete plugin"/>
+    <ROW Section="ANT_NAME vANT_VERSION" Key="AutoCloseApplication" Value="[APPDIR]ANT_NAME.exe"/>
+    <ATTRIBUTE name="OutputFileName" value="update.txt"/>
+    <ATTRIBUTE name="OutputFolder" value="dist"/>
+  </COMPONENT>
+</DOCUMENT>

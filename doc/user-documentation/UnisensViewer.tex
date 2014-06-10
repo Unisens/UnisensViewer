@@ -1,0 +1,44 @@
+\newif\ifdeDE\deDEfalse
+\newif\ifenUS\enUSfalse
+
+
+
+%%%% CHANGE OUTPUT LANGUAGE HERE %%%%
+%% supported language codes:
+\deDEtrue		% GERMAN
+%\enUStrue		% ENGLISH
+
+
+
+
+\documentclass{unisens}
+
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+
+\ifdeDE
+	\usepackage[ngerman]{babel}
+\fi
+\ifenUS
+	\usepackage[english]{babel}
+\fi
+
+
+\usepackage{tabularx, varioref, mit_bib, graphicx}
+\newcommand{\xmlattribute}[1]{\texttt{#1}}
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+
+\ifdeDE
+\include{de-DE}
+\fi
+
+\ifenUS
+\include{en-US}
+\fi
+
+
+
+\end{document}
+

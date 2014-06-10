@@ -1,0 +1,51 @@
+﻿<Window x:Class="UnisensViewerPack1.DialogMeasurement"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:src="clr-namespace:UnisensViewerPack1"
+ Title="Measurement"
+ Height="360" Width="765"
+>
+    <StackPanel Orientation="Vertical">
+
+        <!--<GroupBox DockPanel.Dock="Top" Margin="10,10,290,10" FontSize="12" Name="plugin_selection" Header=" Bereich" x:Uid="plugin_selection">
+            <StackPanel Orientation="Vertical">
+                <StackPanel  Orientation="Horizontal">
+                    <TextBlock  Name="plugin_start" MinWidth="55" Text="  Start:" Margin="0,0,20,0" x:Uid="plugin_start"/>
+                    <TextBlock  Name="plugin_time_start" x:Uid="plugin_time_start" />
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                    <TextBlock  Name="plugin_end" MinWidth="55" Text="  Ende:" Margin="0,0,20,0" x:Uid="plugin_end"/>
+                    <TextBlock  Name="plugin_time_end" x:Uid="plugin_time_end" />
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                    <TextBlock Name="plugin_length" MinWidth="55" Text="  Dauer:" Margin="0,0,20,0" x:Uid="plugin_length" />
+                    <TextBlock Name="plugin_time_length" x:Uid="plugin_time_length" />
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>-->
+            
+        <TabControl FontFamily="Tahoma" Margin="10,10,10,10" FontSize="12" Name="tabcontrol1" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" Height="260" DockPanel.Dock="Top">
+            <!--<TabItem Name="ti" Header="CH1">
+                <DataGrid Name="datagrid">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header=""/>
+                        
+                        <DataGridTextColumn Header="EmployeeID">
+                        </DataGridTextColumn>                           
+                        <DataGridTextColumn Header="EmployeeID"/>
+                        <DataGridTextColumn Header="EmployeeID"/>
+                    </DataGrid.Columns>
+
+                    <Table Name="table" GridView.ColumnCollection="GridViewColumnCollection" >
+                    </Table>
+                    <Table Name="table1">
+                    </Table>
+                </DataGrid>
+            </TabItem>-->
+        </TabControl>
+        <StackPanel Orientation="Horizontal" Width="430" Margin="285,10,0,10">
+            <Button FontFamily="Tahoma" FontSize="12" Margin="250,0,10,0" x:Uid="plugin_button_copy" Name="Copy" Content="Copy" Height="22" Width="75" Click="Button_Copy"></Button>
+            <Button FontFamily="Tahoma" FontSize="12" Margin="20,0,10,0" x:Uid="plugin_button_close" Name="Close" Content="Close" Height="22" Width="75" Click="Button_Close"></Button>
+        </StackPanel>        
+    </StackPanel> 
+</Window>

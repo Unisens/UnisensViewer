@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="http://www.unisens.org/unisens2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.unisens.org/unisens2.0">
+  <xs:element name="unisens">
+    <xs:annotation>
+      <xs:documentation>Unisens 2.0 root element</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice id="entries" maxOccurs="unbounded" minOccurs="0">
+          <xs:element maxOccurs="1" minOccurs="0" name="customAttributes" type="customAttributes"/>
+          <xs:element maxOccurs="1" minOccurs="0" name="context" type="context"/>
+          <xs:element name="signalEntry" type="signalEntry"/>
+          <xs:element name="valuesEntry" type="valuesEntry"/>
+          <xs:element name="eventEntry" type="eventEntry"/>
+          <xs:element name="customEntry" type="customEntry"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="group" type="group"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="version" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            Version number of the corresponding Unisens specification of the unisens.xml.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="measurementId" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            Identifier for this measurement.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="timestampStart" type="xs:dateTime" use="required">
+        <xs:annotation>
+          <xs:documentation>
+            Timestamp of the begin of the measurement corresponing ISO 8601. For example "2010-08-18T17:58:46.012" for "8. AUG 2010, 5:58:46 pm and 12 ms".
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="duration" type="xs:float" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+            Duration of the dataset in seconds. This is recommended when the dataset does not include any signalEntry.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="comment" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation>
+            Free comment for this measurement.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="customAttributes">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="1" name="customAttribute" type="customAttribute"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="customAttribute">
+    <xs:attribute name="key">
+      <xs:annotation>
+        <xs:documentation>
+          Custom key for a custom attribute (key-value-pair).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="value">
+      <xs:annotation>
+        <xs:documentation>
+          Custom value for the corresponding key (key-value-pair).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType abstract="true" name="fileFormat">
+    <xs:attribute name="comment" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Free comment.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="xmlFileFormat">
+    <xs:annotation>
+      <xs:documentation>file format options for XML files</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="fileFormat"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="csvFileFormat">
+    <xs:annotation>
+      <xs:documentation>file format options for CSV files</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="fileFormat">
+        <xs:attribute name="separator" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              Separator inside CSV files, normally
+              semicolon or comma.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="decimalSeparator" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>
+              Decimal seperator inside CSV file, usually a
+              dot or a comma.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="binFileFormat">
+    <xs:annotation>
+      <xs:documentation>file format options for binary files</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="fileFormat">
+        <xs:attribute name="endianess" type="Endianess">
+          <xs:annotation>
+            <xs:documentation>
+              Byte order: LITTLE or BIG for little
+              endianess or big endianess.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="customFileFormat">
+    <xs:annotation>
+      <xs:documentation>file format options for custom files</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="fileFormat">
+        <xs:attribute name="fileFormatName" type="xs:string"/>
+        <xs:anyAttribute/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="Endianess">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LITTLE"/>
+      <xs:enumeration value="BIG"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType abstract="true" name="entry">
+    <xs:sequence>
+      <xs:element maxOccurs="1" minOccurs="0" name="customAttributes" type="customAttributes"/>
+      <xs:choice id="fileFormat" maxOccurs="1" minOccurs="1">
+        <xs:element name="binFileFormat" type="binFileFormat"/>
+        <xs:element name="csvFileFormat" type="csvFileFormat"/>
+        <xs:element name="xmlFileFormat" type="xmlFileFormat"/>
+        <xs:element name="customFileFormat" type="customFileFormat"/>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="id" type="unisensFilename" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The identifier of an entry corresponds to the
+          filename containing the data. The identifier is
+          unique.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="name" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          The name of an entry.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="contentClass" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          The content class describes the type of data. The
+          content class should be choosen from a list of
+          recommended content classes like ECG, ACC for
+          acceleration signals, IMP for impedance, TRIGGER for
+          trigger lists etc. The content class is in uppercase
+          letters.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="source" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          The source describes the data origin of the data,
+          for example the recorder's name.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="sourceId" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          The source identifier contains the serial number of
+          the used recorder.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="comment" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          A free comment, can be used to describe this entry.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType abstract="true" name="measurementEntry">
+    <xs:complexContent>
+      <xs:extension base="entry">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="channel" type="channel"/>
+        </xs:sequence>
+        <xs:attribute name="sampleRate" type="xs:double" use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The sample rate of this Entry in samples per second.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="adcZero" type="xs:int" use="optional">
+          <xs:annotation>
+            <xs:documentation>
+              The integer value given by the ADC when the input falls exactly at the center of the ADC range. For bipolar ADCs with two's complement output adcZero is usually zero.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="baseline" type="xs:int" use="optional">
+          <xs:annotation>
+            <xs:documentation>
+              Offset representing the value of ADC output that would map to the value of 0 of the physical variable acquired by the ADC. This value can be beyond the adc output range. The value of the physical variable is calculated by value = (ADC_output - baseline) * lsbValue.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="lsbValue" type="xs:double" use="optional">
+          <xs:annotation>
+            <xs:documentation>
+              The equivalent value of the physical variable according to unit represented by the least significant bit of the ADC used to acquire the data contained in this Entry.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="adcResolution" type="xs:int" use="optional">
+          <xs:annotation>
+            <xs:documentation>
+              The resolution in bits of the ADC used to acquire the data contained in this Entry.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="dataType" type="DataType" use="optional">
+          <xs:annotation>
+            <xs:documentation>
+              The DataType of the data contained in this Entry. Necessary attribute for binary data.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="unit" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>
+              String that specifies the physical unit for the acquired variables. For example kV, V, uV for voltage. See http://www.unisens.org for unit recommendations.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="DataType">
+    <xs:annotation>
+      <xs:documentation>
+        Describes the data type of the data entry. A double is a
+        64 bit floating point value, a float is a 32 floating
+        point value.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="double">
+        <xs:annotation>
+          <xs:documentation>
+            A 64 bit floating point value.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="float">
+        <xs:annotation>
+          <xs:documentation>
+            A 32 bit floating point value.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="uint8">
+        <xs:annotation>
+          <xs:documentation>
+            An unsigned 8 bit integer.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="int8">
+        <xs:annotation>
+          <xs:documentation>
+            A signed 8 bit integer.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="uint16">
+        <xs:annotation>
+          <xs:documentation>
+            An unsigned 16 bit integer.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="int16">
+        <xs:annotation>
+          <xs:documentation>
+            A signed 16 bit integer.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="uint32">
+        <xs:annotation>
+          <xs:documentation>
+            An unsigned 32 bit integer.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="int32">
+        <xs:annotation>
+          <xs:documentation>
+            A signed 32 bit integer.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="uint64">
+        <xs:annotation>
+          <xs:documentation>
+            An unsigned 64 bit integer.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="int64">
+        <xs:annotation>
+          <xs:documentation>
+            A signed 64 bit integer.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="signalEntry">
+    <xs:annotation>
+      <xs:documentation>
+        SignalEntry should be used for equidistant sampled data, e.g. continuous temperature information or an ECG signal.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="measurementEntry"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="eventEntry">
+    <xs:annotation>
+      <xs:documentation>
+        EventEntry should be used for annotations of every description, e.g. QRS annotation for ECG datasets. EventEntry should not be used for acquired data.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="entry">
+        <xs:attribute name="sampleRate" type="xs:double" use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The sample rate of this Entry in samples per second. This is used as time base for all sample stamps.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="commentLength" type="xs:int">
+          <xs:annotation>
+            <xs:documentation>
+              Length of each comment.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="typeLength" type="xs:int">
+          <xs:annotation>
+            <xs:documentation>
+              Length of each type.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+
+  <xs:complexType name="valuesEntry">
+    <xs:annotation>
+      <xs:documentation>
+        ValuesEntry should be used for not equidistant acquired data from a measurement system, e.g. oscillometric measured blood pressure. A ValuesEntry can contain different channels.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="measurementEntry"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="customEntry">
+    <xs:annotation>
+      <xs:documentation>
+        CustomEntry should be used for proprietary data files, e.g. photos and movies.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="entry">
+        <xs:anyAttribute namespace="##any" processContents="lax"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="channel">
+    <xs:annotation>
+      <xs:documentation>
+        A valuesEntry and a signalEntry need at least one channel. Each entry can have multiple channels, e.g. three channels for a tri-axial acceleration sensor, twelve channels for a 12 lead ECG or two channels for systolic and diastolic blood pressure.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="name" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The name of a channel.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:simpleType name="unisensFilename">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="([0-9]|[a-z]|_|-|\.|[A-Z]){1,254}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="groupEntry">
+    <xs:attribute name="ref" type="unisensFilename" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          ID of an entry inside this Unisens data set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="group">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="groupEntry" type="groupEntry"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Identifier of this group, must be unique.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="comment" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>A free comment.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="context">
+    <xs:attribute name="schemaUrl" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>
+          Contains the URL to the schema of the context XML
+          file.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+</xs:schema>

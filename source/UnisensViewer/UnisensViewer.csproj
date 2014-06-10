@@ -1,0 +1,575 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BA4455DA-BF2B-4BEB-AAB3-DA3E5DFA0E20}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UnisensViewer</RootNamespace>
+    <AssemblyName>UnisensViewer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <PublishUrl>publish_x86\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationVersion>1.0.242.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>false</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>UnisensViewer.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>F964255A8244D9464B10EA642C24B6F71AB22F99</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>UnisensViewer_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>unisens_NET.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrashRptNET">
+      <HintPath>..\..\library\CrashRptNET.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\library\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="RibbonControlsLibrary, Version=4.0.0.11019, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\library\RibbonControlsLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WPFLocalizeExtension, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\library\WPFLocalizeExtension.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+    <ItemGroup Condition=" '$(Platform)' == 'x86' ">
+	<Reference Include="Unisens">
+		<HintPath>..\..\plugins\lib\x86\Unisens.dll</HintPath>
+	</Reference>
+</ItemGroup>
+  <ItemGroup Condition=" '$(Platform)' == 'x64' ">
+	<Reference Include="Unisens">
+		<HintPath>..\..\plugins\lib\x64\Unisens.dll</HintPath>
+	</Reference>
+</ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Commands.cs" />
+    <Compile Include="DataStructs\AutoZoomGroup.cs" />
+    <Compile Include="DataStructs\CheckListXElement.cs" />
+    <Compile Include="DataStructs\DragScaleOffsetInfo.cs" />
+    <Compile Include="DataStructs\ExecPluginCommandParameter.cs" />
+    <Compile Include="DataStructs\HotkeyHashkey.cs" />
+    <Compile Include="DataStructs\HoverStackEventArgs.cs" />
+    <Compile Include="DialogSettings.xaml.cs">
+      <DependentUpon>DialogSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditFunctions\Artifacts.cs" />
+    <Compile Include="EditFunctions\Crop.cs" />
+    <Compile Include="EditFunctions\DialogMarkerList.xaml.cs">
+      <DependentUpon>DialogMarkerList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditFunctions\DialogsArtifacts.xaml.cs">
+      <DependentUpon>DialogsArtifacts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditFunctions\Marker.cs" />
+    <Compile Include="EditFunctions\MarkerList.cs" />
+    <Compile Include="Export.cs" />
+    <Compile Include="Folders.cs" />
+    <Compile Include="Helpers\AutoZoomGroupEqualityComparer.cs" />
+    <Compile Include="Helpers\WaitCursor.cs" />
+    <Compile Include="IValueConverters\ExpertmodeToVisibility.cs" />
+    <Compile Include="Helpers\FileNameEqualityComparer.cs" />
+    <Compile Include="DataStructs\HoverRenderSliceEventArgs.cs" />
+    <Compile Include="DataStructs\HotkeyBinding.cs" />
+    <Compile Include="Hotkeys.cs" />
+    <Compile Include="IValueConverters\InfoBrushConverter.cs" />
+    <Compile Include="IValueConverters\SelectionDurationConverter.cs" />
+    <Compile Include="IValueConverters\SelectionStatusConverter.cs" />
+    <Compile Include="IValueConverters\SelectionStatusVisibilityConverter.cs" />
+    <Compile Include="IValueConverters\StatusTimeConverter.cs" />
+    <Compile Include="IValueConverters\UInt32BrushConverter.cs" />
+    <Compile Include="IValueConverters\UnisensViewerTitleFormatter.cs" />
+    <Compile Include="Helpers\UnisensXmlDataTemplateSelector.cs" />
+    <Compile Include="DataStructs\ZoomInfo.cs" />
+    <Compile Include="Translations\Translations.de.Designer.cs">
+      <DependentUpon>Translations.de.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Translations\Translations.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Translations.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Translations\Translations.de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Translations.de.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Translations\Translations.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Translations.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="UnisensXmlFileManager.cs" />
+    <Page Include="DialogAbout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DialogPlugin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditFunctions\DialogMarkerList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditFunctions\DialogsArtifacts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="StackerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SignalViewerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WindowHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="XmlControl\XmlControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="XmlControl\XmlEditAttributeControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="XmlControl\XmlEditControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="XmlControl\XmlEditMixedTextControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DialogPlugin.xaml.cs">
+      <DependentUpon>DialogPlugin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataStructs\SampleInfo.cs" />
+    <Compile Include="DataStructs\SampleInfoEventString.cs" />
+    <Compile Include="DataStructs\SampleInfoEventValue.cs" />
+    <Compile Include="DataStructs\SampleInfoStream.cs" />
+    <Compile Include="NLogLogger.cs" />
+    <Compile Include="SelectionAdorner.cs" />
+    <Compile Include="SelectionMarkerAdorner.cs" />
+    <Compile Include="DataStructs\UpdateStatusEventArgs.cs" />
+    <Compile Include="SettingBinding.cs" />
+    <Compile Include="WindowHelp.xaml.cs">
+      <DependentUpon>WindowHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowMain.xaml.cs">
+      <DependentUpon>WindowMain.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AxisControl.cs" />
+    <Compile Include="ColorFade.cs" />
+    <Compile Include="ColorRelaxed.cs" />
+    <Compile Include="DialogAbout.xaml.cs">
+      <DependentUpon>DialogAbout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DragDropDataTemplate.cs" />
+    <Compile Include="EventRenderSlice.cs" />
+    <Compile Include="EventStringRenderer.cs" />
+    <Compile Include="EventValueRenderer.cs" />
+    <Compile Include="RendererManager.cs" />
+    <Compile Include="RenderSlice.cs" />
+    <Compile Include="StreamRenderer.cs" />
+    <Compile Include="RasterRenderSlice.cs" />
+    <Compile Include="StackerControl.xaml.cs">
+      <DependentUpon>StackerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SignalViewerControl.xaml.cs">
+      <DependentUpon>SignalViewerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Renderer.cs" />
+    <Compile Include="UnisensXmlControl.cs" />
+    <Compile Include="Units\AccumulatedFactor.cs" />
+    <Compile Include="Units\FactorAccumulator.cs" />
+    <Compile Include="Units\Scale.cs" />
+    <Compile Include="Units\Units.cs" />
+    <Compile Include="XmlControl\XmlDocumentSchemaAttribute.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="XmlControl\XmlControl.xaml.cs">
+      <DependentUpon>XmlControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XmlControl\XmlEditAttributeControl.xaml.cs">
+      <DependentUpon>XmlEditAttributeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XmlControl\XmlEditControl.xaml.cs">
+      <DependentUpon>XmlEditControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XmlControl\XmlEditMixedTextControl.xaml.cs">
+      <DependentUpon>XmlEditMixedTextControl.xaml</DependentUpon>
+    </Compile>
+    <Resource Include="unisens_NET.ico" />
+    <Resource Include="UnisensViewer_about.png" />
+    <SplashScreen Include="UnisensViewer_splash.png" />
+    <Content Include="CrashSender.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Documentation\UnisensViewerHelp_DE.xps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="crashrpt_lang.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Images\Thumbs.db" />
+    <Content Include="Documentation\UnisensViewerHelp_EN.xps">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="Images\120px-Accessories-text-editor.png" />
+    <Resource Include="Images\120px-Document-properties.png" />
+    <Resource Include="Images\120px-Edit-copy.svg.png" />
+    <Resource Include="Images\120px-Gnome-colors-gtk-edit.svg.png" />
+    <Resource Include="Images\120px-Us.png" />
+    <Resource Include="Images\flagiconbritish.png" />
+    <Resource Include="Images\flagicongerman.png" />
+    <Resource Include="Images\LargeIcon.png" />
+    <Resource Include="Images\LargeIcon_contact_email.png" />
+    <Resource Include="Images\LargeIcon_fzi.png" />
+    <Resource Include="Images\LargeIcon_information_about.png" />
+    <Resource Include="Images\LargeIcon_information_help.png" />
+    <Resource Include="Images\LargeIcon_information_web.png" />
+    <Resource Include="Images\LargeIcon_menu_close.png" />
+    <Resource Include="Images\LargeIcon_menu_new.png" />
+    <Resource Include="Images\LargeIcon_menu_open.png" />
+    <Resource Include="Images\LargeIcon_menu_save.png" />
+    <Resource Include="Images\LargeIcon_menu_saveas.png" />
+    <Resource Include="Images\LargeIcon_misc_crop.png" />
+    <Resource Include="Images\LargeIcon_misc_delete.png" />
+    <Resource Include="Images\LargeIcon_misc_measurement.png" />
+    <Resource Include="Images\LargeIcon_service_preferences.png" />
+    <Resource Include="Images\LargeIcon_service_updates.png" />
+    <Resource Include="Images\LargeIcon_signals_close.png" />
+    <Resource Include="Images\SmallIcon.png" />
+    <Resource Include="Images\SmallIcon_contact_email.png" />
+    <Resource Include="Images\SmallIcon_fzi.png" />
+    <Resource Include="Images\SmallIcon_information_about.png" />
+    <Resource Include="Images\SmallIcon_information_help.png" />
+    <Resource Include="Images\SmallIcon_information_web.png" />
+    <Resource Include="Images\SmallIcon_menu_close.png" />
+    <Resource Include="Images\SmallIcon_menu_new.png" />
+    <Resource Include="Images\SmallIcon_menu_open.png" />
+    <Resource Include="Images\SmallIcon_menu_save.png" />
+    <Resource Include="Images\SmallIcon_menu_saveas.png" />
+    <Resource Include="Images\SmallIcon_misc_crop.png" />
+    <Resource Include="Images\SmallIcon_misc_delete.png" />
+    <Resource Include="Images\SmallIcon_misc_measurement.png" />
+    <Resource Include="Images\SmallIcon_service_preferences.png" />
+    <Resource Include="Images\SmallIcon_service_updates.png" />
+    <Resource Include="Images\SmallIcon_signals_close.png" />
+    <Resource Include="Images\SmallIcon_unisens.png" />
+    <Resource Include="Images\LargeIcon_menu_print.png" />
+    <Resource Include="Images\LargeIcon_menu_screenshot.png" />
+    <Resource Include="Images\SmallIcon_menu_print.png" />
+    <Resource Include="Images\SmallIcon_menu_screenshot.png" />
+    <Resource Include="Images\LargeIcon_signals_linear.png" />
+    <Resource Include="Images\LargeIcon_signals_points.png" />
+    <Resource Include="Images\LargeIcon_signals_sampleandhold.png" />
+    <Resource Include="Images\Icon_movisens.ico" />
+    <Resource Include="Images\LargeIcon_signals_scalevertical.png" />
+    <Resource Include="Images\LargeIcon_events.png" />
+    <Resource Include="Images\LargeIcon_signals.png" />
+    <Resource Include="Images\LargeIcon_signals_linear_original.png" />
+    <Resource Include="Images\LargeIcon_signals_points_original.png" />
+    <Resource Include="Images\LargeIcon_signals_sampleandhold_original.png" />
+    <Resource Include="Images\LargeIcon_signals_scalehorizontal.png" />
+    <Resource Include="Images\LargeIcon_values.png" />
+    <Resource Include="Images\LargeIcon_visualization.png" />
+    <Resource Include="Images\OrganizationIcon_FZI.png" />
+    <Resource Include="Images\SmallIcon_signals.png" />
+    <Resource Include="Images\SmallIcon_signals_scalehorizontal.png" />
+    <Resource Include="Images\SmallIcon_signals_scalevertical.png" />
+    <Resource Include="Images\LargeIcon_artifact.png" />
+    <Resource Include="Images\LargeIcon_group.png" />
+    <Resource Include="Images\SmallIcon_artifact.png" />
+    <Resource Include="Images\SmallIcon_group.png" />
+    <Resource Include="Images\LargeIcon_exit.png" />
+    <Resource Include="Images\LargeIcon_preferences.png" />
+    <Resource Include="Images\SmallIcon_exit.png" />
+    <Resource Include="Images\SmallIcon_preferences.png" />
+    <Resource Include="Images\LargeIcon_markerlist.png" />
+    <Resource Include="Images\SmallIcon_markerlist.png" />
+    <Resource Include="Images\LargeIcon_playback_pause.png" />
+    <Resource Include="Images\LargeIcon_playback_play.png" />
+    <Content Include="unisens.xsd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <AppDesigner Include="Properties\" />
+    <None Include="UnisensViewer_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UnisensViewerClrCppLibrary\UnisensViewerClrCppLibrary.vcxproj">
+      <Project>{5622745C-F26F-440A-8C05-9E2C269DF7B0}</Project>
+      <Name>UnisensViewerClrCppLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UnisensViewerLibrary\UnisensViewerLibrary.csproj">
+      <Project>{CA477356-B667-4C26-8E4A-8164BEE7EF7E}</Project>
+      <Name>UnisensViewerLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UnisensViewerPlugins\UnisensViewerPlugins.csproj">
+      <Project>{7AFC3378-56F7-4CBD-8F97-0834B1C2CA97}</Project>
+      <Name>UnisensViewerPlugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Visual.C++.10.0.x86">
+      <Visible>False</Visible>
+      <ProductName>Visual C++ 2010 Runtime Libraries %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <Content Include="settings.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="unisens.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="settings.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="unisens.xsd">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
