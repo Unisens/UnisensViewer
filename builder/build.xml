@@ -35,6 +35,7 @@
 		<!-- git rev-list HEAD | tail -1 ==> 6cfbd13cc210062fb24b90a3111ff56074e43c87 -->
 		<!-- git tag -a -m "For calculating build number" build 6cfbd13cc210062fb24b90a3111ff56074e43c87 -->
 		<!-- git tag -a 1.5 -m "Version 1.5" -->
+		<!-- git push --tags --progress "origin" master:master -->
 		<!-- Tag is version number. Build number from number of changes on master (1.5.99) -->
 		<!-- Read guide here: http://pukkaone.github.io/2010/12/19/build-number-git-repository.html -->
 		<exec executable="git" outputproperty="BUILD_NUMBER">
