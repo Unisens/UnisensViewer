@@ -324,10 +324,10 @@
     <ROW Registry="NET_Framework_4.0_C" Root="2" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="NET_Framework_4.0_C" Value="1" Component_="NET_Framework_4.0_C"/>
     <ROW Registry="NET_Framework_4.0_C_1" Root="2" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="NET_Framework_4.0_C_1" Value="1" Component_="NET_Framework_4.0_C_1"/>
     <ROW Registry="unisens_viewer1" Root="2" Key="Software\JavaSoft\Prefs\de\movisens\launcher" Name="unisens_viewer" Value="&quot;[#UnisensViewer.exe_1]&quot;" Component_="unisens_viewer1"/>
-    <ROW Registry="unisens_viewer_MIXED_KEY" Root="2" Key="Wow6432Node\Software\JavaSoft\Prefs\de\movisens\launcher" Name="unisens_viewer" Value="&quot;[#UnisensViewer.exe]&quot;" Component_="unisens_viewer_MIXED_KEY"/>
+    <ROW Registry="unisens_viewer_MIXED_KEY" Root="2" Key="Software\Wow6432Node\JavaSoft\Prefs\de\movisens\launcher" Name="unisens_viewer" Value="&quot;[#UnisensViewer.exe]&quot;" Component_="unisens_viewer_MIXED_KEY"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRemoveRegComponent">
-    <ROW RemoveRegistry="unisens_viewer" Root="2" Key="Wow6432Node\Software\JavaSoft\Prefs\de\movisens\launcher" Name="unisens_viewer" Component_="AI_ExePath"/>
+    <ROW RemoveRegistry="unisens_viewer" Root="2" Key="Software\Wow6432Node\JavaSoft\Prefs\de\movisens\launcher" Name="unisens_viewer" Component_="AI_ExePath"/>
     <ROW RemoveRegistry="unisens_viewer_MIXED_KEY" Root="2" Key="Software\JavaSoft\Prefs\de\movisens\launcher" Name="unisens_viewer" Component_="UnisensViewer.exe_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
