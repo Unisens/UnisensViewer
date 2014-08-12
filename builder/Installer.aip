@@ -76,8 +76,8 @@
     <ROW BootstrOptKey="GlobalOptions" GeneralOptions="h"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="Build" BuildName="DefaultBuild_Full" BuildOrder="2" BuildType="1" PackageFolder="dist" PackageFileName="UnisensViewer_Setup_Full" Languages="de" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\install" ExtUI="true" MsiPackageType="AI_ALL"/>
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="dist" PackageFileName="UnisensViewer_Setup" Languages="de;en" LangOpt="1" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\install" ExtUI="true" MsiPackageType="AI_ALL"/>
+    <ROW BuildKey="Build" BuildName="DefaultBuild_Full" BuildOrder="2" BuildType="1" PackageFolder="dist" PackageFileName="UnisensViewer_Setup_Full" Languages="de" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\install" ExtUI="true" Unicode="true" MsiPackageType="AI_ALL"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="dist" PackageFileName="UnisensViewer_Setup" Languages="de;en" LangOpt="1" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\install" ExtUI="true" Unicode="true" MsiPackageType="AI_ALL"/>
     <ATTRIBUTE name="CurrentBuild" value="Build"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
