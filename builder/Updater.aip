@@ -5,7 +5,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.UpdaterEditorComponent">
     <ROW Section="ANT_NAME vANT_VERSION" Key="Name" Value="ANT_NAME vANT_VERSION"/>
-    <ROW Section="ANT_NAME vANT_VERSION" Key="URL" Value="ANT_HTTP/ANT_NAME_Setup.exe"/>
+    <ROW Section="ANT_NAME vANT_VERSION" Key="URL" Value="ANT_HTTPANT_TYPE/ANT_NAME_Setup.exe"/>
     <ROW Section="ANT_NAME vANT_VERSION" Key="Size" Value="dist\ANT_NAME_Setup.exe"/>
     <ROW Section="ANT_NAME vANT_VERSION" Key="ReleaseDate" Value="15512"/>
     <ROW Section="ANT_NAME vANT_VERSION" Key="MD5" Value="dist\ANT_NAME_Setup.exe"/>
