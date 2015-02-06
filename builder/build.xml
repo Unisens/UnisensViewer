@@ -127,6 +127,7 @@
 	<replace file="Updater.aip" token="ANT_VERSION" value="${release.version}"/>
 	<replace file="Updater.aip" token="ANT_HTTP" value="${http.unisens.url}"/>
 	<replace file="Updater.aip" token="ANT_NAME" value="${release.name}"/>
+	<replace file="Updater.aip" token="ANT_TYPE" value="${release.type}"/>
 	<exec executable="${installer.command}" failonerror="yes">
 		<arg value="/rebuild"/>
 		<arg value="Updater.aip"/>
