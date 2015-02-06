@@ -9,7 +9,7 @@
     <ROW Section="ANT_NAME vANT_VERSION" Key="Size" Value="dist\ANT_NAME_Setup.exe"/>
     <ROW Section="ANT_NAME vANT_VERSION" Key="ReleaseDate" Value="15512"/>
     <ROW Section="ANT_NAME vANT_VERSION" Key="MD5" Value="dist\ANT_NAME_Setup.exe"/>
-    <ROW Section="ANT_NAME vANT_VERSION" Key="CommandLine" Value="/qr"/>
+    <ROW Section="ANT_NAME vANT_VERSION" Key="CommandLine" Value=""/>
     <ROW Section="ANT_NAME vANT_VERSION" Key="ServerFileName" Value="ANT_NAME_Setup.exe"/>
     <ROW Section="ANT_NAME vANT_VERSION" Key="FilePath" Value="[APPDIR]ANT_NAME.exe"/>
     <ROW Section="ANT_NAME vANT_VERSION" Key="Version" Value="ANT_VERSION"/>
