@@ -53,6 +53,7 @@
 		</exec>
 		<exec executable="git" outputproperty="VERSION_NUMBER">
 		  <arg value="describe"/>
+		  <arg value="--tags"/>
 		  <redirector>
 		    <outputfilterchain>
 		      <tokenfilter>
