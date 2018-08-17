@@ -7,10 +7,19 @@
      Loaded="RibbonWindow_Loaded" Closing="RibbonWindow_Closing" 
                       FocusManager.FocusedElement="{Binding RelativeSource={x:Static RelativeSource.Self}, Mode=OneTime}"
 >
+
+
     <!-- #ff333333 525252 656565 808080 -->
     <ribbon:RibbonWindow.CommandBindings>
         <CommandBinding Command="{x:Static src:WindowMain.ExecPluginRoutedCommand}" Executed="ExecPlugin_Executed" />
     </ribbon:RibbonWindow.CommandBindings>
+
+    <ribbon:RibbonWindow.InputBindings>
+        <KeyBinding Modifiers="Alt" Key="Left" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}" CommandTarget="{Binding ElementName=signalviewercontrol}"  CommandParameter="prev" />
+        <KeyBinding Modifiers="Alt" Key="Right" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}" CommandTarget="{Binding ElementName=signalviewercontrol}"  CommandParameter="next" />
+    </ribbon:RibbonWindow.InputBindings>
+
+
     <ribbon:RibbonWindow.Resources>
         <src:UnisensViewerTitleFormatter x:Key="unisensviewertitleformatter" />
         <src:SelectionStatusVisibilityConverter x:Key="selectionstatusvisibilityconverter" />
@@ -295,10 +304,30 @@
                     </ribbon:RibbonGroup>
 
                     <ribbon:RibbonGroup x:Name="GroupPlayback" x:Uid="RibbonTab_View_Playback" Header="Playback">
+                        
+                        
                         <ribbon:RibbonButton x:Name="ButtonPlayback" x:Uid="RibbonTab_View_Playback_Button"
                              LargeImageSource="Images\LargeIcon_playback_play.png" Label="Play"
                              Click="MenuItem_Click_Playback" />
-                    </ribbon:RibbonGroup>
+
+
+                        
+
+                        <ribbon:RibbonButton x:Name="ButtonPlaybackPrev" x:Uid="RibbonTab_View_Playback_Button_Prev"
+                             LargeImageSource="Images\LargeIcon_playback_prev.png" Label="Prev (Alt+Left)" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}"
+                             CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="prev" />
+
+                        <ribbon:RibbonButton x:Name="ButtonPlaybackNext" x:Uid="RibbonTab_View_Playback_Button_Next"
+                             LargeImageSource="Images\LargeIcon_playback_next.png" Label="Next (Alt+Right)" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}"
+                             CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="next" />
+                        
+                        <!-- Command="{x:Static src:Commands.CropSelection}" -->
+					     
+					    <ribbon:RibbonButton x:Name="SelectFile_Button24" x:Uid="RibbonTab_Video_SelectFile"
+                            LargeImageSource="Images\LargeIcon_playback_video.png" Label="Add video file"
+                             Click="MenuItem_Video_SelectFile_Click" />
+					</ribbon:RibbonGroup>
+
                 </ribbon:RibbonTab>
 
                 <!-- ================================== Edit ================================== -->

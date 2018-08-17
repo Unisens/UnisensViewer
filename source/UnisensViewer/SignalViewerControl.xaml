@@ -7,15 +7,15 @@
  Loaded="UserControl_Loaded"
 >
 
-	<UserControl.CommandBindings>
+	<UserControl.CommandBindings>        
 		<CommandBinding Command="{x:Static src:SignalViewerControl.CmdAutoZoomAllIndividual}" Executed="Executed_CmdAutoZoomAllIndividual"/>
 		<CommandBinding Command="{x:Static src:SignalViewerControl.CmdAutoZoomAllGroupedByFiles}" Executed="Executed_CmdAutoZoomAllGroupedByFiles"/>
         <CommandBinding Command="{x:Static src:SignalViewerControl.CmdAutoZoomAllGroupedByUnits}" Executed="Executed_CmdAutoZoomAllGroupedByUnits"/>
         <CommandBinding Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}" Executed="Executed_CmdChangeTimeZoom" CanExecute="CanExecute_CmdChangeTimeZoom" />
+        
         <!-- <CommandBinding Command="NavigationCommands.Zoom" Executed="Executed_Zoom"/> -->
 	</UserControl.CommandBindings>
-	
-	
+    
 	<UserControl.Resources>
 		<!--
 		<src:SelectionStatusConverter x:Key="selectionstatusconverter"/>

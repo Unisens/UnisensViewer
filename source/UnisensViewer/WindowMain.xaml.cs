@@ -529,9 +529,15 @@ namespace UnisensViewer
                 timer.Stop();
                 ButtonPlayback.LargeImageSource = new BitmapImage(new Uri(@"Images\LargeIcon_playback_play.png", UriKind.Relative));
                 ButtonPlayback.Label = "Play";
+
+                /*if(dlgvideo.IsVisible)
+                    dlgvideo.Pause();*/
             }
             else
             {
+                /*if (dlgvideo.IsVisible)
+                    dlgvideo.Play();*/
+
                 sw = new Stopwatch();
                 sw.Start();
 
@@ -548,8 +554,12 @@ namespace UnisensViewer
 
         void timer_Tick(object sender, EventArgs e)
         {
-            RendererManager.Scroll(startTime + (double)sw.ElapsedMilliseconds / 1000);       
+            RendererManager.Scroll(startTime + (double)sw.ElapsedMilliseconds / 1000);
+
+            /*if (dlgvideo.IsVisible)
+                dlgvideo.Seek((int)(1000 * startTime) + (int) sw.ElapsedMilliseconds);*/
         }
+
 
 		private void MenuItem_Click_AnalyzeData(object sender, RoutedEventArgs e)
 		{
@@ -841,7 +851,46 @@ namespace UnisensViewer
                 signalviewercontrol.axiscontrol_time.AbsolutTime_Check();
             }
         }
-   
+
+        private DialogVideo dialogVideo;
+
+        private void MenuItem_Video_SelectFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            string formats = "All Videos Files |*.dat; *.wmv; *.3g2; *.3gp; *.3gp2; *.3gpp; *.amv; *.asf;  *.avi; *.bin; *.cue; *.divx; *.dv; *.flv; *.gxf; *.iso; *.m1v; *.m2v; *.m2t; *.m2ts; *.m4v; " +
+                      " *.mkv; *.mov; *.mp2; *.mp2v; *.mp4; *.mp4v; *.mpa; *.mpe; *.mpeg; *.mpeg1; *.mpeg2; *.mpeg4; *.mpg; *.mpv2; *.mts; *.nsv; *.nuv; *.ogg; *.ogm; *.ogv; *.ogx; *.ps; *.rec; *.rm; *.rmvb; *.tod; *.ts; *.tts; *.vob; *.vro; *.webm";
+
+            openFileDialog.Filter = formats;
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                SelectFile_Button24.IsEnabled = false;
+
+                dialogVideo = new DialogVideo();
+                dialogVideo.SetVideoFile(new Uri(openFileDialog.FileName));
+                dialogVideo.Owner = this;
+                dialogVideo.Show();
+                dialogVideo.Play();
+                dialogVideo.Pause();
+
+                RendererManager.TimeChanged += RendererManager_TimeChanged;
+                dialogVideo.Closed += dlgvideo_Closed;
+            }
+        }
+
+        private void dlgvideo_Closed(object sender, EventArgs e)
+        {
+            SelectFile_Button24.IsEnabled = true;
+
+            RendererManager.TimeChanged -= RendererManager_TimeChanged;
+        }
+
+        private void RendererManager_TimeChanged(object sender, EventArgs e)
+        {
+            int seekTo = (int)(RendererManager.Time * 1000);
+            dialogVideo.Seek(seekTo);
+        }
+
 
 		#region File Commands
 		private void Executed_New(object sender, ExecutedRoutedEventArgs e)

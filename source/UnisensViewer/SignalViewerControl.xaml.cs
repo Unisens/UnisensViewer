@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,7 @@ namespace UnisensViewer
 		public static readonly RoutedCommand CmdAutoZoomAllGroupedByFiles = new RoutedCommand();
 		public static readonly RoutedCommand CmdAutoZoomAllGroupedByUnits = new RoutedCommand();
 		public static readonly RoutedCommand CmdChangeTimeZoom = new RoutedCommand();
+        public static readonly RoutedCommand CmdChangeTimeTest = new RoutedCommand();
 
 		private Point dragpoint;
 		private bool dragwatcherinstalled;
@@ -307,6 +309,11 @@ namespace UnisensViewer
 			}
 		}
 
+        private void Executed_CmdChangeTimeTest(object sender, ExecutedRoutedEventArgs e)
+        {
+            Trace.WriteLine("------------------------------" + e.Parameter.ToString());
+        }
+
         private void Executed_CmdChangeTimeZoom(object sender, ExecutedRoutedEventArgs e)
         {
             string param = (string)e.Parameter;
@@ -323,6 +330,14 @@ namespace UnisensViewer
 					RendererManager.Stretch(this.SelectionEnd - this.SelectionStart);
                 }
             }
+            else if (param.Equals("next"))
+            {
+                RendererManager.Scroll(RendererManager.Time + RendererManager.TimeStretch);
+            }
+            else if (param.Equals("prev"))
+            {
+                RendererManager.Scroll(RendererManager.Time - RendererManager.TimeStretch);
+            }
             else
             {
                 // Parameter ist ein Zeitwert in Sekunden
@@ -337,11 +352,22 @@ namespace UnisensViewer
 			{
 				e.CanExecute = (this.SelectionStart != this.SelectionEnd);
 			}
+            if (param.Equals("next"))
+            {
+                e.CanExecute = RendererManager.Time + RendererManager.TimeStretch < RendererManager.TimeMax;
+            }
+            else if (param.Equals("prev"))
+            {
+                e.CanExecute = RendererManager.Time - RendererManager.TimeStretch >= 0;
+            }
 			else
 			{
 				e.CanExecute = true;
 			}
 		}
+
+
+
 	}
 }
 
