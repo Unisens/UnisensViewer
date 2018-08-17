@@ -28,6 +28,7 @@
                     <TextBox Name="TextBox_Round" Text="{Binding ElementName=_root, Path=Round, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="120" PreviewTextInput="TextBox_Round_PreviewTextInput" />
                 </StackPanel>
 
+				<CheckBox Name="CheckBox_SessionSettings" Content="SessionSettings" IsChecked="{src:SettingBinding SessionSettings}" Margin="5"/>
             </StackPanel>
         </Border>
 

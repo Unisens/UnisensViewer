@@ -10,7 +10,7 @@ namespace UnisensViewer
         //public GeometryDrawing geometrydrawing;
 		private double					lasttextextent;
 
-		public EventRenderSlice(Renderer renderer, int channel, string name, int imagewidth, int imageheight, string unit, XElement unisensnode)
+        public EventRenderSlice(Renderer renderer, int channel, string name, int imagewidth, int imageheight, string unit, XElement unisensnode)
 			: base(renderer, channel, name, imagewidth, imageheight, unit, unisensnode)
 		{
 			Rect rect = new Rect(0.0, 0.0, imagewidth, imageheight);
@@ -50,11 +50,11 @@ namespace UnisensViewer
 
 				if (Scale >= 0.0f)
 				{
-					gg.Transform = new TranslateTransform(x, (offset * scale) + ImageWidth);
+                    gg.Transform = new TranslateTransform(x, (Offset * Scale) + ImageWidth);
 				}
 				else
 				{
-					gg.Transform = new TranslateTransform(x, ImageWidth + (offset * scale) - geometry.Bounds.Bottom - geometry.Bounds.Y);
+                    gg.Transform = new TranslateTransform(x, ImageWidth + (Offset * Scale) - geometry.Bounds.Bottom - geometry.Bounds.Y);
 				}
 
 				this.geometrygroup.Children.Add(gg);

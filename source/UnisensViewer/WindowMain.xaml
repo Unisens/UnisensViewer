@@ -2,7 +2,7 @@
      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:src="clr-namespace:UnisensViewer"
      xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
      xmlns:lex="http://schemas.root-project.org/xaml/presentation"
-     lex:LocalizeDictionary.DesignCulture="de" Width="640" Height="480" Background="#ff333333"
+     lex:LocalizeDictionary.DesignCulture="de" Width="1466" Height="600" Background="#ff333333"
      WindowState="Maximized" Icon="unisens_NET.ico" src:StackerControl.HoverStack="WindowMain_HoverStack"
      Loaded="RibbonWindow_Loaded" Closing="RibbonWindow_Closing" 
                       FocusManager.FocusedElement="{Binding RelativeSource={x:Static RelativeSource.Self}, Mode=OneTime}"
@@ -132,6 +132,175 @@
                 </GroupBox>
             </StackPanel>
         </DataTemplate>
+        <Style x:Key="RibbonTextBoxStyleTest" TargetType="{x:Type ribbon:RibbonTextBox}">
+        	<Style.Resources>
+        		<Style x:Key="{x:Type ScrollViewer}" TargetType="{x:Type ScrollViewer}">
+        			<Setter Property="ContentTemplate">
+        				<Setter.Value>
+        					<DataTemplate>
+        						<Grid RenderOptions.ClearTypeHint="Enabled">
+        							<Canvas x:Name="BackgroundCanvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
+        								<Rectangle x:Name="OpaqueRect" Fill="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ribbon:Ribbon}}}" Height="{Binding ActualHeight, ElementName=PART_ContentHost}" Width="{Binding ActualWidth, ElementName=PART_ContentHost}"/>
+        								<Rectangle x:Name="OverlayRect" Fill="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ribbon:RibbonTextBox}}}" Height="{Binding ActualHeight, ElementName=PART_ContentHost}" Width="{Binding ActualWidth, ElementName=PART_ContentHost}"/>
+        							</Canvas>
+        							<ContentPresenter Content="{Binding}"/>
+        						</Grid>
+        						<DataTemplate.Triggers>
+        							<DataTrigger Binding="{Binding (ScrollViewer.CanContentScroll), RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ScrollViewer}}}" Value="false">
+        								<Setter Property="Canvas.Top" TargetName="OpaqueRect" Value="{Binding VerticalOffset, ElementName=PART_SubMenuScrollViewer}"/>
+        								<Setter Property="Canvas.Left" TargetName="OpaqueRect" Value="{Binding HorizontalOffset, ElementName=PART_SubMenuScrollViewer}"/>
+        								<Setter Property="Canvas.Top" TargetName="OverlayRect" Value="{Binding VerticalOffset, ElementName=PART_SubMenuScrollViewer}"/>
+        								<Setter Property="Canvas.Left" TargetName="OverlayRect" Value="{Binding HorizontalOffset, ElementName=PART_SubMenuScrollViewer}"/>
+        							</DataTrigger>
+        							<DataTrigger Binding="{Binding HighContrast}" Value="True">
+        								<Setter Property="Visibility" TargetName="BackgroundCanvas" Value="Collapsed"/>
+        							</DataTrigger>
+        						</DataTemplate.Triggers>
+        					</DataTemplate>
+        				</Setter.Value>
+        			</Setter>
+        		</Style>
+        	</Style.Resources>
+        	<Setter Property="Background" Value="#EEFFFFFF"/>
+        	<Setter Property="BorderBrush" Value="{Binding Ribbon.BorderBrush, RelativeSource={RelativeSource Self}}"/>
+        	<Setter Property="BorderThickness" Value="1"/>
+        	<Setter Property="AllowDrop" Value="True"/>
+        	<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        	<Setter Property="TextBoxWidth" Value="80"/>
+        	<Setter Property="MouseOverBorderBrush" Value="{Binding Ribbon.BorderBrush, RelativeSource={RelativeSource Self}}"/>
+        	<Setter Property="MouseOverBackground" Value="White"/>
+        	<Setter Property="FocusedBorderBrush" Value="{Binding Ribbon.BorderBrush, RelativeSource={RelativeSource Self}}"/>
+        	<Setter Property="FocusedBackground" Value="White"/>
+        	<Setter Property="ToolTipService.InitialShowDelay" Value="900"/>
+        	<Setter Property="ToolTipService.ShowDuration" Value="20000"/>
+        	<Setter Property="ToolTipService.BetweenShowDelay" Value="0"/>
+        	<Setter Property="QuickAccessToolBarControlSizeDefinition">
+        		<Setter.Value>
+        			<ribbon:RibbonControlSizeDefinition IsLabelVisible="True" ImageSize="Collapsed"/>
+        		</Setter.Value>
+        	</Setter>
+        	<Setter Property="Template">
+        		<Setter.Value>
+        			<ControlTemplate TargetType="{x:Type ribbon:RibbonTextBox}">
+        				<Border x:Name="MainBorder" Margin="1">
+        					<Grid Margin="1,0" SnapsToDevicePixels="True">
+        						<Grid.ColumnDefinitions>
+        							<ColumnDefinition Width="Auto"/>
+        							<ColumnDefinition x:Name="OuterTextColumn" Width="Auto"/>
+        						</Grid.ColumnDefinitions>
+        						<Grid.RowDefinitions>
+        							<RowDefinition Height="Auto"/>
+        							<RowDefinition Height="Auto"/>
+        						</Grid.RowDefinitions>
+        						<Image x:Name="Image" RenderOptions.BitmapScalingMode="NearestNeighbor" Grid.Column="1" HorizontalAlignment="Center" Height="32" Margin="1" Grid.Row="0" Source="{TemplateBinding LargeImageSource}" VerticalAlignment="Center" Width="32"/>
+        						<Grid x:Name="Grid" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center">
+        							<Grid x:Name="InnerGrid" HorizontalAlignment="Center" Margin="1" VerticalAlignment="Top">
+        								<Grid.ColumnDefinitions>
+        									<ColumnDefinition Width="Auto"/>
+        									<ColumnDefinition x:Name="TextColumn" Width="Auto"/>
+        								</Grid.ColumnDefinitions>
+        								<Grid x:Name="TwoLineTextPanel" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+        									<ribbon:RibbonTwoLineText x:Name="TwoLineText" LineStackingStrategy="BlockLineHeight" LineHeight="13" Margin="2,0" TextAlignment="Center" Text="{TemplateBinding Label}"/>
+        									<Rectangle x:Name="FocusVisual" Margin="1" Stroke="Black" StrokeThickness="1" StrokeDashArray="1 2" Visibility="Collapsed"/>
+        								</Grid>
+        								<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.Column="1" HorizontalAlignment="Center" Height="20" Margin="2,0" VerticalAlignment="Center">
+        									<ScrollViewer x:Name="PART_ContentHost" Margin="0,1" VerticalAlignment="Center" Width="{TemplateBinding TextBoxWidth}"/>
+        								</Border>
+        							</Grid>
+        						</Grid>
+        					</Grid>
+        				</Border>
+        				<ControlTemplate.Triggers>
+        					<DataTrigger Binding="{Binding ControlSizeDefinition.Width.IsStar, RelativeSource={RelativeSource Self}}" Value="True">
+        						<Setter Property="Width" TargetName="TextColumn" Value="*"/>
+        						<Setter Property="Width" TargetName="OuterTextColumn" Value="*"/>
+        						<Setter Property="Width" TargetName="PART_ContentHost" Value="Auto"/>
+        						<Setter Property="HorizontalAlignment" TargetName="Border" Value="Stretch"/>
+        						<Setter Property="HorizontalAlignment" TargetName="Grid" Value="Stretch"/>
+        						<Setter Property="HorizontalAlignment" TargetName="InnerGrid" Value="Stretch"/>
+        					</DataTrigger>
+        					<DataTrigger Binding="{Binding ControlSizeDefinition.ImageSize, RelativeSource={RelativeSource Self}}" Value="Large">
+        						<Setter Property="MinWidth" Value="44"/>
+        						<Setter Property="Height" Value="66"/>
+        						<Setter Property="Height" TargetName="Image" Value="32"/>
+        						<Setter Property="Width" TargetName="Image" Value="32"/>
+        						<Setter Property="MinHeight" TargetName="Grid" Value="26"/>
+        						<Setter Property="ribbon:RibbonTwoLineText.HasTwoLines" TargetName="TwoLineText" Value="True"/>
+        					</DataTrigger>
+        					<DataTrigger Binding="{Binding ControlSizeDefinition.ImageSize, RelativeSource={RelativeSource Self}}" Value="Small">
+        						<Setter Property="Height" Value="22"/>
+        						<Setter Property="Source" TargetName="Image" Value="{Binding SmallImageSource, RelativeSource={RelativeSource TemplatedParent}}"/>
+        						<Setter Property="Height" TargetName="Image" Value="16"/>
+        						<Setter Property="Width" TargetName="Image" Value="16"/>
+        						<Setter Property="HorizontalAlignment" TargetName="Image" Value="Left"/>
+        						<Setter Property="Margin" TargetName="Image" Value="2,0,1,0"/>
+        						<Setter Property="Margin" TargetName="TwoLineText" Value="2,0,1,0"/>
+        						<Setter Property="ribbon:RibbonTwoLineText.HasTwoLines" TargetName="TwoLineText" Value="False"/>
+        						<Setter Property="Grid.Column" TargetName="Image" Value="0"/>
+        						<Setter Property="Grid.Row" TargetName="Image" Value="1"/>
+        						<Setter Property="Margin" TargetName="InnerGrid" Value="0"/>
+        					</DataTrigger>
+        					<DataTrigger Binding="{Binding ControlSizeDefinition.ImageSize, RelativeSource={RelativeSource Self}}" Value="Collapsed">
+        						<Setter Property="Visibility" TargetName="Image" Value="Collapsed"/>
+        					</DataTrigger>
+        					<DataTrigger Binding="{Binding ControlSizeDefinition.IsLabelVisible, RelativeSource={RelativeSource Self}}" Value="False">
+        						<Setter Property="Visibility" TargetName="TwoLineTextPanel" Value="Collapsed"/>
+        					</DataTrigger>
+        					<MultiDataTrigger>
+        						<MultiDataTrigger.Conditions>
+        							<Condition Binding="{Binding HighContrast}" Value="False"/>
+        							<Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
+        						</MultiDataTrigger.Conditions>
+        						<Setter Property="Background" TargetName="Border" Value="{Binding MouseOverBackground, RelativeSource={RelativeSource TemplatedParent}}"/>
+        						<Setter Property="BorderBrush" TargetName="Border" Value="{Binding MouseOverBorderBrush, RelativeSource={RelativeSource TemplatedParent}}"/>
+        					</MultiDataTrigger>
+        					<MultiDataTrigger>
+        						<MultiDataTrigger.Conditions>
+        							<Condition Binding="{Binding HighContrast}" Value="False"/>
+        							<Condition Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource Self}}" Value="True"/>
+        						</MultiDataTrigger.Conditions>
+        						<Setter Property="Background" TargetName="Border" Value="{Binding MouseOverBackground, RelativeSource={RelativeSource TemplatedParent}}"/>
+        						<Setter Property="BorderBrush" TargetName="Border" Value="{Binding MouseOverBorderBrush, RelativeSource={RelativeSource TemplatedParent}}"/>
+        					</MultiDataTrigger>
+        					<Trigger Property="ShowKeyboardCues" Value="True">
+        						<Setter Property="Visibility" TargetName="FocusVisual" Value="Visible"/>
+        					</Trigger>
+        					<Trigger Property="IsEnabled" Value="False">
+        						<Setter Property="Opacity" TargetName="Image" Value="0.5"/>
+        						<Setter Property="Background" TargetName="Border" Value="#90DEDEDE"/>
+        						<Setter Property="BorderBrush" TargetName="Border" Value="#90B1BBC6"/>
+        						<Setter Property="TextElement.Foreground" TargetName="MainBorder" Value="#FF9E9E9E"/>
+        					</Trigger>
+        					<Trigger Property="IsInControlGroup" Value="True">
+        						<Setter Property="BorderBrush" TargetName="MainBorder" Value="{Binding Ribbon.BorderBrush, RelativeSource={RelativeSource TemplatedParent}}"/>
+        						<Setter Property="BorderThickness" TargetName="MainBorder" Value="0,0,1,0"/>
+        					</Trigger>
+        					<DataTrigger Binding="{Binding HighContrast}" Value="True">
+        						<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+        						<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
+        						<Setter Property="Background" TargetName="Border" Value="Transparent"/>
+        						<Setter Property="Stroke" TargetName="FocusVisual" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"/>
+        						<Setter Property="TextElement.Foreground" TargetName="MainBorder" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"/>
+        					</DataTrigger>
+        					<MultiDataTrigger>
+        						<MultiDataTrigger.Conditions>
+        							<Condition Binding="{Binding IsInControlGroup, RelativeSource={RelativeSource Self}}" Value="True"/>
+        							<Condition Binding="{Binding HighContrast}" Value="True"/>
+        						</MultiDataTrigger.Conditions>
+        						<Setter Property="BorderBrush" TargetName="MainBorder" Value="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"/>
+        					</MultiDataTrigger>
+        					<MultiDataTrigger>
+        						<MultiDataTrigger.Conditions>
+        							<Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="False"/>
+        							<Condition Binding="{Binding HighContrast}" Value="True"/>
+        						</MultiDataTrigger.Conditions>
+        						<Setter Property="TextElement.Foreground" TargetName="MainBorder" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+        					</MultiDataTrigger>
+        				</ControlTemplate.Triggers>
+        			</ControlTemplate>
+        		</Setter.Value>
+        	</Setter>
+        </Style>
     </ribbon:RibbonWindow.Resources>
     <ribbon:RibbonWindow.Title>
         <!-- erst nach den Resourcen definieren, wir brauchen den UnisensViewerTitleFormatter -->
@@ -225,6 +394,15 @@
                         <ribbon:RibbonButton x:Name="ButtonTimeScaleSelection" x:Uid="RibbonTab_View_TimeScale_Selection"
                              Label="{lex:LocText UnisensViewer:Translations:Auswahl}" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}"
                              CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="selection" />
+							  
+						<Grid>
+							<ribbon:RibbonTextBox x:Name="intervalWidth" x:Uid="RibbonTab_Video_IntervalWidth" Text="{Binding Path=Interval, ElementName=signalviewercontrol, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Panel.ZIndex="100" Margin="0,5,0,0" Padding="0" TextBoxWidth="40" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+							<ribbon:RibbonButton x:Name="ButtonTimeScaleTextboxSelection" x:Uid="RibbonTab_View_TimeScale_Textbox_Selection" Panel.ZIndex="0"
+								 Label="Interval" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}"  LargeImageSource="Images/LargeIcon_Interval.png"
+								 CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="interval" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+						</Grid>
+						
+
                     </ribbon:RibbonGroup>
 
                     <ribbon:RibbonGroup x:Name="GroupTimeFormat" x:Uid="RibbonTab_View_TimeFormat" Header="{lex:LocText UnisensViewer:Translations:ZeitFormat}" LargeImageSource="Images\LargeIcon_signals_scalehorizontal.png">
@@ -297,11 +475,7 @@
                              Click="MenuItem_Click_CloseAllSignals" />
                     </ribbon:RibbonGroup>
 
-                    <ribbon:RibbonGroup x:Name="GroupAnalyze" x:Uid="RibbonTab_View_Analyze" Header="{lex:LocText UnisensViewer:Translations:Analyze}" Visibility="{Binding AnalyzerVisibility, ElementName=_root}">
-                        <ribbon:RibbonButton x:Name="ButtonAnalyzeData" x:Uid="RibbonTab_View_Analyze_Data"
-                             LargeImageSource="Images\Icon_movisens.ico" Label="{lex:LocText UnisensViewer:Translations:AnalyzeFile}"
-                             Click="MenuItem_Click_AnalyzeData" />
-                    </ribbon:RibbonGroup>
+
 
                     <ribbon:RibbonGroup x:Name="GroupPlayback" x:Uid="RibbonTab_View_Playback" Header="Playback">
                         
@@ -310,23 +484,36 @@
                              LargeImageSource="Images\LargeIcon_playback_play.png" Label="Play"
                              Click="MenuItem_Click_Playback" />
 
-
-                        
-
                         <ribbon:RibbonButton x:Name="ButtonPlaybackPrev" x:Uid="RibbonTab_View_Playback_Button_Prev"
-                             LargeImageSource="Images\LargeIcon_playback_prev.png" Label="Prev (Alt+Left)" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}"
+                             SmallImageSource="Images\LargeIcon_playback_prev.png" Label="Prev (Alt+Left)" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}"
                              CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="prev" />
 
                         <ribbon:RibbonButton x:Name="ButtonPlaybackNext" x:Uid="RibbonTab_View_Playback_Button_Next"
-                             LargeImageSource="Images\LargeIcon_playback_next.png" Label="Next (Alt+Right)" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}"
+                             SmallImageSource="Images\LargeIcon_playback_next.png" Label="Next (Alt+Right)" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}"
                              CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="next" />
-                        
+                     </ribbon:RibbonGroup>   
                         <!-- Command="{x:Static src:Commands.CropSelection}" -->
-					     
+
+				   <ribbon:RibbonGroup x:Name="GroupVideo" x:Uid="RibbonTab_View_Video" Header="Video">  
+					
 					    <ribbon:RibbonButton x:Name="SelectFile_Button24" x:Uid="RibbonTab_Video_SelectFile"
                             LargeImageSource="Images\LargeIcon_playback_video.png" Label="Add video file"
                              Click="MenuItem_Video_SelectFile_Click" />
+
+						<ribbon:RibbonTextBox Label="Offset"  x:Name="videoOffset" x:Uid="RibbonTab_Video_Offset" Text="0" TextBoxWidth="40"></ribbon:RibbonTextBox>
+
+					
+
 					</ribbon:RibbonGroup>
+
+					
+
+					<ribbon:RibbonGroup x:Name="GroupAnalyze" x:Uid="RibbonTab_View_Analyze" Header="{lex:LocText UnisensViewer:Translations:Analyze}" Visibility="{Binding AnalyzerVisibility, ElementName=_root}">
+                        <ribbon:RibbonButton x:Name="ButtonAnalyzeData" x:Uid="RibbonTab_View_Analyze_Data"
+                             LargeImageSource="Images\Icon_movisens.ico" Label="{lex:LocText UnisensViewer:Translations:AnalyzeFile}"
+                             Click="MenuItem_Click_AnalyzeData" />
+                    </ribbon:RibbonGroup>
+
 
                 </ribbon:RibbonTab>
 

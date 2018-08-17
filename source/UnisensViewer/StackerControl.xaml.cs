@@ -12,6 +12,8 @@ using UnisensViewerLibrary;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using NLog;
+using System.Diagnostics;
+using UnisensViewer.Helpers;
 
 namespace UnisensViewer
 {
@@ -36,6 +38,7 @@ namespace UnisensViewer
 
         private ItemsControl                itemscontrol_RenderSliceImages;
 
+
 		public StackerControl()
 		{
 			InitializeComponent();
@@ -43,6 +46,8 @@ namespace UnisensViewer
 			DataContext = this;
 
 			this.renderSliceLists = new ObservableCollection<ObservableCollection<RenderSlice>>();
+
+
 			this.killHandler = new EventHandler(this.RenderSlice_Kill);
 
 			Focus();
@@ -99,6 +104,8 @@ namespace UnisensViewer
 		#region drag and drop
 		public void Dropped(DragEventArgs e, XElement xe)
 		{
+            Trace.WriteLine("Dropped Default: " + xe.Name.LocalName);
+
 			if (string.Compare(xe.Name.Namespace.ToString(), "http://www.unisens.org/unisens2.0", true) != 0)
 			{
 				throw new Exception("das war aber mal kein xml-element aus dem unisens2.0 namespace...\n" + xe.ToString());
@@ -133,13 +140,15 @@ namespace UnisensViewer
 			}
 			else if (xe.Name.LocalName == "unisens")
 			{
+
 				foreach (XElement item in xe.Elements())
 				{
 					if (item.Name.LocalName == "signalEntry" || item.Name.LocalName == "valuesEntry" || item.Name.LocalName == "eventEntry")
 					{
-						this.Dropped(e, item);
+                        if (SessionSettings.Instance.EmptySettings || SessionSettings.Instance.ActiveEntries.ContainsKey(ValueEntry.GetId(item)))
+                            this.Dropped(e, item);
 					}
-				}
+				}   
 			}
 
 			// ** beim erzeugen des renderers trat ein fehler auf, die eventuell oben erzeugte rsliste löschen
@@ -149,8 +158,14 @@ namespace UnisensViewer
 			}
 		}
 
-		public void DropSignalEventValueEntry(XElement seventry, ObservableCollection<RenderSlice> rslist)
+        
+
+		public void DropSignalEventValueEntry(XElement sevEntry, ObservableCollection<RenderSlice> rslist)
 		{
+
+            Trace.WriteLine("DropDebug rslist copunt?: " + rslist.Count);
+            Trace.WriteLine("DropDebug rslist null?: " + (rslist == null));
+
 			if (rslist == null)
 			{
 				// neuen stapel am ende erzeugen
@@ -159,7 +174,9 @@ namespace UnisensViewer
 			}
 
 			// alle kanäle hinzufügen
-			Renderer r = RendererManager.GetRenderer(seventry);
+			Renderer r = RendererManager.GetRenderer(sevEntry);
+
+            Trace.WriteLine("Check Renderer for: " + r.SevEntry.Name.LocalName + " channels: " + r.Channels);
 
 			if (r != null)
 			{
@@ -175,7 +192,8 @@ namespace UnisensViewer
 					l.Add(rs);
 				}
 
-				RendererManager.AutoZoomGroupedByFiles(l);
+                
+                RendererManager.AutoZoomGroupedByFiles(l);
 			}
 
 			if (rslist.Count == 0)
@@ -184,6 +202,8 @@ namespace UnisensViewer
 				this.renderSliceLists.Remove(rslist);
 			}
 		}
+
+
 		
 		private void ScrollViewer_Drop(object sender, DragEventArgs e)
 		{
@@ -260,6 +280,8 @@ namespace UnisensViewer
 
 		private unsafe void Dropped(DragEventArgs e, RenderSlice rs)
 		{
+            Trace.WriteLine("-> Dropped(DragEventArgs e, RenderSlice rs)");
+
 			ObservableCollection<RenderSlice> l = this.GetRenderSliceListFromDropPoint(e);
             Renderer r = rs.Renderer;
             double maxbreite = rs.ImageSource.Height;
@@ -285,6 +307,9 @@ namespace UnisensViewer
 
 		private void DropChannel(XElement channel, ObservableCollection<RenderSlice> rslist)
 		{
+
+            Trace.WriteLine("-> DropChannel(XElement channel, ObservableCollection<RenderSlice> rslist)");
+
 			Renderer r = RendererManager.GetRenderer(channel.Parent);
 
 			if (r != null)
@@ -724,7 +749,9 @@ namespace UnisensViewer
 		}
 
         public unsafe void ItemsControl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {           
+        {
+            Trace.WriteLine("-> ItemsControl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)");
+
             int imageWidth = (int)itemscontrol_RenderSliceImages.ActualHeight;
             ObservableCollection<RenderSlice> rslist = (ObservableCollection<RenderSlice>)itemscontrol_RenderSliceImages.DataContext;
             RenderSlice rs = null;
@@ -750,7 +777,7 @@ namespace UnisensViewer
                 {
                     // at adding a new RenderSlice in the rslist, 
                     // the current RenderSlice is moved forward.
-                    rs = rslist[0];
+                    rs = rslist[i];
                     int deltaWidth = (int)(imageWidth - rs.ImageSource.Width);
 
                     int maxbreite = ((RasterRenderSlice)rs).ImageHeight;
@@ -765,8 +792,9 @@ namespace UnisensViewer
                     Renderer r = rs.Renderer;
                     XElement channel = rs.UnisensNode;
 
+                    //replaced with correct RenderSlice OnPropertyChanged("ImageSource");
                     // old RenderSlice replaced by new
-                    this.MoveRenderSlice(rs, rslist);
+                    //this.MoveRenderSlice(rs, rslist);
 
                     // paint all signals again
                     RendererManager.Render(r,channel);

@@ -120,12 +120,14 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="CrashRptNET">
       <HintPath>..\..\library\CrashRptNET.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
       <HintPath>..\..\library\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="ReachFramework" />
     <Reference Include="RibbonControlsLibrary, Version=4.0.0.11019, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -136,6 +138,8 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Printing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq">
@@ -149,6 +153,7 @@
     <Reference Include="UIAutomationProvider">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -187,6 +192,7 @@
     <Compile Include="DataStructs\ExecPluginCommandParameter.cs" />
     <Compile Include="DataStructs\HotkeyHashkey.cs" />
     <Compile Include="DataStructs\HoverStackEventArgs.cs" />
+    <Compile Include="DataStructs\SerializableDictionary.cs" />
     <Compile Include="DialogSettings.xaml.cs">
       <DependentUpon>DialogSettings.xaml</DependentUpon>
     </Compile>
@@ -199,11 +205,18 @@
     <Compile Include="EditFunctions\DialogsArtifacts.xaml.cs">
       <DependentUpon>DialogsArtifacts.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditFunctions\DialogsArtifactsNew.xaml.cs">
+      <DependentUpon>DialogsArtifactsNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditFunctions\DialogsMarkerNew.xaml.cs">
+      <DependentUpon>DialogsMarkerNew.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditFunctions\Marker.cs" />
     <Compile Include="EditFunctions\MarkerList.cs" />
     <Compile Include="Export.cs" />
     <Compile Include="Folders.cs" />
     <Compile Include="Helpers\AutoZoomGroupEqualityComparer.cs" />
+    <Compile Include="Helpers\CollectionExtensions.cs" />
     <Compile Include="Helpers\WaitCursor.cs" />
     <Compile Include="IValueConverters\ExpertmodeToVisibility.cs" />
     <Compile Include="Helpers\FileNameEqualityComparer.cs" />
@@ -219,6 +232,8 @@
     <Compile Include="IValueConverters\UnisensViewerTitleFormatter.cs" />
     <Compile Include="Helpers\UnisensXmlDataTemplateSelector.cs" />
     <Compile Include="DataStructs\ZoomInfo.cs" />
+    <Compile Include="ObservableCollection.cs" />
+    <Compile Include="SessionSettings.cs" />
     <Compile Include="Translations\Translations.de.Designer.cs">
       <DependentUpon>Translations.de.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -229,6 +244,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Translations.resx</DependentUpon>
     </Compile>
+    <Compile Include="XmlSerializerFormat.cs" />
     <EmbeddedResource Include="Translations\Translations.de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Translations.de.Designer.cs</LastGenOutput>
@@ -263,6 +279,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="EditFunctions\DialogsArtifacts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditFunctions\DialogsArtifactsNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditFunctions\DialogsMarkerNew.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -483,6 +507,7 @@
     <Resource Include="Images\LargeIcon_playback_next.png" />
     <Resource Include="Images\LargeIcon_playback_prev.png" />
     <Resource Include="Images\LargeIcon_playback_video.png" />
+    <Resource Include="Images\LargeIcon_Interval.png" />
     <Content Include="unisens.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

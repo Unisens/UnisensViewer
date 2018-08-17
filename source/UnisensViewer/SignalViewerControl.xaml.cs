@@ -13,6 +13,7 @@ namespace UnisensViewer
 	{
 		public static readonly DependencyProperty	SelectionStartProperty	= DependencyProperty.Register("SelectionStart", typeof(double), typeof(SignalViewerControl));
 		public static readonly DependencyProperty	SelectionEndProperty	= DependencyProperty.Register("SelectionEnd", typeof(double), typeof(SignalViewerControl));
+        public static readonly DependencyProperty   IntervalProperty        = DependencyProperty.Register("Interval", typeof(double), typeof(SignalViewerControl));
 		public static readonly RoutedEvent			BeginSelectTimeEvent	= EventManager.RegisterRoutedEvent("BeginSelectTime", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(SignalViewerControl));
 		public static readonly RoutedEvent			HoverRenderSliceEvent	= EventManager.RegisterRoutedEvent("HoverRenderSlice", RoutingStrategy.Bubble, typeof(HoverRenderSliceEventHandler), typeof(SignalViewerControl));
 		
@@ -110,6 +111,13 @@ namespace UnisensViewer
 			get { return (double)GetValue(SelectionEndProperty); }
 			set { SetValue(SelectionEndProperty, value); }
 		}
+
+
+        public double Interval
+        {
+            get { return (double)GetValue(IntervalProperty); }
+            set { SetValue(IntervalProperty, value); }
+        }
 
 		public void CloseAllSignals()
 		{
@@ -329,6 +337,12 @@ namespace UnisensViewer
 					RendererManager.Scroll(this.SelectionStart);
 					RendererManager.Stretch(this.SelectionEnd - this.SelectionStart);
                 }
+            }
+            else if (param.Equals("interval"))
+            {
+                Trace.WriteLine("Debug: " + Interval);
+
+                RendererManager.Stretch(Interval);
             }
             else if (param.Equals("next"))
             {

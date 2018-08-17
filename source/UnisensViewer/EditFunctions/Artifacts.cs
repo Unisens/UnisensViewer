@@ -12,17 +12,22 @@ namespace UnisensViewer
 {
     public class Artifacts
     {
-        private static char delim;
+        private static char _delim;
+
         public static IEnumerable<XElement> setArtifact(double time_start, double time_end, string artifactSymbol_Start, string artifactSymbol_End)
         {
             XDocument unisensxml = UnisensXmlFileManager.CurrentUnisensInstance.Xdocument;
+
             IEnumerable<XElement> selectedsignals = from XElement xe in unisensxml.Root.Elements()
                                                     where xe.Name.LocalName == "signalEntry" || xe.Name.LocalName == "eventEntry" || xe.Name.LocalName == "valuesEntry"
                                                     select xe;
+
             XElement evententry = FindArtifactsEntry(selectedsignals);
             List<XElement> ret = null;
+
             if (evententry == null)
-            { // kein EventEntry vorhanden, erstelle eine neue EventEntry
+            { 
+                // kein EventEntry vorhanden, erstelle eine neue EventEntry
                 MessageBox.Show("Es wird ein neues Artefakt-Entry mit der ID '" +  Properties.Settings.Default.ArtifactEntryId + "' erstellt. ");
                 evententry = CreateArtifactsEntry(unisensxml, GetMaxSampleRate(selectedsignals));
                 ret = new List<XElement>();
@@ -34,12 +39,31 @@ namespace UnisensViewer
             {
                 RendererManager.CloseRenderer(xe);
             }
-            string comment = null;
+
+            //string comment = null;
+
             string artifactsfile = evententry.Attribute("id").Value;
             double samplespersec = EventEntry.GetSampleRate(evententry);
-            delim = EventEntry.GetCsvFileFormatSeparator(evententry);
+            
+            _delim = EventEntry.GetCsvFileFormatSeparator(evententry);
+
             int sample_start = (int)(time_start * samplespersec);
             int sample_end = (int)(time_end * samplespersec);
+
+
+
+
+            var csv = from line in File.ReadAllLines(artifactsfile)
+                      let row = line.Split(new[] { _delim }, StringSplitOptions.RemoveEmptyEntries)
+                      select new { Point = int.Parse(row[0]), Symbol = row[1] };
+
+            csv = csv.Concat(new[] { new { Point = sample_start, Symbol = artifactSymbol_Start }, 
+                                     new { Point = sample_end, Symbol = artifactSymbol_End } });
+
+            File.WriteAllLines(artifactsfile, from line in csv orderby line.Point select line.Point + _delim.ToString() + line.Symbol);
+
+
+
 
             // Artefakt-Kommentare sind erstmal deaktiviert
             //DialogsArtifacts dialogsArtifact = new DialogsArtifacts();
@@ -50,10 +74,27 @@ namespace UnisensViewer
             //    comment = DialogsArtifacts.artifact_comment;
             //}
 
-            string artifactStart = delim + artifactSymbol_Start + ";" + comment;
-            string artifactEnd = delim + artifactSymbol_End + ";" + comment;
+            //string artifactStart = _delim + artifactSymbol_Start + ";" + comment;
+            //string artifactEnd = _delim + artifactSymbol_End + ";" + comment;
 
-            StreamWriter csv_out = null;
+
+
+            /*var contents = File.ReadAllText(artifactsfile).Split('\n');
+            var csv = from line in contents
+                      select line.Split(',').ToArray();
+
+            
+            foreach (var row in csv.Skip(2).TakeWhile(r => r.Length > 1 && r.Last().Trim().Length > 0))
+            {
+                String zerothColumnValue = row[0]; // leftmost column
+                var firstColumnValue = row[1];
+            }*/
+
+
+
+
+
+            /*StreamWriter csv_out = null;
             StreamReader csv_in = null;
 
             try
@@ -75,8 +116,8 @@ namespace UnisensViewer
 
             while (s1 !=null && s2 != null )
             {
-                int a = s1.IndexOf(delim);
-                int b = s2.IndexOf(delim);
+                int a = s1.IndexOf(_delim);
+                int b = s2.IndexOf(_delim);
                 if (a == -1 || b == -1)
                 {
                     break;
@@ -111,7 +152,7 @@ namespace UnisensViewer
                 csv_out.WriteLine(sample_start + artifactStart);
                 csv_out.WriteLine(sample_end + artifactEnd);
                 aldready = true;
-            }
+            }*/
 
             //while ((line = csv_in.ReadLine()) != null)
             //{
@@ -161,7 +202,7 @@ namespace UnisensViewer
             //    end = true;
             //}
 
-            csv_in.Close();
+            /*csv_in.Close();
             csv_in.Dispose();
             csv_in = null;
             File.Delete(artifactsfile);
@@ -171,6 +212,7 @@ namespace UnisensViewer
             csv_out.Dispose();
             csv_out = null;
             File.Move(artifactsfile + ".tmp", artifactsfile);
+            */
 
             // Rendere wieder aktivieren
             foreach (XElement xe in selectedsignals)
