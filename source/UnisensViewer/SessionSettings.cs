@@ -14,6 +14,29 @@ using UnisensViewerLibrary;
 namespace UnisensViewer
 {
 
+    public class SessionView
+    {
+        private string _path;
+        private string _name;
+
+        public SessionView(string path)
+        {
+            _path = path;
+        }
+
+        public string Path
+        {
+            get { return _path; }
+            set { _path = value; }
+        }
+
+        public string Name
+        {
+            get { return _path.Substring(2, _path.Length-7); }
+        }
+
+    }
+
     public class RenderDataModel
     {
         private int _imageheight;
@@ -122,26 +145,24 @@ namespace UnisensViewer
         private SessionSettings()
         {
             _activeEntries = new SerializableDictionary<string, RenderDataModel>();
-
+            
         }
-        
 
-        public static SessionSettings Load(SignalViewerControl signalviewercontrol)
+
+        public static SessionSettings Load(SignalViewerControl signalviewercontrol, SessionView view)
         {
-            if (_sessionSettings != null)
-            {
-                _sessionSettings.Update();
-                _sessionSettings.WriteObject();
-            }
-
-            _sessionSettings = GetObjectFrom("unisense.view");
+                 
+            _sessionSettings = GetObjectFrom(view.Path);
             _sessionSettings._signalviewercontrol = signalviewercontrol;
 
             return _sessionSettings;
         }
 
+
+
         public void Update()
         {
+
             Time = RendererManager.Time;
             TimeStretch = RendererManager.TimeStretch;
 
@@ -186,17 +207,26 @@ namespace UnisensViewer
             {
                 foreach (var item in list)
                 {
-                    SortedDictionary<int, RenderSlice> value;
+                    RenderDataModel renderDataModel;
 
-                    if (!sortedSlices.TryGetValue(_activeEntries[ValueEntry.GetId(item.Renderer.SevEntry)].PosX, out value))
+                    if(_activeEntries.TryGetValue(ValueEntry.GetId(item.Renderer.SevEntry), out renderDataModel))
                     {
-                        value = new SortedDictionary<int, RenderSlice>();
-                        sortedSlices.Add(_activeEntries[ValueEntry.GetId(item.Renderer.SevEntry)].PosX, value);
-                    }
+                        SortedDictionary<int, RenderSlice> value;
 
-                    value.Add(_activeEntries[ValueEntry.GetId(item.Renderer.SevEntry)].PosY, item);
+                        if (!sortedSlices.TryGetValue(renderDataModel.PosX, out value))
+                        {
+                            value = new SortedDictionary<int, RenderSlice>();
+                            sortedSlices.Add(_activeEntries[ValueEntry.GetId(item.Renderer.SevEntry)].PosX, value);
+                        }
+
+                        value.Add(_activeEntries[ValueEntry.GetId(item.Renderer.SevEntry)].PosY, item);
+                    }
                 }
             }
+
+
+
+
 
             _signalviewercontrol.stackercontrol.renderSliceLists.Clear();
 
@@ -285,7 +315,6 @@ namespace UnisensViewer
                 }
             }
         }
-
 
     }
 }

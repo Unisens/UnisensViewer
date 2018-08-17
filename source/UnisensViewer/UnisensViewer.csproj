@@ -124,14 +124,18 @@
     <Reference Include="CrashRptNET">
       <HintPath>..\..\library\CrashRptNET.dll</HintPath>
     </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\..\library\NLog.dll</HintPath>
+    <Reference Include="Microsoft.Windows.Shell">
+      <HintPath>..\..\..\..\Multilingual App Toolkit\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.3.7\lib\net40\NLog.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="ReachFramework" />
     <Reference Include="RibbonControlsLibrary, Version=4.0.0.11019, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\library\RibbonControlsLibrary.dll</HintPath>
+      <HintPath>..\packages\RibbonControlsLibrary.4.0.0\lib\net40\RibbonControlsLibrary.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -165,7 +169,7 @@
     </Reference>
     <Reference Include="WPFLocalizeExtension, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\library\WPFLocalizeExtension.dll</HintPath>
+      <HintPath>Z:\Downloads\U2UConsult.WPF.Localization.Sample\U2UConsult.WPF.Localization.Sample\U2UConsult.WPF.Localization.Sample\bin\Release\WPFLocalizeExtension.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(Platform)' == 'x86' ">
@@ -210,6 +214,9 @@
     </Compile>
     <Compile Include="EditFunctions\DialogsMarkerNew.xaml.cs">
       <DependentUpon>DialogsMarkerNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditFunctions\DialogsViewNew.xaml.cs">
+      <DependentUpon>DialogsViewNew.xaml</DependentUpon>
     </Compile>
     <Compile Include="EditFunctions\Marker.cs" />
     <Compile Include="EditFunctions\MarkerList.cs" />
@@ -287,6 +294,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="EditFunctions\DialogsMarkerNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditFunctions\DialogsViewNew.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -424,6 +435,7 @@
     <Content Include="Documentation\UnisensViewerHelp_EN.xps">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -596,6 +608,9 @@
       <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

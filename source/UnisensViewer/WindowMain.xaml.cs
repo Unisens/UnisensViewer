@@ -24,6 +24,7 @@ using Microsoft.Win32;
 using WPFLocalizeExtension.Extensions;
 using System.Windows.Threading;
 using System.Windows.Media.Imaging;
+using System.Linq;
 
 namespace UnisensViewer
 {
@@ -95,6 +96,8 @@ namespace UnisensViewer
 
             this.InitPlugins();
             Gridsplitter.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(this.Gridsplitter_MouseLeftButtonUp);
+
+            
         }
 
 
@@ -523,8 +526,8 @@ namespace UnisensViewer
         double startTime = 0;
         private void MenuItem_Click_Playback(object sender, RoutedEventArgs e)
         {
-            SessionSettings.Instance.Update();
-            SessionSettings.Instance.WriteObject();
+            //SessionSettings.Instance.Update();
+            //SessionSettings.Instance.WriteObject();
 
             if (sw != null && sw.IsRunning)
             {
@@ -759,15 +762,12 @@ namespace UnisensViewer
                 }else{
                     logger.Debug("New unisens-file has been opened, displaying signals...");
 
-                    if(unisensFileManager.XmlFilePath != null)
-                        SessionSettings.Load(signalviewercontrol);
+                    if (unisensFileManager.XmlFilePath != null)
+                        signalviewercontrol.Views = new ObservableCollection<SessionView>(Directory.GetFiles(@".", "*.view").Select(path => new SessionView(path)));
 
                     // Displays all Signals
                     signalviewercontrol.CloseAllSignals();
                     signalviewercontrol.stackercontrol.Dropped(null, UnisensXmlFileManager.CurrentUnisensInstance.Xdocument.Root);
-
-                    if (unisensFileManager.XmlFilePath != null)
-                        SessionSettings.Instance.Apply();
 
                     // update the file list
                     string filepath = UnisensXmlFileManager.CurrentUnisensInstance.XmlFilePath;
@@ -904,11 +904,14 @@ namespace UnisensViewer
         {
             if (dialogVideo.IsVisible)
             {
-                int offset = 0;
-                int.TryParse(videoOffset.Text, out offset);
-                int seekTo = (int)(RendererManager.Time * 1000);
+                double offset = 0;
+                double.TryParse(videoOffset.Text, out offset);
+                double seekTo = RendererManager.Time * 1000;
 
-                dialogVideo.Seek(offset + seekTo);
+                var span = dialogVideo.mePlayer.NaturalDuration;
+                int position = (int)(offset * 1000 + seekTo);
+
+                dialogVideo.Seek(span.HasTimeSpan && position <= span.TimeSpan.Milliseconds ? span.TimeSpan.Milliseconds : position);
                 dialogVideo.timeSlider.Value = RendererManager.Time / RendererManager.TimeMax;
 
                 dialogVideo.timeLabel.Content = _statusTimeConverter.Convert(RendererManager.Time, null, null, null);
@@ -953,6 +956,8 @@ namespace UnisensViewer
 
 			CurrentFileName = null;
 			unisensFileManager.Close();
+
+            signalviewercontrol.Views.Clear();
 		}
 
 		private void CanExecute_CloseFile(object sender, CanExecuteRoutedEventArgs e)

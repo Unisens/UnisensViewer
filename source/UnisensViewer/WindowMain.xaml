@@ -1,11 +1,19 @@
-﻿<ribbon:RibbonWindow x:Class="UnisensViewer.WindowMain" x:Name="_root" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:src="clr-namespace:UnisensViewer"
-     xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
-     xmlns:lex="http://schemas.root-project.org/xaml/presentation"
-     lex:LocalizeDictionary.DesignCulture="de" Width="1466" Height="600" Background="#ff333333"
-     WindowState="Maximized" Icon="unisens_NET.ico" src:StackerControl.HoverStack="WindowMain_HoverStack"
-     Loaded="RibbonWindow_Loaded" Closing="RibbonWindow_Closing" 
-                      FocusManager.FocusedElement="{Binding RelativeSource={x:Static RelativeSource.Self}, Mode=OneTime}"
+﻿<ribbon:RibbonWindow x:Class="UnisensViewer.WindowMain" 
+                     x:Name="_root" 
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:src="clr-namespace:UnisensViewer"
+                     xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+                     xmlns:lex="http://schemas.root-project.org/xaml/presentation"
+                     lex:LocalizeDictionary.DesignCulture="de" 
+                     Width="1633" 
+                     Height="600" 
+                     Background="#ff333333"
+                     WindowState="Maximized" 
+                     Icon="unisens_NET.ico" 
+                     src:StackerControl.HoverStack="WindowMain_HoverStack"
+                     Loaded="RibbonWindow_Loaded" Closing="RibbonWindow_Closing" 
+                     FocusManager.FocusedElement="{Binding RelativeSource={x:Static RelativeSource.Self}, Mode=OneTime}"
+                     
 >
 
 
@@ -395,12 +403,18 @@
                              Label="{lex:LocText UnisensViewer:Translations:Auswahl}" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}"
                              CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="selection" />
 							  
-						<Grid>
-							<ribbon:RibbonTextBox x:Name="intervalWidth" x:Uid="RibbonTab_Video_IntervalWidth" Text="{Binding Path=Interval, ElementName=signalviewercontrol, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Panel.ZIndex="100" Margin="0,5,0,0" Padding="0" TextBoxWidth="40" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
-							<ribbon:RibbonButton x:Name="ButtonTimeScaleTextboxSelection" x:Uid="RibbonTab_View_TimeScale_Textbox_Selection" Panel.ZIndex="0"
-								 Label="Interval" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}"  LargeImageSource="Images/LargeIcon_Interval.png"
-								 CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="interval" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
-						</Grid>
+						<StackPanel Orientation="Vertical" Margin="0">
+							<StackPanel Panel.ZIndex="100" Orientation="Horizontal">
+								<ribbon:RibbonTextBox x:Name="intervalWidth" x:Uid="RibbonTab_Video_IntervalWidth" Text="{Binding Path=Interval, ElementName=signalviewercontrol, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" Margin="0,5,-2,0" Padding="0" TextBoxWidth="40" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" BorderThickness="1,1,1,1">
+									<ribbon:RibbonTextBox.InputBindings>
+										<KeyBinding Key="Enter" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}"  CommandTarget="{Binding ElementName=signalviewercontrol}"  CommandParameter="interval" />
+									</ribbon:RibbonTextBox.InputBindings>
+								</ribbon:RibbonTextBox>
+								<TextBlock Margin="0,9,0,0" Padding="0,0,4,0">s</TextBlock>
+							</StackPanel>
+
+							<ribbon:RibbonButton x:Name="ButtonTimeScaleTextboxSelection" x:Uid="RibbonTab_View_TimeScale_Textbox_Selection" Panel.ZIndex="0" Label="Interval" Command="{x:Static src:SignalViewerControl.CmdChangeTimeZoom}" CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="interval" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,7,0,0" HorizontalAlignment="Center"  />
+						</StackPanel>
 						
 
                     </ribbon:RibbonGroup>
@@ -413,7 +427,8 @@
                              Label="{lex:LocText UnisensViewer:Translations:DauerBeginMessung}" 
                              Checked="Click_DurationMessung_Check" />
                     </ribbon:RibbonGroup>
-                    
+
+
                     <ribbon:RibbonGroup x:Name="GroupScale" x:Uid="RibbonTab_View_AutoZoom" Header="{lex:LocText UnisensViewer:Translations:SignaleSkalieren}" LargeImageSource="Images\LargeIcon_signals_scalevertical.png">
                         <ribbon:RibbonSplitButton Label="{lex:LocText UnisensViewer:Translations:NachEinheitengruppiert}" LargeImageSource="Images\LargeIcon_signals_scalevertical.png" Command="{x:Static src:SignalViewerControl.CmdAutoZoomAllGroupedByUnits}"
                              CommandTarget="{Binding ElementName=signalviewercontrol}">
@@ -475,6 +490,17 @@
                              Click="MenuItem_Click_CloseAllSignals" />
                     </ribbon:RibbonGroup>
 
+					<ribbon:RibbonGroup x:Name="GroupViews" x:Uid="RibbonTab_View_Views" Header="Views">
+
+
+                        <ListBox Height="64" VerticalAlignment="Center" Margin="0,2,5,0" SelectedItem="{Binding Path=SelectedView, ElementName=signalviewercontrol, Mode=TwoWay}" ItemsSource="{Binding Path=Views, ElementName=signalviewercontrol, Mode=TwoWay}" DisplayMemberPath="Name" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" MinWidth="50"/>
+						<ribbon:RibbonButton SmallImageSource="Images\LargeIcon_menu_save.png" Label="Save" Command="{x:Static src:SignalViewerControl.CmdManageViews}" CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="save" />
+						<ribbon:RibbonButton SmallImageSource="Images\LargeIcon_menu_open.png" Label="Load" Command="{x:Static src:SignalViewerControl.CmdManageViews}" CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="load" />
+						<ribbon:RibbonButton SmallImageSource="Images\LargeIcon_signals_close.png" Label="Delete" Command="{x:Static src:SignalViewerControl.CmdManageViews}" CommandTarget="{Binding ElementName=signalviewercontrol}" CommandParameter="delete" />
+
+                    </ribbon:RibbonGroup>   
+
+
 
 
                     <ribbon:RibbonGroup x:Name="GroupPlayback" x:Uid="RibbonTab_View_Playback" Header="Playback">
@@ -496,11 +522,9 @@
 
 				   <ribbon:RibbonGroup x:Name="GroupVideo" x:Uid="RibbonTab_View_Video" Header="Video">  
 					
-					    <ribbon:RibbonButton x:Name="SelectFile_Button24" x:Uid="RibbonTab_Video_SelectFile"
-                            LargeImageSource="Images\LargeIcon_playback_video.png" Label="Add video file"
-                             Click="MenuItem_Video_SelectFile_Click" />
+					    <ribbon:RibbonButton x:Name="SelectFile_Button24" LargeImageSource="Images\LargeIcon_playback_video.png" Label="Add video file" Click="MenuItem_Video_SelectFile_Click" />
 
-						<ribbon:RibbonTextBox Label="Offset"  x:Name="videoOffset" x:Uid="RibbonTab_Video_Offset" Text="0" TextBoxWidth="40"></ribbon:RibbonTextBox>
+						<StackPanel Orientation="Horizontal" Margin="0,4,0,0"><ribbon:RibbonTextBox   x:Name="videoOffset" Label="Offset" Text="{Binding Path=videoOffset, FallbackValue=0.00, StringFormat=N2}" TextBoxWidth="40" Margin="0,0,-2,-2" /><TextBlock Margin="0,4,2,0">s</TextBlock></StackPanel>
 
 					
 
@@ -546,6 +570,25 @@
                              ToolTipDescription="{lex:LocText UnisensViewer:Translations:MarkerListDescription}"
                              Visibility="Collapsed"/>
                     </ribbon:RibbonGroup>
+
+
+					
+					<ribbon:RibbonGroup Header="Selection" >
+						<ribbon:RibbonGroup.GroupSizeDefinitions>
+							<ribbon:RibbonGroupSizeDefinition>
+								<ribbon:RibbonControlSizeDefinition ImageSize="Small" />
+								<ribbon:RibbonControlSizeDefinition ImageSize="Small" />
+								<ribbon:RibbonControlSizeDefinition ImageSize="Small" />
+							</ribbon:RibbonGroupSizeDefinition>
+						</ribbon:RibbonGroup.GroupSizeDefinitions>
+						<StackPanel>
+							<StackPanel HorizontalAlignment="Right"  Orientation="Horizontal"><ribbon:RibbonTextBox Label="Start" Text="{Binding Path=SelectionStart, ElementName=signalviewercontrol, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" TextBoxWidth="50" BorderThickness="1" Margin="0,0,-2,-2" /><TextBlock Margin="0,4,4,0" Padding="0,0,0,0">s</TextBlock></StackPanel>
+							<StackPanel HorizontalAlignment="Right"  Orientation="Horizontal"><ribbon:RibbonTextBox Label="Duration" Text="{Binding Path=SelectionDuration, ElementName=signalviewercontrol, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" TextBoxWidth="50" Margin="0,0,-2,-2" /><TextBlock Margin="0,4,4,0">s</TextBlock></StackPanel>
+							<StackPanel HorizontalAlignment="Right"  Orientation="Horizontal"><ribbon:RibbonTextBox Label="End" Text="{Binding Path=SelectionEnd, ElementName=signalviewercontrol, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}"  TextBoxWidth="50" Margin="0,0,-2,-2" BorderThickness="1" /><TextBlock Margin="0,4,4,0">s</TextBlock></StackPanel>
+						</StackPanel>
+
+
+					</ribbon:RibbonGroup>
 
                     <!-- Marker macht hier kein sinn, bis auf weiteres deaktiviert
                     <ribbon:RibbonGroup x:Name="Annotations" x:Uid="RibbonTab_View_Annotations" Header="{lex:LocText UnisensViewer:Translations:Annotations}" >

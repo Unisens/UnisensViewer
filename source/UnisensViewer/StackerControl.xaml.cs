@@ -145,7 +145,7 @@ namespace UnisensViewer
 				{
 					if (item.Name.LocalName == "signalEntry" || item.Name.LocalName == "valuesEntry" || item.Name.LocalName == "eventEntry")
 					{
-                        if (SessionSettings.Instance.EmptySettings || SessionSettings.Instance.ActiveEntries.ContainsKey(ValueEntry.GetId(item)))
+                        //if (SessionSettings.Instance.EmptySettings || SessionSettings.Instance.ActiveEntries.ContainsKey(ValueEntry.GetId(item)))
                             this.Dropped(e, item);
 					}
 				}   
@@ -162,10 +162,6 @@ namespace UnisensViewer
 
 		public void DropSignalEventValueEntry(XElement sevEntry, ObservableCollection<RenderSlice> rslist)
 		{
-
-            Trace.WriteLine("DropDebug rslist copunt?: " + rslist.Count);
-            Trace.WriteLine("DropDebug rslist null?: " + (rslist == null));
-
 			if (rslist == null)
 			{
 				// neuen stapel am ende erzeugen
@@ -176,25 +172,29 @@ namespace UnisensViewer
 			// alle kanäle hinzufügen
 			Renderer r = RendererManager.GetRenderer(sevEntry);
 
-            Trace.WriteLine("Check Renderer for: " + r.SevEntry.Name.LocalName + " channels: " + r.Channels);
+            if (r != null)
+            {
+                Trace.WriteLine("Check Renderer for: " + r.SevEntry.Name.LocalName + " channels: " + r.Channels);
 
-			if (r != null)
-			{
-				List<RenderSlice> l = new List<RenderSlice>();
+                List<RenderSlice> l = new List<RenderSlice>();
 
-				for (int a = 0; a < r.Channels; ++a)
-				{
-					RenderSlice rs = r.GetRenderSlice(a);
+                for (int a = 0; a < r.Channels; ++a)
+                {
+                    RenderSlice rs = r.GetRenderSlice(a);
 
-					this.AttachKillHandler(rs);
-					this.MoveRenderSlice(rs, rslist);
+                    this.AttachKillHandler(rs);
+                    this.MoveRenderSlice(rs, rslist);
 
-					l.Add(rs);
-				}
+                    l.Add(rs);
+                }
 
-                
+
                 RendererManager.AutoZoomGroupedByFiles(l);
-			}
+            }
+            else
+            {
+                Trace.WriteLine("Renderer is null with this sev: " + sevEntry);
+            }
 
 			if (rslist.Count == 0)
 			{

@@ -188,8 +188,7 @@ namespace UnisensViewer
 
 		public void Close()
 		{
-            SessionSettings.Instance.Update();
-            SessionSettings.Instance.WriteObject(); 
+
 
 			this.Xdocument = null;
 			this.XmlFilePath = null;
