@@ -11,28 +11,25 @@
     <ROW Property="AI_CLEAN_RESOURCES_USER_PROMPT_BASIC_UI" Value="0"/>
     <ROW Property="AI_CLEAN_RESOURCES_USER_PROMPT_FULL_UI" Value="0"/>
     <ROW Property="AI_FINDEXE_TITLE" Value="Wöhle das Installationspaket für [|ProductName]" ValueLocId="AI.Property.FindExeTitle"/>
-    <ROW Property="ALLUSERS" Value="2" MultiBuildValue="DefaultBuild:1#Build:1"/>
+    <ROW Property="ALLUSERS" Value="2" MultiBuildValue="Build:1"/>
     <ROW Property="ARPCOMMENTS" Value="Dieses Programm installiert den [|ProductName]." ValueLocId="*"/>
-    <ROW Property="ARPNOMODIFY" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="ARPPRODUCTICON" Value="unisens.exe" Type="8"/>
-    <ROW Property="BannerBitmap" Value="banner" MultiBuildValue="DefaultBuild:banner.jpg" Type="1" MsiKey="BannerBitmap"/>
-    <ROW Property="DialogBitmap" Value="dialog" MultiBuildValue="DefaultBuild:watermark.jpg" Type="1" MsiKey="DialogBitmap"/>
+    <ROW Property="BannerBitmap" Value="banner" Type="1" MsiKey="BannerBitmap"/>
+    <ROW Property="DialogBitmap" Value="dialog" Type="1" MsiKey="DialogBitmap"/>
     <ROW Property="Manufacturer" Value="FZI" ValueLocId="*"/>
-    <ROW Property="ProductCode" Value="1031:{DA94A279-F815-4BE1-B353-E79623B8838F} 1033:{DFDA8D1C-319B-4316-AA39-F961F16EFB87} " Type="16"/>
+    <ROW Property="ProductCode" Value="1031:{663191F9-FDF1-46FE-980F-A945D263C24F} 1033:{1D6F5D70-EB0A-45B9-BC7E-2A33E4FC5E73} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1031"/>
     <ROW Property="ProductName" Value="UnisensViewer" ValueLocId="*"/>
-    <ROW Property="ProductVersion" Value="1.9.32" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.10.34" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UNISENS_CHECKBOX_1" Value="1" Type="4"/>
     <ROW Property="UpgradeCode" Value="{6B9B9ED3-AF76-41E3-94A7-71D7803E7D56}"/>
-    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME#Build:Windows 9x/ME" ValueLocId="-"/>
-    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME#Build:Windows 9x/ME" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT" MultiBuildValue="DefaultBuild:Windows 2000, Windows 2000 Service Pack 1, Windows 2000 Service Pack 2, Windows 2000 Service Pack 3, Windows 2000 Service Pack 4, Windows XP x86, Windows XP x86 Service Pack 1, Windows XP x86 Service Pack 2, Windows XP x86 Service Pack 3, Windows Server 2003 x86, Windows Server 2003 x86 Service Pack 1, Windows Server 2003 x86 Service Pack 2, Windows Vista x86, Windows Vista x86 Service Pack 1, Windows Vista x86 Service Pack 2, Windows Server 2008 x86#Build:Windows 2000, Windows 2000 Service Pack 1, Windows 2000 Service Pack 2, Windows 2000 Service Pack 3, Windows 2000 Service Pack 4" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0#Build:Windows NT 4.0" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0#Build:Windows NT 4.0" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT64" MultiBuildValue="DefaultBuild:Windows XP x64, Windows XP x64 Service Pack 1, Windows XP x64 Service Pack 2, Windows Server 2003 x64, Windows Server 2003 x64 Service Pack 1, Windows Server 2003 x64 Service Pack 2, Windows Vista x64, Windows Vista x64 Service Pack 1, Windows Vista x64 Service Pack 2, Windows Server 2008 x64, Windows Server 2008 R2 x64, Windows Server 2008 R2 x64 Service Pack 1" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT64Display" MultiBuildValue="DefaultBuild:Windows XP x64, Windows Server 2003 x64, Windows Vista x64, Windows Server 2008 x64, Windows Server 2008 R2 x64" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNTDisplay" MultiBuildValue="DefaultBuild:Windows 2000, Windows XP x86, Windows Server 2003 x86, Windows Vista x86, Windows Server 2008 x86#Build:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="Build:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="Build:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT" MultiBuildValue="Build:Windows 2000, Windows 2000 Service Pack 1, Windows 2000 Service Pack 2, Windows 2000 Service Pack 3, Windows 2000 Service Pack 4" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40" MultiBuildValue="Build:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="Build:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNTDisplay" MultiBuildValue="Build:Windows 2000" ValueLocId="-"/>
     <ROW Property="XML_CHECKBOX_1" Value="1" Type="4"/>
     <ROW Property="unisens_viewer_MIXED_KEY" Value="unisens_viewer"/>
   </COMPONENT>
@@ -190,9 +187,8 @@
     <ROW BootstrOptKey="GlobalOptions" GeneralOptions="h"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="Build" BuildName="DefaultBuild_Full" BuildOrder="2" BuildType="1" PackageFolder="dist" PackageFileName="UnisensViewer_Setup_Full" Languages="de;en" LangOpt="1" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\install" ExtUI="true" Options="2" Unicode="true" MsiPackageType="AI_ALL"/>
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="dist" PackageFileName="UnisensViewer_Setup" Languages="de;en" LangOpt="1" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\install" ExtUI="true" Options="2" Unicode="true" MsiPackageType="AI_ALL"/>
-    <ATTRIBUTE name="CurrentBuild" value="DefaultBuild"/>
+    <ROW BuildKey="Build" BuildName="DefaultBuild_Full" BuildOrder="1" BuildType="1" PackageFolder="dist" PackageFileName="UnisensViewer_Setup" Languages="de;en" LangOpt="1" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\install" ExtUI="true" Options="2" Unicode="true" MsiPackageType="AI_ALL"/>
+    <ATTRIBUTE name="CurrentBuild" value="Build"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
     <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
@@ -232,17 +228,15 @@
     <ROW Action="AI_VerifyPrereq" Description="Überprüfe Voraussetzungen" Template="[1] wurde nicht korrekt installiert." DescriptionLocId="ActionText.Description.AI_VerifyPrereq" TemplateLocId="ActionText.Template.AI_VerifyPrereq"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiAppSearchComponent">
-    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_CU" Builds="DefaultBuild;Build"/>
-    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_LM" Builds="DefaultBuild;Build"/>
+    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_CU" Builds="Build"/>
+    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_LM" Builds="Build"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
     <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
     <ROW Name="ResourceCleaner.dll" SourcePath="&lt;AI_CUSTACTS&gt;ResourceCleaner.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
     <ROW Name="aipackagechainer.exe" SourcePath="&lt;AI_CUSTACTS&gt;aipackagechainer.exe"/>
-    <ROW Name="banner.jpg" SourcePath="banner.jpg"/>
     <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
-    <ROW Name="watermark.jpg" SourcePath="watermark.jpg"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCheckBoxComponent">
     <ROW Property="UNISENS_CHECKBOX_1" Value="1"/>
@@ -350,7 +344,7 @@
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
     <ROW Action="AI_UPDATER_UNINSTALL" Type="18" Source="updater.exe" Target="/clean silent"/>
     <ROW Action="AI_VerifyPrereq" Type="1" Source="Prereq.dll" Target="VerifyPrereq"/>
-    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[AI_ProgramFiles][Manufacturer]\[ProductName]#Build:[AI_ProgramFiles][Manufacturer]\[ProductName]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="Build:[AI_ProgramFiles][Manufacturer]\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
     <ROW Action="UpdateFeaturesInstallStates" Type="1" Source="aicustact.dll" Target="UpdateFeatureStates" Options="1"/>
@@ -385,26 +379,26 @@
     <ROW Action="AI_STORE_LOCATION" Condition="Not Installed" Sequence="1501"/>
     <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
     <ROW Action="AI_ResolveKnownFolders" Sequence="51"/>
-    <ROW Action="AI_DeleteCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="199" Builds="DefaultBuild;Build"/>
-    <ROW Action="AI_DeleteRCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="198" Builds="DefaultBuild;Build"/>
-    <ROW Action="AI_ExtractCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="197" Builds="DefaultBuild;Build"/>
-    <ROW Action="AI_FindExeLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="196" Builds="DefaultBuild;Build"/>
-    <ROW Action="AI_ExtractLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1549" Builds="DefaultBuild;Build"/>
-    <ROW Action="AI_DeleteRLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1548" Builds="DefaultBuild;Build"/>
-    <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="6597" Builds="DefaultBuild;Build"/>
+    <ROW Action="AI_DeleteCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="199" Builds="Build"/>
+    <ROW Action="AI_DeleteRCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="198" Builds="Build"/>
+    <ROW Action="AI_ExtractCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="197" Builds="Build"/>
+    <ROW Action="AI_FindExeLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="196" Builds="Build"/>
+    <ROW Action="AI_ExtractLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1549" Builds="Build"/>
+    <ROW Action="AI_DeleteRLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1548" Builds="Build"/>
+    <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="6597" Builds="Build"/>
     <ROW Action="AI_UPDATER_UNINSTALL" Condition="($updater.exe = 2) AND (?updater.exe = 3) AND NOT (UPGRADINGPRODUCTCODE)" Sequence="1551"/>
     <ROW Action="AI_VerifyPrereq" Sequence="1201"/>
     <ROW Action="AI_AppSearchEx" Sequence="102"/>
     <ROW Action="AI_AiRemoveRegsImmediate" Sequence="2599"/>
-    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="DefaultBuild;Build"/>
-    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101" Builds="DefaultBuild;Build"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="Build"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101" Builds="Build"/>
     <ROW Action="AI_REDIRECT_32BIT_FOLDER" Condition="NOT VersionNT64 AND NOT AI_Disable32BitRedirection" Sequence="702"/>
     <ROW Action="AI_REDIRECT_32BIT_SH_FOLDER" Condition="NOT VersionNT64 AND NOT AI_Disable32BitRedirection" Sequence="701"/>
     <ROW Action="AI_SETPROGRAMFILES64" Condition="VersionNT64" Sequence="748"/>
     <ROW Action="AI_SETPROGRAMFILES" Condition="NOT VersionNT64" Sequence="749"/>
-    <ROW Action="AI_ExtractFiles" Sequence="3998" Builds="DefaultBuild;Build"/>
+    <ROW Action="AI_ExtractFiles" Sequence="3998" Builds="Build"/>
     <ROW Action="AI_DATA_SETTER" Sequence="3997"/>
-    <ROW Action="AI_EstimateExtractFiles" Sequence="3999" Builds="DefaultBuild;Build"/>
+    <ROW Action="AI_EstimateExtractFiles" Sequence="3999" Builds="Build"/>
     <ROW Action="AI_ConfigureChainer" Condition="((UILevel = 2) OR (UILevel = 3)) AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6598"/>
     <ROW Action="AI_LaunchChainer" Condition="AI_PREREQ_CHAINER AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6599"/>
   </COMPONENT>
@@ -424,11 +418,8 @@
     <ROW Action="UpdateFeaturesInstallStates" Condition="( NOT Installed )" Sequence="1299"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
-    <ROW Condition="( Version9X OR ( NOT VersionNT64 ) OR ( VersionNT64 AND ((VersionNT64 &lt;&gt; 502) OR (((VersionNT64 = 502) AND (ServicePackLevel &gt;= 1)) OR (MsiNTProductType &lt;&gt; 1))) AND ((VersionNT64 &lt;&gt; 502) OR (((VersionNT64 = 502) AND (ServicePackLevel &lt;&gt; 1)) OR (MsiNTProductType &lt;&gt; 1))) AND ((VersionNT64 &lt;&gt; 502) OR (((VersionNT64 = 502) AND (ServicePackLevel &lt;&gt; 2)) OR (MsiNTProductType &lt;&gt; 1))) AND ((VersionNT64 &lt;&gt; 502) OR ((VersionNT64 = 502) AND ((MsiNTProductType = 1) OR (ServicePackLevel &gt;= 1)))) AND ((VersionNT64 &lt;&gt; 502) OR ((VersionNT64 = 502) AND ((MsiNTProductType = 1) OR (ServicePackLevel &lt;&gt; 1)))) AND ((VersionNT64 &lt;&gt; 502) OR ((VersionNT64 = 502) AND ((MsiNTProductType = 1) OR (ServicePackLevel &lt;&gt; 2)))) AND ((VersionNT64 &lt;&gt; 600) OR (((VersionNT64 = 600) AND (ServicePackLevel &gt;= 1)) OR (MsiNTProductType &lt;&gt; 1))) AND ((VersionNT64 &lt;&gt; 600) OR (((VersionNT64 = 600) AND (ServicePackLevel &lt;&gt; 1)) OR (MsiNTProductType &lt;&gt; 1))) AND ((VersionNT64 &lt;&gt; 600) OR (((VersionNT64 = 600) AND (ServicePackLevel &lt;&gt; 2)) OR (MsiNTProductType &lt;&gt; 1))) AND ((VersionNT64 &lt;&gt; 600) OR ((VersionNT64 = 600) AND (MsiNTProductType = 1))) AND ((VersionNT64 &lt;&gt; 601) OR ((VersionNT64 = 601) AND ((ServicePackLevel &gt;= 1) OR (MsiNTProductType = 1)))) AND ((VersionNT64 &lt;&gt; 601) OR (((VersionNT64 = 601) AND (ServicePackLevel &lt;&gt; 1)) OR (MsiNTProductType = 1))) ) )" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNT64Display]" DescriptionLocId="AI.LaunchCondition.NoSpecificNT64" IsPredefined="true" Builds="DefaultBuild"/>
-    <ROW Condition="( Version9X OR VersionNT64 OR ( VersionNT AND ((VersionNT &lt;&gt; 500) OR ((VersionNT = 500) AND (ServicePackLevel &gt;= 1))) AND ((VersionNT &lt;&gt; 500) OR ((VersionNT = 500) AND (ServicePackLevel &lt;&gt; 1))) AND ((VersionNT &lt;&gt; 500) OR ((VersionNT = 500) AND (ServicePackLevel &lt;&gt; 2))) AND ((VersionNT &lt;&gt; 500) OR ((VersionNT = 500) AND (ServicePackLevel &lt;&gt; 3))) AND ((VersionNT &lt;&gt; 500) OR ((VersionNT = 500) AND (ServicePackLevel &lt;&gt; 4))) ) )" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNTDisplay]" DescriptionLocId="AI.LaunchCondition.NoSpecificNT" IsPredefined="true" Builds="Build"/>
-    <ROW Condition="( Version9X OR VersionNT64 OR ( VersionNT AND ((VersionNT &lt;&gt; 500) OR ((VersionNT = 500) AND (ServicePackLevel &gt;= 1))) AND ((VersionNT &lt;&gt; 500) OR ((VersionNT = 500) AND (ServicePackLevel &lt;&gt; 1))) AND ((VersionNT &lt;&gt; 500) OR ((VersionNT = 500) AND (ServicePackLevel &lt;&gt; 2))) AND ((VersionNT &lt;&gt; 500) OR ((VersionNT = 500) AND (ServicePackLevel &lt;&gt; 3))) AND ((VersionNT &lt;&gt; 500) OR ((VersionNT = 500) AND (ServicePackLevel &lt;&gt; 4))) AND (((VersionNT &lt;&gt; 501) OR ((VersionNT = 501) AND (ServicePackLevel &gt;= 1))) OR VersionNT64) AND (((VersionNT &lt;&gt; 501) OR ((VersionNT = 501) AND (ServicePackLevel &lt;&gt; 1))) OR VersionNT64) AND (((VersionNT &lt;&gt; 501) OR ((VersionNT = 501) AND (ServicePackLevel &lt;&gt; 2))) OR VersionNT64) AND (((VersionNT &lt;&gt; 501) OR ((VersionNT = 501) AND (ServicePackLevel &lt;&gt; 3))) OR VersionNT64) AND (((VersionNT &lt;&gt; 502) OR ((VersionNT = 502) AND (ServicePackLevel &gt;= 1))) OR VersionNT64) AND (((VersionNT &lt;&gt; 502) OR ((VersionNT = 502) AND (ServicePackLevel &lt;&gt; 1))) OR VersionNT64) AND (((VersionNT &lt;&gt; 502) OR ((VersionNT = 502) AND (ServicePackLevel &lt;&gt; 2))) OR VersionNT64) AND (((VersionNT &lt;&gt; 600) OR (((VersionNT = 600) AND (ServicePackLevel &gt;= 1)) OR (MsiNTProductType &lt;&gt; 1))) OR VersionNT64) AND (((VersionNT &lt;&gt; 600) OR (((VersionNT = 600) AND (ServicePackLevel &lt;&gt; 1)) OR (MsiNTProductType &lt;&gt; 1))) OR VersionNT64) AND (((VersionNT &lt;&gt; 600) OR (((VersionNT = 600) AND (ServicePackLevel &lt;&gt; 2)) OR (MsiNTProductType &lt;&gt; 1))) OR VersionNT64) AND (((VersionNT &lt;&gt; 600) OR ((VersionNT = 600) AND ((MsiNTProductType = 1) OR ((WindowsBuild &lt;&gt; 6001) AND (WindowsBuild &lt;&gt; 6002))))) OR VersionNT64) ) )" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNTDisplay]" DescriptionLocId="AI.LaunchCondition.NoSpecificNT" IsPredefined="true" Builds="DefaultBuild"/>
-    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNT40Display]" DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild;Build"/>
-    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]" DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild;Build"/>
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNT40Display]" DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="Build"/>
+    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]" DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="Build"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiProgIdComponent">
     <ROW ProgId="[|Manufacturer].[|ProductName]" Description="Unisens file" Icon_="unisens.exe"/>
@@ -464,7 +455,7 @@
     <ROW Extension_="xml" Component_="UnisensViewer.exe" Verb="open" Sequence="0" Command="&amp;Öffnen" Argument="&quot;%1&quot;"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
-    <ROW PrereqKey="NET_Framework_4.0_C" DisplayName=".NET Framework 4.0 Client Profile" SetupFileUrl="http://software.unisens.org/download/UnisensViewer/req/dotNetFx40_Client_setup.exe" Location="1" ExactSize="887896" WinNTVersions="Windows 2000, Windows 2000 Service Pack 1, Windows 2000 Service Pack 2, Windows 2000 Service Pack 3, Windows 2000 Service Pack 4, Windows XP x86, Windows XP x86 Service Pack 1, Windows XP x86 Service Pack 2" Operator="1" MD5="61446fdd76788229d3ebaeabe84df38c" Builds="DefaultBuild" Type="1" Feature="NET_Framework_4.0_Client_Profile"/>
+    <ROW PrereqKey="NET_Framework_4.0_C" DisplayName=".NET Framework 4.0 Client Profile" SetupFileUrl="http://software.unisens.org/download/UnisensViewer/req/dotNetFx40_Client_setup.exe" Location="1" ExactSize="887896" WinNTVersions="Windows 2000, Windows 2000 Service Pack 1, Windows 2000 Service Pack 2, Windows 2000 Service Pack 3, Windows 2000 Service Pack 4, Windows XP x86, Windows XP x86 Service Pack 1, Windows XP x86 Service Pack 2" Operator="1" MD5="61446fdd76788229d3ebaeabe84df38c" Type="1" Feature="NET_Framework_4.0_Client_Profile"/>
     <ROW PrereqKey="NET_Framework_4.0_C_1" DisplayName=".NET Framework 4.0 Client Profile_Full" SetupFileUrl="req\dotNetFx40_Client_x86_x64.exe" Location="0" ExactSize="0" WinNTVersions="Windows 2000, Windows 2000 Service Pack 1, Windows 2000 Service Pack 2, Windows 2000 Service Pack 3, Windows 2000 Service Pack 4, Windows XP x86, Windows XP x86 Service Pack 1, Windows XP x86 Service Pack 2" Operator="1" TargetName="dotNetFx40_Client_x86_x64.exe" Builds="Build" Type="1" Feature="NET_Framework_4.0_Client_Profile_1"/>
     <ATTRIBUTE name="PrereqsOrder" value="NET_Framework_4.0_C NET_Framework_4.0_C_1"/>
   </COMPONENT>
