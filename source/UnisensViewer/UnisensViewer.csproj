@@ -120,22 +120,30 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="CrashRptNET">
       <HintPath>..\..\library\CrashRptNET.dll</HintPath>
     </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\..\library\NLog.dll</HintPath>
+    <Reference Include="Microsoft.Windows.Shell">
+      <HintPath>..\..\..\..\Multilingual App Toolkit\Microsoft.Windows.Shell.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.3.7\lib\net40\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="ReachFramework" />
     <Reference Include="RibbonControlsLibrary, Version=4.0.0.11019, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\library\RibbonControlsLibrary.dll</HintPath>
+      <HintPath>..\packages\RibbonControlsLibrary.4.0.0\lib\net40\RibbonControlsLibrary.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Printing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq">
@@ -149,6 +157,7 @@
     <Reference Include="UIAutomationProvider">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -160,19 +169,19 @@
     </Reference>
     <Reference Include="WPFLocalizeExtension, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\library\WPFLocalizeExtension.dll</HintPath>
+      <HintPath>Z:\Downloads\U2UConsult.WPF.Localization.Sample\U2UConsult.WPF.Localization.Sample\U2UConsult.WPF.Localization.Sample\bin\Release\WPFLocalizeExtension.dll</HintPath>
     </Reference>
   </ItemGroup>
-    <ItemGroup Condition=" '$(Platform)' == 'x86' ">
-	<Reference Include="Unisens">
-		<HintPath>..\..\plugins\lib\x86\Unisens.dll</HintPath>
-	</Reference>
-</ItemGroup>
+  <ItemGroup Condition=" '$(Platform)' == 'x86' ">
+    <Reference Include="Unisens">
+      <HintPath>..\..\plugins\lib\x86\Unisens.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <ItemGroup Condition=" '$(Platform)' == 'x64' ">
-	<Reference Include="Unisens">
-		<HintPath>..\..\plugins\lib\x64\Unisens.dll</HintPath>
-	</Reference>
-</ItemGroup>
+    <Reference Include="Unisens">
+      <HintPath>..\..\plugins\lib\x64\Unisens.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -187,9 +196,11 @@
     <Compile Include="DataStructs\ExecPluginCommandParameter.cs" />
     <Compile Include="DataStructs\HotkeyHashkey.cs" />
     <Compile Include="DataStructs\HoverStackEventArgs.cs" />
+    <Compile Include="DataStructs\SerializableDictionary.cs" />
     <Compile Include="DialogSettings.xaml.cs">
       <DependentUpon>DialogSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DialogVideo.xaml.cs" />
     <Compile Include="EditFunctions\Artifacts.cs" />
     <Compile Include="EditFunctions\Crop.cs" />
     <Compile Include="EditFunctions\DialogMarkerList.xaml.cs">
@@ -198,11 +209,21 @@
     <Compile Include="EditFunctions\DialogsArtifacts.xaml.cs">
       <DependentUpon>DialogsArtifacts.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditFunctions\DialogsArtifactsNew.xaml.cs">
+      <DependentUpon>DialogsArtifactsNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditFunctions\DialogsMarkerNew.xaml.cs">
+      <DependentUpon>DialogsMarkerNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditFunctions\DialogsViewNew.xaml.cs">
+      <DependentUpon>DialogsViewNew.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditFunctions\Marker.cs" />
     <Compile Include="EditFunctions\MarkerList.cs" />
     <Compile Include="Export.cs" />
     <Compile Include="Folders.cs" />
     <Compile Include="Helpers\AutoZoomGroupEqualityComparer.cs" />
+    <Compile Include="Helpers\CollectionExtensions.cs" />
     <Compile Include="Helpers\WaitCursor.cs" />
     <Compile Include="IValueConverters\ExpertmodeToVisibility.cs" />
     <Compile Include="Helpers\FileNameEqualityComparer.cs" />
@@ -218,6 +239,8 @@
     <Compile Include="IValueConverters\UnisensViewerTitleFormatter.cs" />
     <Compile Include="Helpers\UnisensXmlDataTemplateSelector.cs" />
     <Compile Include="DataStructs\ZoomInfo.cs" />
+    <Compile Include="ObservableCollection.cs" />
+    <Compile Include="SessionSettings.cs" />
     <Compile Include="Translations\Translations.de.Designer.cs">
       <DependentUpon>Translations.de.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -228,6 +251,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Translations.resx</DependentUpon>
     </Compile>
+    <Compile Include="XmlSerializerFormat.cs" />
     <EmbeddedResource Include="Translations\Translations.de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Translations.de.Designer.cs</LastGenOutput>
@@ -253,11 +277,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DialogVideo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="EditFunctions\DialogMarkerList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="EditFunctions\DialogsArtifacts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditFunctions\DialogsArtifactsNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditFunctions\DialogsMarkerNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditFunctions\DialogsViewNew.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -395,6 +435,7 @@
     <Content Include="Documentation\UnisensViewerHelp_EN.xps">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -475,6 +516,10 @@
     <Resource Include="Images\SmallIcon_markerlist.png" />
     <Resource Include="Images\LargeIcon_playback_pause.png" />
     <Resource Include="Images\LargeIcon_playback_play.png" />
+    <Resource Include="Images\LargeIcon_playback_next.png" />
+    <Resource Include="Images\LargeIcon_playback_prev.png" />
+    <Resource Include="Images\LargeIcon_playback_video.png" />
+    <Resource Include="Images\LargeIcon_Interval.png" />
     <Content Include="unisens.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -498,7 +543,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 und x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -563,6 +608,9 @@
       <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

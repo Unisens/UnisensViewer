@@ -117,6 +117,8 @@ namespace UnisensViewer
                 this.Xdocument.Changed += new EventHandler<XObjectChangeEventArgs>(this.XDocument_Changed);
                 this.Validate();
 
+                
+
                 raiseFileLoaded(true);
 			}
 			catch (Exception)
@@ -186,6 +188,8 @@ namespace UnisensViewer
 
 		public void Close()
 		{
+
+
 			this.Xdocument = null;
 			this.XmlFilePath = null;
 

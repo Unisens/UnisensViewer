@@ -8,83 +8,83 @@ using System.Windows.Media;
 
 namespace UnisensViewer
 {
-	public class EventValueRenderer : Renderer
-	{
-		public readonly float Baseline;
-		public readonly float Lsbvalue;
-		public readonly string Unit;
+    public class EventValueRenderer : Renderer
+    {
+        public readonly float Baseline;
+        public readonly float Lsbvalue;
+        public readonly string Unit;
 
-		//private const int DEFAULT_IMAGEWIDTH = 128;
+        //private const int DEFAULT_IMAGEWIDTH = 128;
 
-		private EventValueData eventdata;
-		private double samplespersec;
-		public int imageheight;
+        private EventValueData eventdata;
+        private double samplespersec;
+        public int imageheight;
         public int imagewidth;
 
-		public Int32Rect dirtyrect;
+        public Int32Rect dirtyrect;
 
-		private int channels;
+        private int channels;
 
-		private SampleD[] sampledata;
+        private SampleD[] sampledata;
         // for VectorRenderSlices
         private Hashtable geometries;
         private Typeface typeface;
 
         public EventValueRenderer(XElement valueentry, double guisignaldisplaywidth, int imagewidth)
-			: base(valueentry)
-		{
-			this.Baseline = (float)ValueEntry.GetBaseline(valueentry);
-			this.Lsbvalue = (float)ValueEntry.GetLsbValue(valueentry);
-			this.Unit = ValueEntry.GetUnit(valueentry);
+            : base(valueentry)
+        {
+            this.Baseline = (float)ValueEntry.GetBaseline(valueentry);
+            this.Lsbvalue = (float)ValueEntry.GetLsbValue(valueentry);
+            this.Unit = ValueEntry.GetUnit(valueentry);
 
-			this.samplespersec = ValueEntry.GetSampleRate(valueentry);
-			this.channels = ValueEntry.GetNumChannels(valueentry);
+            this.samplespersec = ValueEntry.GetSampleRate(valueentry);
+            this.channels = ValueEntry.GetNumChannels(valueentry);
 
-			this.imageheight = (int)guisignaldisplaywidth;
+            this.imageheight = (int)guisignaldisplaywidth;
             this.imagewidth = imagewidth;
             this.dirtyrect = new Int32Rect(0, 0, this.imagewidth, this.imageheight);
 
-			this.sampledata = new SampleD[this.channels];
+            this.sampledata = new SampleD[this.channels];
 
-			this.ReOpen();
+            this.ReOpen();
 
             // for VectorRenderSlices
             this.geometries = new Hashtable();
             this.typeface = new Typeface(SystemFonts.MessageFontFamily, SystemFonts.MessageFontStyle, SystemFonts.MessageFontWeight, FontStretches.Normal);
-		}
+        }
 
-		public override int Channels
-		{
-			get { return this.channels; }
-		}
+        public override int Channels
+        {
+            get { return this.channels; }
+        }
 
-		public override double TimeMax
-		{
-			get
-			{
-				if (this.eventdata.timestamps.Length > 0)
-				{
-					return (double)this.eventdata.timestamps[this.eventdata.timestamps.Length - 1] / this.samplespersec;
-				}
-				else
-				{
-					return 0.0;
-				}
-			}
-		}
+        public override double TimeMax
+        {
+            get
+            {
+                if (this.eventdata.timestamps.Length > 0)
+                {
+                    return (double)this.eventdata.timestamps[this.eventdata.timestamps.Length - 1] / this.samplespersec;
+                }
+                else
+                {
+                    return 0.0;
+                }
+            }
+        }
 
-		public override void ReOpen()
-		{
-			this.eventdata = new EventValueData(SevEntry);
-		}
+        public override void ReOpen()
+        {
+            this.eventdata = new EventValueData(SevEntry);
+        }
 
-		public override void Close()
-		{
-			this.eventdata = null;
-		}
+        public override void Close()
+        {
+            this.eventdata = null;
+        }
 
-		public override RenderSlice CreateRenderSlice(int channelnum)
-		{
+        public override RenderSlice CreateRenderSlice(int channelnum)
+        {
             return new RasterRenderSlice(this, channelnum, ValueEntry.GetChannelName(SevEntry, channelnum), this.imagewidth, this.imageheight, ValueEntry.GetUnit(SevEntry), ValueEntry.GetChannel(SevEntry, channelnum));
         }
 
@@ -148,16 +148,16 @@ namespace UnisensViewer
         }
 
         public void RenderSampleAndHold(int pixelheight, double samplesperpixel, double s, double peakend, int channelNum, int numOfChannels)
-		{
-			// erster event im sichtbaren bereich
-			int i = this.eventdata.Search((uint)Math.Ceiling(s));		
-			int		o = i * this.channels;
+        {
+            // erster event im sichtbaren bereich
+            int i = this.eventdata.Search((uint)Math.Ceiling(s));
+            int o = i * this.channels;
 
-			int		l = this.eventdata.timestamps.Length;
-			int a = 0;
+            int l = this.eventdata.timestamps.Length;
+            int a = 0;
 
-			if (i != -1)	
-			{
+            if (i != -1)
+            {
                 // "letzter wert" für unten (**) initialisieren
                 if (i >= 1)
                 {
@@ -169,7 +169,7 @@ namespace UnisensViewer
                         this.sampledata[c].max = (this.eventdata.values[oprevious + c] - this.Baseline) * this.Lsbvalue;
                         this.sampledata[c].value = (this.eventdata.values[oprevious + c] - this.Baseline) * this.Lsbvalue;
 
-                       //++oprevious;
+                        //++oprevious;
                     }
                 }
                 else
@@ -230,9 +230,9 @@ namespace UnisensViewer
                         peakend += samplesperpixel;
                         ++a;
                     }
-                }              
-			}			
-		}
+                }
+            }
+        }
 
         public void RenderPoint(int pixelheight, double samplesperpixel, double s, double peakend, int channelNum, int numOfChannels)
         {
@@ -257,7 +257,7 @@ namespace UnisensViewer
                         this.sampledata[c].max = (this.eventdata.values[oprevious + c] - this.Baseline) * this.Lsbvalue;
                         this.sampledata[c].value = (this.eventdata.values[oprevious + c] - this.Baseline) * this.Lsbvalue;
 
-                       //++oprevious;
+                        //++oprevious;
                     }
                 }
                 else
@@ -314,30 +314,30 @@ namespace UnisensViewer
             }
         }
 
-		public override void UpdateZoomInfo(double time, double timestretch)
-		{
-			double s = time * this.samplespersec;		// (kontinuierliche) nummer des samples
-			int i = this.eventdata.Search((uint)Math.Ceiling(s));		// erster event im sichtbaren bereich
+        public override void UpdateZoomInfo(double time, double timestretch)
+        {
+            double s = time * this.samplespersec;		// (kontinuierliche) nummer des samples
+            int i = this.eventdata.Search((uint)Math.Ceiling(s));		// erster event im sichtbaren bereich
 
-			if (i != -1)
-			{
-				if (i >= 1)
-				{
-					--i;
-				}
+            if (i != -1)
+            {
+                if (i >= 1)
+                {
+                    --i;
+                }
 
-				this.PeakSamples(i, (int)Math.Ceiling((time + timestretch) * this.samplespersec));
+                this.PeakSamples(i, (int)Math.Ceiling((time + timestretch) * this.samplespersec));
 
-				for (int a = 0; a < this.channels; ++a)
-				{
-					if (RenderSlices[a] != null)
-					{
-						RenderSlices[a].Zoominfo.PhysicalMin = (this.sampledata[a].min - this.Baseline) * this.Lsbvalue;
-						RenderSlices[a].Zoominfo.PhysicalMax = (this.sampledata[a].max - this.Baseline) * this.Lsbvalue;
-					}
-				}
-			}
-		}
+                for (int a = 0; a < this.channels; ++a)
+                {
+                    if (RenderSlices[a] != null)
+                    {
+                        RenderSlices[a].Zoominfo.PhysicalMin = (this.sampledata[a].min - this.Baseline) * this.Lsbvalue;
+                        RenderSlices[a].Zoominfo.PhysicalMax = (this.sampledata[a].max - this.Baseline) * this.Lsbvalue;
+                    }
+                }
+            }
+        }
 
         public void RenderLinear(int pixelheight, double samplesperpixel, double s, double peakend, int channelNum, int numOfChannels)
         {
@@ -402,13 +402,13 @@ namespace UnisensViewer
                         if (RenderSlices[c] != null)
                         {
                             ((RasterRenderSlice)RenderSlices[c]).PlotLinear(lastPixelNumber, lastValue, nValues, 0, myEllipseGeometry, c);
-                        }                      
+                        }
                     }
                     nValues++;
                 }
 
                 while (iTimestamps < nTimestamps && x < this.imageheight)
-                {                  
+                {
                     // erstmal bis zum event vorspulen und pixelspalten mit letztem wert malen (PLOT) (**)
                     while ((int)peakend < this.eventdata.timestamps[iTimestamps] && x < this.imageheight)
                     {
@@ -430,12 +430,12 @@ namespace UnisensViewer
                             {
                                 ((RasterRenderSlice)RenderSlices[c]).PlotLinear(x, this.sampledata[c].value, nValues, iTimestamps, myEllipseGeometry, c);
                             }
-                            
+
                         }
                         nValues++;
                         peakend += samplesperpixel;
                         ++x;
-                    }                 
+                    }
                 }
                 // next event out of the display
                 if (x == this.imageheight)
@@ -457,7 +457,7 @@ namespace UnisensViewer
                             if (RenderSlices[c] != null)
                             {
                                 ((RasterRenderSlice)RenderSlices[c]).PlotLinear(nextPixelNumber, nextValue, nValues, iTimestamps + 1, myEllipseGeometry, c);
-                            }                          
+                            }
                         }
                         nValues++;
                     }
@@ -465,73 +465,73 @@ namespace UnisensViewer
             }
         }
 
-		public override SampleInfo GetSampleInfo(int channel, double time, double time_end)
-		{
-			double s = time * this.samplespersec;		// (kontinuierliche) nummer des samples
-			int i = this.eventdata.Search((uint)Math.Floor(s));
-			int s_end = (int)Math.Floor(time_end * this.samplespersec);
+        public override SampleInfo GetSampleInfo(int channel, double time, double time_end)
+        {
+            double s = time * this.samplespersec;		// (kontinuierliche) nummer des samples
+            int i = this.eventdata.Search((uint)Math.Floor(s));
+            int s_end = (int)Math.Floor(time_end * this.samplespersec);
 
-			if (i != -1)
-			{
-				this.PeakSamples(i, s_end);
+            if (i != -1)
+            {
+                this.PeakSamples(i, s_end);
 
-				if (this.sampledata[channel].min == float.MaxValue || this.sampledata[channel].max == float.MinValue)
-				{
-					if (i > 0)
-					{
-						this.sampledata[channel].min = this.eventdata.values[((i - 1) * this.channels) + channel];
-						this.sampledata[channel].max = this.sampledata[channel].min;
-					}
-					else
-					{
-						this.sampledata[channel].min = 0.0f;
-						this.sampledata[channel].max = 0.0f;
-					}
-				}
+                if (this.sampledata[channel].min == float.MaxValue || this.sampledata[channel].max == float.MinValue)
+                {
+                    if (i > 0)
+                    {
+                        this.sampledata[channel].min = this.eventdata.values[((i - 1) * this.channels) + channel];
+                        this.sampledata[channel].max = this.sampledata[channel].min;
+                    }
+                    else
+                    {
+                        this.sampledata[channel].min = 0.0f;
+                        this.sampledata[channel].max = 0.0f;
+                    }
+                }
 
-				return new SampleInfoEventValue(this, this.sampledata[channel].min, this.sampledata[channel].max, time, time_end, (int)s, s_end);
-			}
+                return new SampleInfoEventValue(this, this.sampledata[channel].min, this.sampledata[channel].max, time, time_end, (int)s, s_end);
+            }
 
-			return null;
-		}
+            return null;
+        }
 
-		private int PeakSamples(int i, int timestamp_end)
-		{
-			int nTimestamps = this.eventdata.timestamps.Length;
-			int o = i * this.channels;
-			float ev;
+        private int PeakSamples(int i, int timestamp_end)
+        {
+            int nTimestamps = this.eventdata.timestamps.Length;
+            int o = i * this.channels;
+            float ev;
 
-			for (int c = 0; c < this.channels; ++c)
-			{
-				this.sampledata[c].min = float.MaxValue;
-				this.sampledata[c].max = float.MinValue;
-			}
+            for (int c = 0; c < this.channels; ++c)
+            {
+                this.sampledata[c].min = float.MaxValue;
+                this.sampledata[c].max = float.MinValue;
+            }
 
-			while (i < nTimestamps && this.eventdata.timestamps[i] <= timestamp_end || i == 0)
-			{
-				for (int c = 0; c < this.channels; ++c)
-				{
-					ev = this.eventdata.values[o];
-					this.sampledata[c].value = ev;
+            while (i < nTimestamps && this.eventdata.timestamps[i] <= timestamp_end || i == 0)
+            {
+                for (int c = 0; c < this.channels; ++c)
+                {
+                    ev = this.eventdata.values[o];
+                    this.sampledata[c].value = ev;
 
-					if (ev < this.sampledata[c].min)
-					{
-						this.sampledata[c].min = ev;
-					}
+                    if (ev < this.sampledata[c].min)
+                    {
+                        this.sampledata[c].min = ev;
+                    }
 
-					if (ev > this.sampledata[c].max)
-					{
-						this.sampledata[c].max = ev;
-					}
+                    if (ev > this.sampledata[c].max)
+                    {
+                        this.sampledata[c].max = ev;
+                    }
 
-					++o;
-				}
+                    ++o;
+                }
 
-				++i;
-			}
+                ++i;
+            }
 
-			return i;
-		}
+            return i;
+        }
 
         private EllipseGeometry GetCircle()
         {
@@ -542,8 +542,8 @@ namespace UnisensViewer
             return myEllipseGeometry;
         }
 
-		#region old code
-		/*
+        #region old code
+        /*
 	public override void ZoomInto(double time, double timestretch)
 	{
 		double s = time * samplespersec;		// (kontinuierliche) nummer des samples
@@ -563,7 +563,7 @@ namespace UnisensViewer
 		Render(time, timestretch);
 	}
 	*/
-		#endregion
-	
+        #endregion
+
     }
 }

@@ -24,6 +24,7 @@ using Microsoft.Win32;
 using WPFLocalizeExtension.Extensions;
 using System.Windows.Threading;
 using System.Windows.Media.Imaging;
+using System.Linq;
 
 namespace UnisensViewer
 {
@@ -95,6 +96,8 @@ namespace UnisensViewer
 
             this.InitPlugins();
             Gridsplitter.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(this.Gridsplitter_MouseLeftButtonUp);
+
+            
         }
 
 
@@ -523,15 +526,24 @@ namespace UnisensViewer
         double startTime = 0;
         private void MenuItem_Click_Playback(object sender, RoutedEventArgs e)
         {
+            //SessionSettings.Instance.Update();
+            //SessionSettings.Instance.WriteObject();
+
             if (sw != null && sw.IsRunning)
             {
                 sw.Stop();
                 timer.Stop();
                 ButtonPlayback.LargeImageSource = new BitmapImage(new Uri(@"Images\LargeIcon_playback_play.png", UriKind.Relative));
                 ButtonPlayback.Label = "Play";
+
+                /*if(dlgvideo.IsVisible)
+                    dlgvideo.Pause();*/
             }
             else
             {
+                /*if (dlgvideo.IsVisible)
+                    dlgvideo.Play();*/
+
                 sw = new Stopwatch();
                 sw.Start();
 
@@ -548,8 +560,12 @@ namespace UnisensViewer
 
         void timer_Tick(object sender, EventArgs e)
         {
-            RendererManager.Scroll(startTime + (double)sw.ElapsedMilliseconds / 1000);       
+            RendererManager.Scroll(startTime + (double)sw.ElapsedMilliseconds / 1000);
+
+            /*if (dlgvideo.IsVisible)
+                dlgvideo.Seek((int)(1000 * startTime) + (int) sw.ElapsedMilliseconds);*/
         }
+
 
 		private void MenuItem_Click_AnalyzeData(object sender, RoutedEventArgs e)
 		{
@@ -735,6 +751,7 @@ namespace UnisensViewer
             }
         }
 
+
 		private void CurrentUnisensInstance_FileLoaded(object sender, bool successfull)
 		{
             using (new WaitCursor())
@@ -744,6 +761,9 @@ namespace UnisensViewer
                     logger.Debug("New unisens-file could not been opened sucessfully!");
                 }else{
                     logger.Debug("New unisens-file has been opened, displaying signals...");
+
+                    if (unisensFileManager.XmlFilePath != null)
+                        signalviewercontrol.Views = new ObservableCollection<SessionView>(Directory.GetFiles(@".", "*.view").Select(path => new SessionView(path)));
 
                     // Displays all Signals
                     signalviewercontrol.CloseAllSignals();
@@ -841,7 +861,63 @@ namespace UnisensViewer
                 signalviewercontrol.axiscontrol_time.AbsolutTime_Check();
             }
         }
-   
+
+        private DialogVideo dialogVideo;
+
+        private void MenuItem_Video_SelectFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            string formats = "All Videos Files |*.dat; *.wmv; *.3g2; *.3gp; *.3gp2; *.3gpp; *.amv; *.asf;  *.avi; *.bin; *.cue; *.divx; *.dv; *.flv; *.gxf; *.iso; *.m1v; *.m2v; *.m2t; *.m2ts; *.m4v; " +
+                      " *.mkv; *.mov; *.mp2; *.mp2v; *.mp4; *.mp4v; *.mpa; *.mpe; *.mpeg; *.mpeg1; *.mpeg2; *.mpeg4; *.mpg; *.mpv2; *.mts; *.nsv; *.nuv; *.ogg; *.ogm; *.ogv; *.ogx; *.ps; *.rec; *.rm; *.rmvb; *.tod; *.ts; *.tts; *.vob; *.vro; *.webm";
+
+            openFileDialog.Filter = formats;
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                SelectFile_Button24.IsEnabled = false;
+
+                dialogVideo = new DialogVideo();
+                dialogVideo.DataContext = signalviewercontrol;
+                dialogVideo.SetVideoFile(new Uri(openFileDialog.FileName));
+                dialogVideo.Owner = this;
+                dialogVideo.Show();
+                /*dialogVideo.Play();
+                dialogVideo.Pause();*/
+
+                dialogVideo.timeSlider.Value = RendererManager.Time / RendererManager.TimeMax;
+
+                RendererManager.TimeChanged += RendererManager_TimeChanged;
+                dialogVideo.Closed += dlgvideo_Closed;
+            }
+        }
+
+        private void dlgvideo_Closed(object sender, EventArgs e)
+        {
+            SelectFile_Button24.IsEnabled = true;
+
+            RendererManager.TimeChanged -= RendererManager_TimeChanged;
+        }
+
+        StatusTimeConverter _statusTimeConverter = new StatusTimeConverter();
+
+        private void RendererManager_TimeChanged(object sender, EventArgs e)
+        {
+            if (dialogVideo.IsVisible)
+            {
+                double offset = 0;
+                double.TryParse(videoOffset.Text, out offset);
+                double seekTo = RendererManager.Time * 1000;
+
+                var span = dialogVideo.mePlayer.NaturalDuration;
+                int position = (int)(offset * 1000 + seekTo);
+
+                dialogVideo.Seek(span.HasTimeSpan && position <= span.TimeSpan.Milliseconds ? span.TimeSpan.Milliseconds : position);
+                dialogVideo.timeSlider.Value = RendererManager.Time / RendererManager.TimeMax;
+
+                dialogVideo.timeLabel.Content = _statusTimeConverter.Convert(RendererManager.Time, null, null, null);
+            }
+        }
+
 
 		#region File Commands
 		private void Executed_New(object sender, ExecutedRoutedEventArgs e)
@@ -880,6 +956,8 @@ namespace UnisensViewer
 
 			CurrentFileName = null;
 			unisensFileManager.Close();
+
+            signalviewercontrol.Views.Clear();
 		}
 
 		private void CanExecute_CloseFile(object sender, CanExecuteRoutedEventArgs e)
@@ -1035,11 +1113,19 @@ namespace UnisensViewer
 
 		private void Execute_setMarker(object sender, ExecutedRoutedEventArgs e)
 		{
+
+            double timeCursor;
+            ObservableCollection<RenderSlice> selectedRsList;
+            string markerSymbol = "M";
+
+            DialogsMarkerNew inputDialog = new DialogsMarkerNew();
+            if (inputDialog.ShowDialog() == true)
+            {
+                markerSymbol = inputDialog.MarkerName;
+            }
+
             using (new WaitCursor())
             {
-                double timeCursor;
-                ObservableCollection<RenderSlice> selectedRsList;
-                string markerSymbol = "M";
                 if (e.Parameter != null && e.Parameter.Equals("ContextMenu"))
                 {
                     // Informationen vom Contextmenu
@@ -1197,11 +1283,20 @@ namespace UnisensViewer
 
         private void Execute_setArtifacts(object sender, ExecutedRoutedEventArgs e)
         {
+            string artifactSymbol_Start = "(artifact";
+            string artifactSymbol_End = "artifact)";
+
+            DialogsArtifactsNew inputDialog = new DialogsArtifactsNew();
+            if (inputDialog.ShowDialog() == true)
+            {
+                artifactSymbol_Start = "(" + inputDialog.ArtifactsName;
+                artifactSymbol_End = inputDialog.ArtifactsName + ")";
+            }
+
             using (new WaitCursor())
             {
                 //ObservableCollection<RenderSlice> selectedRsList;
-                string artifactSymbol_Start = "(artifact";
-                string artifactSymbol_End = "artifact)";
+                //
 
                 IEnumerable<XElement> retsigs = Artifacts.setArtifact(signalviewercontrol.SelectionStart, signalviewercontrol.SelectionEnd, artifactSymbol_Start, artifactSymbol_End);
 
@@ -1281,7 +1376,7 @@ namespace UnisensViewer
                                 - SystemParameters.VerticalScrollBarWidth
                                 - 5.0
                                 - y;
-            RendererManager.Drag(signalviewercontrol.stackercontrol ,maxbreite);
+            RendererManager.Drag(signalviewercontrol.stackercontrol , maxbreite);
         }
 
 	}

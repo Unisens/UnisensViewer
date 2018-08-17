@@ -48,56 +48,33 @@ namespace UnisensViewer
 
 		private ModifierKeys ParseModifiers(XElement binding)
 		{
-			try
-			{
-				return (ModifierKeys)System.Enum.Parse(typeof(ModifierKeys), binding.Attribute("Modifiers").Value, true);
-			}
-			catch
-			{
-				return 0;
-			}
+            return binding.Attribute("Modifiers") != null ? (ModifierKeys)System.Enum.Parse(typeof(ModifierKeys), binding.Attribute("Modifiers").Value, true) : 0;
 		}
 
 		private Key ParseKey(XElement binding)
 		{
-			try
-			{
-				return (Key)System.Enum.Parse(typeof(Key), binding.Attribute("Key").Value, true);
-			}
-			catch
-			{
-				return 0;
-			}
+            var keyAttribute = binding.Attribute("Key");
+
+            return keyAttribute != null ? (Key)System.Enum.Parse(typeof(Key), keyAttribute.Value, true) : 0;
 		}
 
 		private PluginHotkeyBinding.SelectedSignals ParseSelectedSignals(XElement binding)
 		{
-			try
-			{
-				return (PluginHotkeyBinding.SelectedSignals)System.Enum.Parse(typeof(PluginHotkeyBinding.SelectedSignals), binding.Attribute("SelectedSignals").Value, true);
-			}
-			catch
-			{
-				return PluginHotkeyBinding.SelectedSignals.AllOpenFiles;
-			}
+            var selectedSignals = binding.Attribute("SelectedSignals");
+
+			return selectedSignals != null ? (PluginHotkeyBinding.SelectedSignals)System.Enum.Parse(typeof(PluginHotkeyBinding.SelectedSignals), selectedSignals.Value, true) : PluginHotkeyBinding.SelectedSignals.AllOpenFiles;
 		}
 
 		private IDspPlugin1 ParsePlugin(XElement binding, IEnumerable<IDspPlugin1> plugins)
 		{
-			try
-			{
-				string name = binding.Attribute("Plugin").Value;
 
-				IEnumerable<IDspPlugin1> i = from p in plugins
-											where p.Name == name
-											select p;
+			string name = binding.Attribute("Plugin").Value;
 
-				return i.First();
-			}
-			catch
-			{
-				return null;
-			}
+			IEnumerable<IDspPlugin1> i = from p in plugins
+										where p.Name == name
+										select p;
+
+			return i.Count() > 0 ? i.First() : null;
 		}
 	}
 }

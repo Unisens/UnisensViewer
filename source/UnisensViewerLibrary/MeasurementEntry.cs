@@ -171,15 +171,10 @@ namespace UnisensViewerLibrary
 
 		public static double GetBaseline(XElement measuremententry)
 		{
-			try
-			{
+
 				XAttribute baseline = measuremententry.Attribute("baseline");
-				return double.Parse(baseline.Value, CultureInfo.InvariantCulture.NumberFormat);
-			}
-			catch
-			{
-				return 0.0;
-			}
+                return baseline != null ? double.Parse(baseline.Value, CultureInfo.InvariantCulture.NumberFormat) : 0.0;
+
 		}
 
 	}

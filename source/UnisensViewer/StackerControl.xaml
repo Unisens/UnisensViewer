@@ -222,7 +222,7 @@
 		<DataTemplate x:Key="datatemplate_renderslicelist">
 			<Grid MouseEnter="Grid_MouseEnter">
 				<Grid.RowDefinitions>
-					<RowDefinition Height="128"/>
+                    <RowDefinition Height="{Binding ImageWidth, TargetNullValue=128, FallbackValue=128}"/>
 					<RowDefinition Height="5"/>
 				</Grid.RowDefinitions>
 				

@@ -4,6 +4,7 @@ using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 using UnisensViewerClrCppLibrary;
 using System.Windows;
+using System.Diagnostics;
 
 namespace UnisensViewer
 {
@@ -20,15 +21,17 @@ namespace UnisensViewer
         private double[] yTemp;
 		
 		public RasterRenderSlice(Renderer renderer, int channel, string name, int imagewidth, int imageheight, string unit, XElement unisensnode)
-			: base(renderer, channel, name, ColorRelaxed.GetNextColor(), unit, unisensnode)
+            : base(renderer, channel, name, ColorRelaxed.GetNextColor(), unit, unisensnode)
 		{
             this.ImageWidth = imagewidth;
             this.ImageHeight = imageheight;
             this.yTemp = new double[channel+1];
             this.xlastplot = 0;
 
-            this.Scale = 0.05f;
-            this.Offset = (float)(imagewidth >> 1);
+
+            Scale = 0.05f;
+            Offset = (float)(imagewidth >> 1);
+            
 
             // PixelFormats.Indexed8 wäre super, aber das wird laut Doku konvertiert bevor
             // es ins GPU-RAM geschoben wird, also kein Performancegewinn hier.
@@ -61,7 +64,28 @@ namespace UnisensViewer
 
 		public WriteableBitmap WBmp { get; set; }
 
-		public int ImageWidth { get; set; }
+        private int _imageWidth;
+
+		public override int ImageWidth 
+        {
+            get
+            {
+                //Trace.WriteLine("Get ImageWidth");
+
+                return _imageWidth;
+            }
+
+            set 
+            {
+               // if (this._imageWidth != value)
+                {
+                    this._imageWidth = value;
+
+                    OnPropertyChanged("ImageWidth");
+                    Trace.WriteLine("OnPropertyChanged(ImageWidth)" + value);
+                }
+            }
+        }
 
 		public int ImageHeight { get; set; } 
 
@@ -90,7 +114,7 @@ namespace UnisensViewer
 		// wird das signal komplett neu gerendert, muss daher xlastplot initialisiert werden.
 		public void ReInit(float zamplitude)
 		{
-			this.xlastplot = (int)((zamplitude - offset) * scale);
+            this.xlastplot = (int)((zamplitude - Offset) * Scale);
 		}
 
 		public void PlotHardEdges(int pixelrow, float amplitude)
@@ -98,7 +122,7 @@ namespace UnisensViewer
 			int x, xstart, xend;
 
 			// stetige plots
-			x = (int)((amplitude - this.offset) * this.scale);
+            x = (int)((amplitude - this.Offset) * this.Scale);
 
 			if (x <= this.xlastplot)
 			{
@@ -121,7 +145,7 @@ namespace UnisensViewer
 			int x, xstart, xend;
 			
 			// stetige plots
-			x = (int)((amplitude - this.offset) * this.scale);
+            x = (int)((amplitude - this.Offset) * this.Scale);
 
 			if (x <= this.xlastplot)
 			{
@@ -149,7 +173,7 @@ namespace UnisensViewer
             int y;
 
             // stetige plots
-            y = (int)((amplitude - this.offset) * this.scale);
+            y = (int)((amplitude - this.Offset) * this.Scale);
 
             GeometryGroup gg = new GeometryGroup();
             gg.Children.Add(myEllipseGeometry);
@@ -169,8 +193,8 @@ namespace UnisensViewer
             // The point (0,0) for the C# methods is the top left corner.
             double y;
             // stetige plots
-            //y = (double)((amplitude - this.offset + 0.00001) * this.scale);
-            y = (double)((amplitude - this.offset) * this.scale);
+            //y = (double)((amplitude - this.Offset + 0.00001) * this.Scale);
+            y = (double)((amplitude - this.Offset) * this.Scale);
 
             EllipseGeometry secondEllipseGeometry = firstEllipseGeometry.Clone();
             LineGeometry myLineGeometry = new LineGeometry();
@@ -194,8 +218,8 @@ namespace UnisensViewer
         //    // The point (0,0) for the C# methods is the top left corner.
         //    double y;
         //    // stetige plots
-        //    //y = (double)((amplitude - this.offset + 0.00001) * this.scale);
-        //    y = (double)((amplitude - this.offset) * this.scale);
+        //    //y = (double)((amplitude - this.Offset + 0.00001) * this.Scale);
+        //    y = (double)((amplitude - this.Offset) * this.Scale);
 
         //    EllipseGeometry secondEllipseGeometry = firstEllipseGeometry.Clone();
         //    LineGeometry myLineGeometry = new LineGeometry();
@@ -460,8 +484,8 @@ namespace UnisensViewer
 		{
 			int swap, xstart, xend;
 
-    		xstart = (int)((sampledata.max - offset) * scale);
-			xend = (int)((sampledata.min - offset) * scale);
+    		xstart = (int)((sampledata.max - Offset) * Scale);
+            xend = (int)((sampledata.min - Offset) * Scale);
 
 			if (xstart > xend)
 			{
@@ -481,7 +505,7 @@ namespace UnisensViewer
 				xend = this.xlastplot;
 			}
 
-			this.xlastplot = (int)((sampledata.value - this.offset) * this.scale);
+            this.xlastplot = (int)((sampledata.value - this.Offset) * this.Scale);
 
 			this.ClippingAndPixeling(xstart, xend, pixelrow);
 		}
@@ -494,8 +518,8 @@ namespace UnisensViewer
 		{
 			int swap, xstart, xend;
 
-			xstart = (int)((sampledata.max - offset) * scale);
-			xend = (int)((sampledata.min - offset) * scale);
+            xstart = (int)((sampledata.max - Offset) * Scale);
+            xend = (int)((sampledata.min - Offset) * Scale);
 
 			if (xstart > xend)
 			{
@@ -515,7 +539,7 @@ namespace UnisensViewer
 				xend = this.xlastplot;
 			}
 
-			this.xlastplot = (int)((sampledata.value - this.offset) * this.scale);
+			this.xlastplot = (int)((sampledata.value - this.Offset) * this.Scale);
 
 			// marker für die value signale
 			if (xstart == xend)
@@ -531,8 +555,8 @@ namespace UnisensViewer
 		{
 			int swap, xstart, xend;
 
-			xstart = (int)((amplitude - offset) * this.scale);
-			xend = -(int)(this.offset * this.scale);
+            xstart = (int)((amplitude - Offset) * this.Scale);
+			xend = -(int)(this.Offset * this.Scale);
 
 			if (xstart > xend)
 			{
@@ -549,7 +573,7 @@ namespace UnisensViewer
 			// falls signal umgepolt war (scale negativ), dann auch umgepolt reinzoomen
 			if (Math.Abs(max - min) > double.Epsilon)
 			{
-				if (this.scale >= 0)
+				if (this.Scale >= 0)
 				{
 					Scale = (this.ImageWidth - 1) / (max - min);
 					Offset = min;
@@ -563,7 +587,7 @@ namespace UnisensViewer
 			else
 			{
 				this.Scale = this.ImageWidth - 1;
-				this.Offset = min - ((float)(this.ImageWidth >> 1) / this.scale);
+				this.Offset = min - ((float)(this.ImageWidth >> 1) / this.Scale);
 			}
 		}
 

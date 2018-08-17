@@ -17,7 +17,7 @@ namespace UnisensViewer
 		// kann auch negativ sein, zum umpolen des signals
 		protected float scale;
 		protected float offset;
-		public ImageSource imagesource;
+		protected ImageSource imagesource;
 		public uint color;
 		
 		private readonly int channel;
@@ -26,6 +26,12 @@ namespace UnisensViewer
 		private double range;
 		private string unit;
 		private XElement unisensnode;
+
+
+        /*public int CompareTo(object obj)
+        {
+            return PosY < ((RenderSlice)obj).PosY ? -1 : 1;
+        }*/
 
 		public RenderSlice(Renderer renderer, int channel, string name, uint color, string unit, XElement unisensnode)
 		{
@@ -40,6 +46,16 @@ namespace UnisensViewer
 		public event EventHandler Kill;
 
 		public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string name)
+        {
+            if (this.PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        public abstract int ImageWidth { get; set; }
 
 		public XElement UnisensNode
 		{
@@ -59,6 +75,14 @@ namespace UnisensViewer
 		public ImageSource ImageSource
 		{
 			get { return this.imagesource; }
+            set
+            {
+                if (this.imagesource != value)
+                {
+                    this.imagesource = value;
+                    OnPropertyChanged("ImageSource"); 
+                }
+            }
 		}
 
 		public string Unit
@@ -70,20 +94,16 @@ namespace UnisensViewer
 		{
 			get
 			{
-				return this.offset;
+                return this.offset;
 			}
 
 			set
 			{
-				if (this.offset != value)
-				{
-					this.offset = value;
-
-					if (this.PropertyChanged != null)
-					{
-						this.PropertyChanged(this, new PropertyChangedEventArgs("Offset"));
-					}
-				}
+                if (this.offset != value)
+                {
+                    this.offset = value;
+                    OnPropertyChanged("Offset");
+                }
 			}
 		}
 
@@ -91,14 +111,14 @@ namespace UnisensViewer
 		{
 			get 
 			{
-				return this.scale; 
+                return this.scale; 
 			}
 
 			set
 			{
-				if (this.scale != value)
+                if (this.scale != value)
 				{
-					this.scale = value;
+                    this.scale = value;
 					this.UpdateRange(value);
 				}
 			}
@@ -108,19 +128,15 @@ namespace UnisensViewer
 		{
 			get
 			{
-				return this.range;
+                return this.range;
 			}
 
 			set
 			{
-				if (this.range != value)
+                if (this.range != value)
 				{
-					this.range = value;
-
-					if (this.PropertyChanged != null)
-					{
-						this.PropertyChanged(this, new PropertyChangedEventArgs("Range"));
-					}
+                    this.range = value;
+					OnPropertyChanged("Range");
 				}
 			}
 		}		
@@ -139,5 +155,7 @@ namespace UnisensViewer
 		}
 
 		protected abstract void UpdateRange(double scale);
-	}
+	
+
+    }
 }

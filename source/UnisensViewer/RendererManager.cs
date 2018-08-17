@@ -9,6 +9,8 @@ using UnisensViewer.Helpers;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Collections.ObjectModel;
+using UnisensViewerLibrary;
+using System.Diagnostics;
 
 namespace UnisensViewer
 {
@@ -202,6 +204,9 @@ namespace UnisensViewer
         /// <param name="imageHeight">New image height in pixels (height is the time or x axis</param>
         public static void Drag(StackerControl stackercontrol, double imageHeight)
         {
+            Trace.WriteLine("-> Drag(StackerControl stackercontrol, double imageHeight) (maxbreite)" + imageHeight);
+
+
             if (imageHeight < 20)
             {
                 imageHeight = 20;
@@ -216,21 +221,24 @@ namespace UnisensViewer
                 {                                  
                     // at adding a new RenderSlice in the rslist, 
                     // the current RenderSlice is moved forward.
-                    rs = stackercontrol.renderSliceLists[i][0];         
+                    rs = stackercontrol.renderSliceLists[i][j];         
                     int imageWidth = ((RasterRenderSlice)rs).ImageWidth;
 
-                    Renderer_Update(rs, imageWidth, imageHeight);
-                    RenderSlice_Update(rs, imageWidth, imageHeight);
+                    Trace.WriteLine("Drag: Renderer_Update(rs, imageWidth, imageHeight); " + imageWidth + " and " + MaxBreite);
+
+                    Renderer_Update(rs, imageWidth, MaxBreite);
+                    RenderSlice_Update(rs, imageWidth, MaxBreite);
 
                     // old RenderSlice replaced by new
                     Renderer r = rs.Renderer;
                     XElement channel = rs.UnisensNode;
-                    stackercontrol.MoveRenderSlice(rs, stackercontrol.renderSliceLists[i]);
+
+                    //replaced with correct RenderSlice OnPropertyChanged("ImageSource");
+                    //stackercontrol.MoveRenderSlice(rs, stackercontrol.renderSliceLists[i]);
 
                     // paint signal again
-                    RendererManager.Render(r, channel);                                
+                    RendererManager.Render(r, channel);
                 }
-                
             }          
         }
 
@@ -243,6 +251,8 @@ namespace UnisensViewer
         /// <param name="imageHeight">New image height in pixels (height is the time or x axis)</param>
         public static void Renderer_Update(RenderSlice rs, int imageWidth, double imageHeight)
         {
+            Trace.WriteLine("Renderer_Update(RenderSlice rs, int imageWidth, double imageHeight)" + imageWidth + " and " + imageHeight);
+
             switch (rs.Renderer.ToString())
             {
                 case "UnisensViewer.StreamRenderer":
@@ -276,6 +286,8 @@ namespace UnisensViewer
         /// <param name="imageHeight">New image height in pixels (height is the time or x axis)</param>
         public unsafe static void RenderSlice_Update(RenderSlice rs, int imageWidth, double imageHeight)
         {
+            Trace.WriteLine("RenderSlice_Update(RenderSlice rs, int imageWidth, double imageHeight)" + imageWidth + " and " + imageHeight);
+
             DrawingGroup drawinggroup = new DrawingGroup();
             ((RasterRenderSlice)rs).ImageHeight = (int)imageHeight;
             ((RasterRenderSlice)rs).ImageWidth = imageWidth;
@@ -305,7 +317,8 @@ namespace UnisensViewer
                     break;
             }
             drawinggroup.ClipGeometry = new RectangleGeometry(rect);
-            ((RasterRenderSlice)rs).imagesource = new DrawingImage(drawinggroup);
+            //((RasterRenderSlice)rs).imagesource = new DrawingImage(drawinggroup);
+            rs.ImageSource = new DrawingImage(drawinggroup);
         }
 
         public static void SetInterpolation(bool usesinc)
@@ -571,13 +584,13 @@ namespace UnisensViewer
                 switch (sev_entry.Name.LocalName)
                 {
                     case "signalEntry":
-                        r = new StreamRenderer(sev_entry, maxbreite, imagewidth);
+                        r = new StreamRenderer(sev_entry, (int)maxbreite, imagewidth);
                         break;
                     case "eventEntry":
-                        r = new EventStringRenderer(sev_entry, maxbreite, imagewidth);
+                        r = new EventStringRenderer(sev_entry, (int)maxbreite, imagewidth);
                         break;
                     case "valuesEntry":
-                        r = new EventValueRenderer(sev_entry, maxbreite, imagewidth);
+                        r = new EventValueRenderer(sev_entry, (int)maxbreite, imagewidth);
                         break;
                     default:
                         return null;

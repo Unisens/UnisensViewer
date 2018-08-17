@@ -134,6 +134,10 @@ namespace UnisensViewer
 
 			foreach (XElement xe in selectedsignals)
 			{
+                //signalviewercontrol.
+                
+                
+
 				switch (xe.Name.LocalName)
 				{
 					case "signalEntry":

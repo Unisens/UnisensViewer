@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -35,6 +36,19 @@ namespace UnisensViewerLibrary
         public static DateTime getTimestampNow(XDocument unisensxml, double seconds)
         {
             string timestampStart = getTimestampStart(unisensxml);
+            
+            /*string[] formats = { "yyyy-MM-ddTHH:mm:ss.fff", "yyyy-MM-ddTHH:mm:ss.fff", "yyyy-MM-ddTHH:mm:ss.fff" };
+
+            DateTime TimeStampStart = DateTime.MinValue;
+
+            //Trace.WriteLine("TS: " + timestampStart);
+
+            DateTime.TryParseExact(timestampStart, formats, System.Globalization.CultureInfo.InvariantCulture, DateTimeStyles.None, out TimeStampStart);
+
+            DateTime dt = TimeStampStart.AddSeconds(seconds);
+            return dt;*/
+            
+            
             DateTime TimeStampStart = Convert.ToDateTime(timestampStart);
             DateTime dt = TimeStampStart.AddSeconds(seconds);
             return dt;
@@ -64,6 +78,6 @@ namespace UnisensViewerLibrary
             }
             return Element;
         }
-   
+
     }
 }

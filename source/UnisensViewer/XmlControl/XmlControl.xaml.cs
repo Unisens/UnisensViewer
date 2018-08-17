@@ -18,7 +18,7 @@ namespace UnisensViewer
 		
 		private List<object>				validationmessages;
 		private string 						xsdfilepath;
-		
+
 		public XmlControl()
 		{
 			fileManager = UnisensXmlFileManager.CurrentUnisensInstance;
