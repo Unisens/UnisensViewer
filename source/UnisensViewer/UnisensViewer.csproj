@@ -125,7 +125,7 @@
       <HintPath>..\..\library\CrashRptNET.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Windows.Shell">
-      <HintPath>..\..\..\..\Multilingual App Toolkit\Microsoft.Windows.Shell.dll</HintPath>
+      <HintPath>..\..\library\Microsoft.Windows.Shell.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.3.7\lib\net40\NLog.dll</HintPath>
@@ -169,7 +169,7 @@
     </Reference>
     <Reference Include="WPFLocalizeExtension, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Z:\Downloads\U2UConsult.WPF.Localization.Sample\U2UConsult.WPF.Localization.Sample\U2UConsult.WPF.Localization.Sample\bin\Release\WPFLocalizeExtension.dll</HintPath>
+      <HintPath>..\..\library\WPFLocalizeExtension.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(Platform)' == 'x86' ">
