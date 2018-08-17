@@ -610,17 +610,9 @@
                          Header="{lex:LocText UnisensViewer:Translations:Information}">
                         <ribbon:RibbonButton x:Name="Button22" x:Uid="RibbonTab_Help_Information_Help" SmallImageSource="Images\SmallIcon_information_help.png"
                              Label="{lex:LocText UnisensViewer:Translations:Hilfe1}" Click="RibbonButton_Click_Help" />
-                        <ribbon:RibbonSplitButton x:Name="GroupHomepage" x:Uid="RibbonTab_Help_Information_Homepage_Unisens"
-                             SmallImageSource="Images\SmallIcon_information_web.png" Label="{lex:LocText UnisensViewer:Translations:Homepage1}" Click="RibbonButton_Click_Homepage">
-                            <ribbon:RibbonGallery>
-                                <ribbon:RibbonMenuItem x:Name="Button23" x:Uid="RibbonTab_Help_Information_Hompage_Unisens"
-                                 ImageSource="Images\SmallIcon_information_web.png" Header="{lex:LocText UnisensViewer:Translations:Homepage}"
+                        <ribbon:RibbonButton x:Name="Button23" x:Uid="RibbonTab_Help_Information_Hompage_Unisens"
+                                 SmallImageSource="Images\SmallIcon_information_web.png" Label="{lex:LocText UnisensViewer:Translations:Homepage}"
                                  Click="RibbonButton_Click_Homepage" />
-                                <ribbon:RibbonMenuItem x:Name="Button231" x:Uid="RibbonTab_Help_Information_Homepage"
-                                 ImageSource="Images\SmallIcon_unisens.png" Header="{lex:LocText UnisensViewer:Translations:Unisens}"
-                                 Click="RibbonButton_Click_Unisens" />
-                            </ribbon:RibbonGallery>
-                        </ribbon:RibbonSplitButton>
                         <ribbon:RibbonButton x:Name="Button24" x:Uid="RibbonTab_Help_Information_AboutUnisensViewer"
                              SmallImageSource="Images\SmallIcon_information_about.png" Label="{lex:LocText UnisensViewer:Translations:ÜberUnisensViewer}"
                              Click="MenuItem_About_Click" />

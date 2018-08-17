@@ -678,13 +678,7 @@ namespace UnisensViewer
 
         private void RibbonButton_Click_Homepage(object sender, RoutedEventArgs e)
         {
-            string website = "http://www.unisens.org/viewer.php";
-            System.Diagnostics.Process.Start(website);
-        }
-
-        private void RibbonButton_Click_Unisens(object sender, RoutedEventArgs e)
-        {
-            string website = "http://www.unisens.org/index.php";
+            string website = "https://github.com/Unisens/UnisensViewer";
             System.Diagnostics.Process.Start(website);
         }
 
