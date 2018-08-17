@@ -451,8 +451,13 @@ namespace UnisensViewer
                     unisens.SetAttributeValue("timestampStart", dateStr);
 
                     // Add old timestampStart to comment
-                    string comment = unisens.Attribute("comment").Value;
-                    comment = comment.TrimEnd();
+					XAttribute commentAttribute = unisens.Attribute("comment");
+					string comment = "";
+					if (commentAttribute!=null)
+					{
+						comment = commentAttribute.Value;
+						comment = comment.TrimEnd();
+					}	
                     if (comment.Length > 0 && comment[comment.Length - 1] != '.')
                     {
                         comment += ".";

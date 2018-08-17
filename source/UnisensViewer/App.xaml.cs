@@ -46,10 +46,12 @@ namespace UnisensViewer
             crashReport.ErrorReportURL = "http://software.unisens.org/ErrorReport/ErrorReporter.php";
             crashReport.Send(e);
 
-            if (isTerminating)
-            {
+            //if (isTerminating)
+            //{
             	Application.Current.Shutdown();
-            }
+            //}
+
+
         }
 
 		private void ApplicationStartup(object sender, StartupEventArgs e)
