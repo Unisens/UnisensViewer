@@ -111,3 +111,6 @@ UpgradeLog*.XML
 /plugins/projects/PlugInMatlabExtern
 /plugins/projects/PlugInSimpleQrsDetection
 /plugins/projects/PlugInArtifact
+builder/dist/
+builder/Installer-cache/
+source/.vs/

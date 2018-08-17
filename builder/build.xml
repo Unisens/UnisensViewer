@@ -96,7 +96,7 @@
 	</delete>--> <!-- PDBs necessary for source code lines in case of error -->
 	
 	
-	<copy file="req/msvcr100_x86.dll" tofile="${workingdir}/source/UnisensViewer/bin/x86/Release/msvcr100.dll" />
+	<copy file="req/vcruntime140_x86.dll" tofile="${workingdir}/source/UnisensViewer/bin/x86/Release/vcruntime140.dll" />
 	<exec executable="${VS.command}" failonerror="true">
 	  <arg value="${workingdir}/source/UnisensViewer.sln" />
 	  <arg value="/rebuild" />
@@ -105,7 +105,7 @@
 	<!--<delete>
 		<fileset dir="${workingdir}/source/UnisensViewer/bin/x86/Release" includes="**/*.pdb"/>
 	</delete>--> <!-- PDBs necessary for source code lines in case of error -->
-	<copy file="req/msvcr100_x64.dll" tofile="${workingdir}/source/UnisensViewer/bin/x64/Release/msvcr100.dll" />
+	<copy file="req/vcruntime140_x64.dll" tofile="${workingdir}/source/UnisensViewer/bin/x64/Release/vcruntime140.dll" />
   </target>
 	
   <target name="buildInstaller">
