@@ -358,7 +358,7 @@ namespace UnisensViewer
             }
             else if (param.Equals("prev"))
             {
-                e.CanExecute = RendererManager.Time - RendererManager.TimeStretch >= 0;
+                e.CanExecute = RendererManager.Time >= 0.0001;
             }
 			else
 			{

@@ -163,16 +163,16 @@
       <HintPath>..\..\library\WPFLocalizeExtension.dll</HintPath>
     </Reference>
   </ItemGroup>
-    <ItemGroup Condition=" '$(Platform)' == 'x86' ">
-	<Reference Include="Unisens">
-		<HintPath>..\..\plugins\lib\x86\Unisens.dll</HintPath>
-	</Reference>
-</ItemGroup>
+  <ItemGroup Condition=" '$(Platform)' == 'x86' ">
+    <Reference Include="Unisens">
+      <HintPath>..\..\plugins\lib\x86\Unisens.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <ItemGroup Condition=" '$(Platform)' == 'x64' ">
-	<Reference Include="Unisens">
-		<HintPath>..\..\plugins\lib\x64\Unisens.dll</HintPath>
-	</Reference>
-</ItemGroup>
+    <Reference Include="Unisens">
+      <HintPath>..\..\plugins\lib\x64\Unisens.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -190,6 +190,7 @@
     <Compile Include="DialogSettings.xaml.cs">
       <DependentUpon>DialogSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DialogVideo.xaml.cs" />
     <Compile Include="EditFunctions\Artifacts.cs" />
     <Compile Include="EditFunctions\Crop.cs" />
     <Compile Include="EditFunctions\DialogMarkerList.xaml.cs">
@@ -252,6 +253,10 @@
     <Page Include="DialogSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogVideo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="EditFunctions\DialogMarkerList.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -475,6 +480,9 @@
     <Resource Include="Images\SmallIcon_markerlist.png" />
     <Resource Include="Images\LargeIcon_playback_pause.png" />
     <Resource Include="Images\LargeIcon_playback_play.png" />
+    <Resource Include="Images\LargeIcon_playback_next.png" />
+    <Resource Include="Images\LargeIcon_playback_prev.png" />
+    <Resource Include="Images\LargeIcon_playback_video.png" />
     <Content Include="unisens.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -498,7 +506,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 und x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
