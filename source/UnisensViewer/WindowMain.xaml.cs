@@ -965,7 +965,10 @@ namespace UnisensViewer
             }
             finally
             {
+                //Uncomment next line to check english translation
+                //ci = new CultureInfo("en");
                 LocalizeDictionary.Instance.Culture = ci;
+
             }
         }
 
