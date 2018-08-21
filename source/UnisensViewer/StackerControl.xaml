@@ -3,6 +3,8 @@
  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
  xmlns:src="clr-namespace:UnisensViewer"
+ xmlns:lex="http://schemas.root-project.org/xaml/presentation"
+ lex:LocalizeDictionary.DesignCulture="de"
  AllowDrop="true"
  Drop="ScrollViewer_Drop" 
  MouseMove="Mousemove"
@@ -29,28 +31,28 @@
 		-->
 
         <ContextMenu x:Key="contextmenu_stack" Opened="PluginContextMenu_Opened">
-            <MenuItem x:Uid="Channel_AutoZoom" Header="Autom.Skalierung">
-                <MenuItem x:Uid="Channel_AutoZoom_ThisBatch" Header="Dieser Stapel">
-                    <MenuItem x:Uid="Channel_AutoZoom_ThisBatch_IndividualSignal" Header="Signale individuell" Click="MenuItem_Click_AutoZoom_Stack_Separate"/>
-                    <MenuItem x:Uid="Channel_AutoZoom_ThisBatch_GroupedByFile" Header="nach Dateien gruppiert" Click="MenuItem_Click_AutoZoom_Stack_Files"/>
-                    <MenuItem x:Uid="Channel_AutoZoom_ThisBatch_GroupedByUnits" Header="nach Einheiten gruppiert" Click="MenuItem_Click_AutoZoom_Stack_Units"/>
+            <MenuItem x:Uid="Channel_AutoZoom" Header="{lex:LocText UnisensViewer:Translations:AutomSkalierung}">
+                <MenuItem x:Uid="Channel_AutoZoom_ThisBatch" Header="{lex:LocText UnisensViewer:Translations:DieserStapel}">
+                    <MenuItem x:Uid="Channel_AutoZoom_ThisBatch_IndividualSignal" Header="{lex:LocText UnisensViewer:Translations:SignaleIndividuell}" Click="MenuItem_Click_AutoZoom_Stack_Separate"/>
+                    <MenuItem x:Uid="Channel_AutoZoom_ThisBatch_GroupedByFile" Header="{lex:LocText UnisensViewer:Translations:NachDateiengruppiert}" Click="MenuItem_Click_AutoZoom_Stack_Files"/>
+                    <MenuItem x:Uid="Channel_AutoZoom_ThisBatch_GroupedByUnits" Header="{lex:LocText UnisensViewer:Translations:NachEinheitengruppiert}" Click="MenuItem_Click_AutoZoom_Stack_Units"/>
 				</MenuItem>
-                <MenuItem x:Uid="Channel_AutoZoom_SelectedSignals" Header="Ausgewählte Signale">
-                    <MenuItem x:Uid="Channel_AutoZoom_SelectedSignals_IndividualSignal" Header="Signale individuell" Click="MenuItem_Click_AutoZoom_Selected_Separate"/>
-                    <MenuItem x:Uid="Channel_AutoZoom_SelectedSignals_GroupedByFile" Header="nach Dateien gruppiert" Click="MenuItem_Click_AutoZoom_Selected_Files"/>
-                    <MenuItem x:Uid="Channel_AutoZoom_SelectedSignals_GroupedByUnits" Header="nach Einheiten gruppiert" Click="MenuItem_Click_AutoZoom_Selected_Units"/>
+                <MenuItem x:Uid="Channel_AutoZoom_SelectedSignals" Header="{lex:LocText UnisensViewer:Translations:AusgewählteSignale}">
+                    <MenuItem x:Uid="Channel_AutoZoom_SelectedSignals_IndividualSignal" Header="{lex:LocText UnisensViewer:Translations:SignaleIndividuell}" Click="MenuItem_Click_AutoZoom_Selected_Separate"/>
+                    <MenuItem x:Uid="Channel_AutoZoom_SelectedSignals_GroupedByFile" Header="{lex:LocText UnisensViewer:Translations:NachDateiengruppiert}" Click="MenuItem_Click_AutoZoom_Selected_Files"/>
+                    <MenuItem x:Uid="Channel_AutoZoom_SelectedSignals_GroupedByUnits" Header="{lex:LocText UnisensViewer:Translations:NachEinheitengruppiert}" Click="MenuItem_Click_AutoZoom_Selected_Units"/>
 				</MenuItem>
 			</MenuItem>
-            <MenuItem x:Uid="Channel_Invert" Header="Invertieren" Click="MenuItem_Click_Invert"/>
+            <MenuItem x:Uid="Channel_Invert" Header="{lex:LocText UnisensViewer:Translations:Invertieren}" Click="MenuItem_Click_Invert"/>
 			<Separator/>
-            <MenuItem x:Uid="Channel_StackClose" Header="Stapel schließen" Click="MenuItem_Click_Stack_Close"/>
-            <MenuItem x:Uid="Channel_StackCloseOthers" Header="Alle Stapel außer diesem schließen" Click="MenuItem_Click_Stack_CloseOthers"/>
+            <MenuItem x:Uid="Channel_StackClose" Header="{lex:LocText UnisensViewer:Translations:StapelSchließen}" Click="MenuItem_Click_Stack_Close"/>
+            <MenuItem x:Uid="Channel_StackCloseOthers" Header="{lex:LocText UnisensViewer:Translations:AlleStapelAußerDiesemSchließen}" Click="MenuItem_Click_Stack_CloseOthers"/>
             <Separator/>
             
             <!-- Marker funktionen -->
-            <MenuItem x:Uid="Contextmenu_Marker_Set" Header="Marker setzen" Command="{x:Static src:Commands.SetMarker}" CommandParameter="ContextMenu"/>
-            <MenuItem x:Uid="Contextmenu_Marker_Delete" Header="Marker löschen" Command="{x:Static src:Commands.DeleteMarker}" CommandParameter="ContextMenu"/>
-            <MenuItem x:Uid="Contextmenu_Marker_Truncate" Header="Marker abschneiden" Command="{x:Static src:Commands.TruncateMarker}" CommandParameter="ContextMenu"/>
+            <MenuItem x:Uid="Contextmenu_Marker_Set" Header="{lex:LocText UnisensViewer:Translations:MarkerSetzen}" Command="{x:Static src:Commands.SetMarker}" CommandParameter="ContextMenu"/>
+            <MenuItem x:Uid="Contextmenu_Marker_Delete" Header="{lex:LocText UnisensViewer:Translations:MarkerLöschen}" Command="{x:Static src:Commands.DeleteMarker}" CommandParameter="ContextMenu"/>
+            <MenuItem x:Uid="Contextmenu_Marker_Truncate" Header="{lex:LocText UnisensViewer:Translations:MarkerAbschneiden}" Command="{x:Static src:Commands.TruncateMarker}" CommandParameter="ContextMenu"/>
             <Separator/>    
             
 			<MenuItem  Header="Plug-ins" Initialized="MenuItem_plugins_Initialized" ItemTemplate="{StaticResource datatemplate_plugincontextmenuitem}">
