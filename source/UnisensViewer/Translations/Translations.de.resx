@@ -483,4 +483,40 @@
   <data name="AbsoluteDauerZeit" xml:space="preserve">
     <value>Beides</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="zuletztgeöffneteDatensätze" xml:space="preserve">
+    <value>Zuletzt geöffnete Datensätze ...</value>
+  </data>
+  <data name="MarkerSetzen" xml:space="preserve">
+    <value>Marker setzen</value>
+  </data>
+  <data name="AutomSkalierung" xml:space="preserve">
+    <value>Automatische Skalierung</value>
+  </data>
+  <data name="SignaleIndividuell" xml:space="preserve">
+    <value>Signale individuell</value>
+  </data>
+  <data name="DieserStapel" xml:space="preserve">
+    <value>Dieser Stapel</value>
+  </data>
+  <data name="AusgewählteSignale" xml:space="preserve">
+    <value>Ausgewählte Signale</value>
+  </data>
+  <data name="Invertieren" xml:space="preserve">
+    <value>Invertieren</value>
+  </data>
+  <data name="StapelSchließen" xml:space="preserve">
+    <value>Stapel schließen</value>
+  </data>
+  <data name="AlleStapelAußerDiesemSchließen" xml:space="preserve">
+    <value>Alle Stapel außer diesem schließen</value>
+  </data>
+  <data name="MarkerLöschen" xml:space="preserve">
+    <value>Marker löschen</value>
+  </data>
+  <data name="MarkerAbschneiden" xml:space="preserve">
+    <value>Marker abschneiden</value>
+  </data>
 </root>

@@ -574,4 +574,34 @@
     <value>Both</value>
     <comment>ribbon:RibbonCheckBox.Label</comment>
   </data>
+  <data name="MarkerSetzen" xml:space="preserve">
+    <value>Set marker</value>
+  </data>
+  <data name="AutomSkalierung" xml:space="preserve">
+    <value>Automatic scaling</value>
+  </data>
+  <data name="DieserStapel" xml:space="preserve">
+    <value>This stack</value>
+  </data>
+  <data name="SignaleIndividuell" xml:space="preserve">
+    <value>Individual signals</value>
+  </data>
+  <data name="AusgewählteSignale" xml:space="preserve">
+    <value>Selected signals</value>
+  </data>
+  <data name="Invertieren" xml:space="preserve">
+    <value>Invert</value>
+  </data>
+  <data name="StapelSchließen" xml:space="preserve">
+    <value>Close stack</value>
+  </data>
+  <data name="AlleStapelAußerDiesemSchließen" xml:space="preserve">
+    <value>Close all stacks but this</value>
+  </data>
+  <data name="MarkerLöschen" xml:space="preserve">
+    <value>Delete Marker</value>
+  </data>
+  <data name="MarkerAbschneiden" xml:space="preserve">
+    <value>Cut Marker</value>
+  </data>
 </root>
