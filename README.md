@@ -17,7 +17,7 @@ You can download UnisensViewer on the [Unisens website](http://www.unisens.org/d
 UnisensViewer is licensed under the GPL.
 
 ## System Requirements
-  * Windows XP / Vista / 7 / 8
+  * Windows 7 / 8 / 10
 
 ## Screenshot
 ![UnisensViewer Screenshot](http://unisens.org/pics/unisensviewer.png "UnisensViewer Screenshot")
