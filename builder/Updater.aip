@@ -13,9 +13,6 @@
     <ROW Section="ANT_NAME vANT_VERSION" Key="ServerFileName" Value="ANT_NAME_Setup.exe"/>
     <ROW Section="ANT_NAME vANT_VERSION" Key="FilePath" Value="[APPDIR]ANT_NAME.exe"/>
     <ROW Section="ANT_NAME vANT_VERSION" Key="Version" Value="ANT_VERSION"/>
-    <ROW Section="ANT_NAME vANT_VERSION" Key="Feature" Value="English translation"/>
-    <ROW Section="ANT_NAME vANT_VERSION" Key="Enhancement" Value="Improved zoom and scale functions&#13;&#10;Added shortcut to movisens DataAnalyzer"/>
-    <ROW Section="ANT_NAME vANT_VERSION" Key="BugFix" Value="Fixes in Marker plugin&#13;&#10;Fixes in Crop and Delete plugin"/>
     <ROW Section="ANT_NAME vANT_VERSION" Key="AutoCloseApplication" Value="[APPDIR]ANT_NAME.exe"/>
     <ATTRIBUTE name="OutputFileName" value="update.txt"/>
     <ATTRIBUTE name="OutputFolder" value="dist"/>
