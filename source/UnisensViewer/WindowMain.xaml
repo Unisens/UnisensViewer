@@ -309,7 +309,7 @@
                              LargeImageSource="Images\LargeIcon_misc_crop.png" SmallImageSource="Images\SmallIcon_misc_crop.png" Command="{x:Static src:Commands.CropSelection}"
                              Label="{lex:LocText UnisensViewer:Translations:CropLabel}"
                              ToolTipTitle="{lex:LocText UnisensViewer:Translations:CropLabel}"
-                             ToolTipDescription="{lex:LocText UnisensViewer:Translations:TrimDescription}"/>
+                             ToolTipDescription="{lex:LocText UnisensViewer:Translations:CropDescription}"/>
                         <ribbon:RibbonButton x:Name="ButtonTrim" x:Uid="RibbonTab_View_Trim"
                              LargeImageSource="Images\LargeIcon_misc_delete.png" SmallImageSource="Images\SmallIcon_misc_delete.png" Command="{x:Static src:Commands.Trim}"
                              Label="{lex:LocText UnisensViewer:Translations:TrimLabel}"
