@@ -1,6 +1,6 @@
 # UnisensViewer
 
-UnisensViewer is a windows application for viewing and manipulating sensor data stored in the [Unisens](http://unisens.org/) data format.
+UnisensViewer is a windows application for viewing and manipulating sensor data stored in the [Unisens](https://unisens.org/) data format.
 
 ## Features
   * Visualization of large datasets
@@ -11,7 +11,7 @@ UnisensViewer is a windows application for viewing and manipulating sensor data 
   * Multilingual
 
 ## Download
-You can download UnisensViewer on the [Unisens website](http://www.unisens.org/downloads.php).
+You can download UnisensViewer from the [Unisens website](https://unisens.org/downloads.html).
 
 ## License
 UnisensViewer is licensed under the GPL.
