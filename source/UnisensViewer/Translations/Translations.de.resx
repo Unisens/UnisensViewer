@@ -406,7 +406,7 @@
     <value>Signale bearbeiten</value>
   </data>
   <data name="TrimDescription" xml:space="preserve">
-    <value>Löscht am Anfang oder Ende eines Signales das ausgewählte Zeitintervall.</value>
+    <value>Löscht das ausgewählte Zeitintervall am Anfang oder Ende eines Signals.</value>
   </data>
   <data name="TrimLabel" xml:space="preserve">
     <value>Anfang/Ende abschneiden</value>
